@@ -156,7 +156,7 @@ class _OnboardingPage extends StatelessWidget {
           Text(
             data.description,
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge?.copyWith(color: Colors.black54),
+            style: theme.textTheme.bodyLarge,
           ),
         ],
       ),
