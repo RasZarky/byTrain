@@ -27,5 +27,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/images/train1.png
+    - assets/images/
     - assets/icons/
