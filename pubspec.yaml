@@ -17,6 +17,7 @@ dependencies:
   equatable: ^2.0.5
   skeletonizer: ^2.1.3
   google_fonts: ^6.2.1
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
@@ -27,3 +28,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/train1.png
+    - assets/icons/
