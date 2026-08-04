@@ -14,7 +14,12 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Search Trains')),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(AppDimensions.m),
+        padding: const EdgeInsets.fromLTRB(
+          AppDimensions.m,
+          AppDimensions.m,
+          AppDimensions.m,
+          100, // Bottom padding for floating nav
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
