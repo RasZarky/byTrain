@@ -27,3 +27,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/train1.png
+    - assets/icons/
