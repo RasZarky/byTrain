@@ -19,7 +19,7 @@ class AppButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    Theme.of(context);
     
     final content = Row(
       mainAxisSize: MainAxisSize.min,

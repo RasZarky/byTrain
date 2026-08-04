@@ -83,7 +83,7 @@ class JourneyPlannerScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: AppDimensions.m, vertical: AppDimensions.s),
       child: Row(
         children: [
-          Icon(Icons.history, color: theme.colorScheme.primary.withOpacity(0.5)),
+          Icon(Icons.history, color: theme.colorScheme.primary.withValues(alpha: 0.5)),
           const SizedBox(width: AppDimensions.m),
           Expanded(
             child: Text('$from to $to', style: theme.textTheme.bodyLarge),
