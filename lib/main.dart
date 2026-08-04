@@ -15,16 +15,14 @@ class ByTrainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (context) => HomeBloc()..add(LoadHomeData()),
-        ),
+        BlocProvider(create: (context) => HomeBloc()..add(LoadHomeData())),
       ],
       child: MaterialApp.router(
         title: 'ByTrain',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
-        themeMode: ThemeMode.system,
+        themeMode: ThemeMode.light,
         routerConfig: AppRouter.router,
       ),
     );

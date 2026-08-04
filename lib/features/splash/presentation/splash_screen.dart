@@ -23,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       body: Stack(
