@@ -9,9 +9,11 @@ ByTrain is a modern, high-performance Flutter application designed for tracking 
 -   **Smart Search**: Quickly find trains by number or stations by name.
 -   **Interactive Routes**: Visualize full train routes with stop-by-stop details.
 -   **Modern UI/UX**:
+    -   **Centralized Design System**: Unified theme with support for **Light and Dark Mode** using `ThemeData`.
+    -   **Custom Component Library**: Reusable core widgets like `CustomCard` and `AppButton` for UI consistency.
     -   **Skeleton Loading**: Premium shimmering effects using `Skeletonizer` for a polished loading experience.
     -   **Smooth Navigation**: Declarative routing with `GoRouter`, supporting deep links and nested routes.
-    -   **Clean States**: Predictable state management via `BLoC` (Business Logic Component).
+    -   **Clean States**: Predictable state management via `BLoC` (Business Logic Component), following the 3-file separation pattern (bloc, event, state).
 
 ## 🛠 Tech Stack
 
@@ -29,10 +31,11 @@ The project follows a **Feature-first** (Layered) approach, which isolates busin
 lib/
 ├── core/               # App-wide configurations
 │   ├── router/         # GoRouter path definitions & navigation logic
-│   └── theme/          # App styling and color schemes
+│   ├── theme/          # Centralized Design System (Colors, Typography, Dimensions)
+│   └── widgets/        # Reusable UI components (AppButton, CustomCard, etc.)
 ├── features/           # Independent business modules
 │   ├── home/           # Dashboard & recent activity tracking
-│   │   ├── presentation/ # UI & BLoCs
+│   │   ├── presentation/ # UI & BLoCs (separated into .bloc, .event, .state)
 │   │   ├── domain/       # Business logic & models
 │   │   └── data/         # Repositories & Data sources
 │   ├── search/         # Search logic & results
@@ -67,14 +70,14 @@ lib/
 
 ## 📱 Screens Overview
 
-1.  **Splash Screen**: Branded entry point with initialization logic.
-2.  **Onboarding**: Interactive guide for new users.
-3.  **Home**: Dynamic dashboard with **Skeletonizer** integration for seamless loading.
-4.  **Search**: Powerful search bar for trains and stations.
-5.  **Search Results**: Categorized results for quick access.
-6.  **Train Details**: Live status, platform numbers, and delays.
-7.  **Route Details**: Stop-by-stop visual timeline of the train's journey.
-8.  **Journey Planner**: Station-to-station trip finder with multiple options.
+1.  **Splash Screen**: Branded entry point with initialization logic and Hero animations.
+2.  **Onboarding**: Interactive guide for new users using PageView.
+3.  **Home**: Dynamic dashboard with **Skeletonizer** integration and Quick Action cards.
+4.  **Search**: Powerful search bar with localized inputs for stations.
+5.  **Search Results**: Categorized results with high-contrast status indicators.
+6.  **Train Details**: Comprehensive view of live status, arrival/departure schedules.
+7.  **Route Details**: Visual timeline/timeline-tree of the train's journey.
+8.  **Journey Planner**: Station-to-station trip finder with search history.
 9.  **Station Details**: Live boards, station facilities, and local maps.
 10. **Settings**: Dark mode toggle, notification preferences, and region settings.
 11. **About**: Version information, licenses, and developer credits.
