@@ -22,52 +22,33 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
+
     return Scaffold(
-      backgroundColor: theme.colorScheme.primary,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.1),
-                    blurRadius: 20,
-                    spreadRadius: 5,
-                  ),
-                ],
-              ),
-              child: Hero(
-                tag: 'app-logo',
-                child: Icon(
-                  Icons.train,
-                  size: 80,
-                  color: theme.colorScheme.primary,
+      backgroundColor: theme.colorScheme.surface,
+      body: Stack(
+        children: [
+          // App Icon
+          const Center(
+            child: Image(
+              image: AssetImage('assets/icons/app_icon.png'),
+            ),
+          ),
+
+          // Text
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 230.0),
+              child: Text(
+                'CITY TRANSPORT & MOBILITY \n YOUR JOURNEY BEGINS WITH By Train.',
+                style: theme.textTheme.titleLarge!.copyWith(
+                  fontWeight: FontWeight.bold,
                 ),
+                textAlign: TextAlign.center,
               ),
             ),
-            const SizedBox(height: 24),
-            Text(
-              'ByTrain',
-              style: theme.textTheme.headlineMedium?.copyWith(
-                color: Colors.white,
-                letterSpacing: 1.2,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              'Your Journey, Simplified',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: Colors.white70,
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

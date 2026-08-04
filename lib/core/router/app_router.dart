@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/splash/presentation/splash_screen.dart';
 import '../../features/onboarding/presentation/onboarding_screen.dart';
@@ -13,20 +14,25 @@ import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/settings/presentation/about_screen.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
-final _shellNavigatorHomeKey = GlobalKey<NavigatorState>(debugLabel: 'shellHome');
-final _shellNavigatorSearchKey = GlobalKey<NavigatorState>(debugLabel: 'shellSearch');
-final _shellNavigatorPlanKey = GlobalKey<NavigatorState>(debugLabel: 'shellPlan');
-final _shellNavigatorSettingsKey = GlobalKey<NavigatorState>(debugLabel: 'shellSettings');
+final _shellNavigatorHomeKey = GlobalKey<NavigatorState>(
+  debugLabel: 'shellHome',
+);
+final _shellNavigatorSearchKey = GlobalKey<NavigatorState>(
+  debugLabel: 'shellSearch',
+);
+final _shellNavigatorPlanKey = GlobalKey<NavigatorState>(
+  debugLabel: 'shellPlan',
+);
+final _shellNavigatorSettingsKey = GlobalKey<NavigatorState>(
+  debugLabel: 'shellSettings',
+);
 
 class AppRouter {
   static final router = GoRouter(
     initialLocation: '/',
     navigatorKey: _rootNavigatorKey,
     routes: [
-      GoRoute(
-        path: '/',
-        builder: (context, state) => const SplashScreen(),
-      ),
+      GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
       GoRoute(
         path: '/onboarding',
         builder: (context, state) => const OnboardingScreen(),
@@ -89,17 +95,20 @@ class AppRouter {
       GoRoute(
         path: '/train-details/:id',
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => TrainDetailsScreen(trainId: state.pathParameters['id']!),
+        builder: (context, state) =>
+            TrainDetailsScreen(trainId: state.pathParameters['id']!),
       ),
       GoRoute(
         path: '/route-details/:id',
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => RouteDetailsScreen(routeId: state.pathParameters['id']!),
+        builder: (context, state) =>
+            RouteDetailsScreen(routeId: state.pathParameters['id']!),
       ),
       GoRoute(
         path: '/station-details/:id',
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => StationDetailsScreen(stationId: state.pathParameters['id']!),
+        builder: (context, state) =>
+            StationDetailsScreen(stationId: state.pathParameters['id']!),
       ),
     ],
   );
