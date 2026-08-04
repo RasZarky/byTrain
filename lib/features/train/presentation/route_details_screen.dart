@@ -73,7 +73,7 @@ class RouteDetailsScreen extends StatelessWidget {
           Container(
             width: 2,
             height: AppDimensions.m,
-            color: theme.colorScheme.primary.withOpacity(0.3),
+            color: theme.colorScheme.primary.withValues(alpha: 0.3),
           )
         else
           const SizedBox(height: AppDimensions.m),
@@ -86,7 +86,7 @@ class RouteDetailsScreen extends StatelessWidget {
             border: Border.all(color: Colors.white, width: 2),
             boxShadow: [
               BoxShadow(
-                color: theme.colorScheme.primary.withOpacity(0.3),
+                color: theme.colorScheme.primary.withValues(alpha: 0.3),
                 blurRadius: 4,
                 spreadRadius: 1,
               ),
@@ -97,7 +97,7 @@ class RouteDetailsScreen extends StatelessWidget {
           Expanded(
             child: Container(
               width: 2,
-              color: theme.colorScheme.primary.withOpacity(0.3),
+              color: theme.colorScheme.primary.withValues(alpha:0.3),
             ),
           )
         else

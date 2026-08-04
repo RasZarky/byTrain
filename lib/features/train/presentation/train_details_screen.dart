@@ -11,11 +11,9 @@ class TrainDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Train $trainId'),
-      ),
+      appBar: AppBar(title: Text('Train $trainId')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(AppDimensions.m),
         child: Column(
@@ -55,14 +53,8 @@ class TrainDetailsScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: AppDimensions.m),
-        Text(
-          'Express $trainId',
-          style: theme.textTheme.headlineMedium,
-        ),
-        Text(
-          'Train Number: EXP$trainId',
-          style: theme.textTheme.bodyMedium,
-        ),
+        Text('Express $trainId', style: theme.textTheme.headlineMedium),
+        Text('Train Number: EXP$trainId', style: theme.textTheme.bodyMedium),
       ],
     );
   }
@@ -74,7 +66,7 @@ class TrainDetailsScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(AppDimensions.s),
             decoration: BoxDecoration(
-              color: Colors.green.withOpacity(0.1),
+              color: Colors.green.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(AppDimensions.radiusS),
             ),
             child: const Icon(Icons.check_circle_outline, color: Colors.green),
@@ -85,7 +77,13 @@ class TrainDetailsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Current Status', style: theme.textTheme.titleMedium),
-                const Text('On Time', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+                const Text(
+                  'On Time',
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
           ),
@@ -106,10 +104,10 @@ class TrainDetailsScreen extends StatelessWidget {
             trailing: Text('10:00 AM', style: theme.textTheme.titleMedium),
           ),
           const Divider(height: 1),
-          ListTile(
-            leading: const Icon(Icons.more_vert),
-            title: const Text('Duration'),
-            subtitle: const Text('4h 00m'),
+          const ListTile(
+            leading: Icon(Icons.more_vert),
+            title: Text('Duration'),
+            subtitle: Text('4h 00m'),
           ),
           const Divider(height: 1),
           ListTile(
