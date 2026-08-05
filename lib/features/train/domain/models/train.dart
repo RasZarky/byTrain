@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 
+enum TrainType { express, regional, local }
+
 class Train extends Equatable {
   final String id;
   final String name;
@@ -7,6 +9,9 @@ class Train extends Equatable {
   final String status;
   final String departureTime;
   final String arrivalTime;
+  final TrainType type;
+  final double? latitude;
+  final double? longitude;
 
   const Train({
     required this.id,
@@ -15,8 +20,21 @@ class Train extends Equatable {
     required this.status,
     required this.departureTime,
     required this.arrivalTime,
+    this.type = TrainType.regional,
+    this.latitude,
+    this.longitude,
   });
 
   @override
-  List<Object?> get props => [id, name, number, status, departureTime, arrivalTime];
+  List<Object?> get props => [
+        id,
+        name,
+        number,
+        status,
+        departureTime,
+        arrivalTime,
+        type,
+        latitude,
+        longitude,
+      ];
 }
