@@ -467,7 +467,7 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
             DraggableScrollableSheet(
               initialChildSize: 0.2,
               minChildSize: 0.18,
-              maxChildSize: 0.9,
+              maxChildSize: 0.84,
               snap: true,
               builder: (context, scrollController) {
                 return Container(
