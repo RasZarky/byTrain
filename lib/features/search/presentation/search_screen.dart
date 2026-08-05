@@ -8,6 +8,12 @@ import 'package:geolocator/geolocator.dart';
 import '../../../core/theme/app_dimensions.dart';
 import '../../train/domain/models/train.dart';
 import '../../train/presentation/widgets/train_card.dart';
+import 'widgets/map_action_button.dart';
+import 'widgets/search_filter_bar.dart';
+import 'widgets/search_floating_header.dart';
+import 'widgets/search_section_label.dart';
+import 'widgets/search_sheet_handle.dart';
+import 'widgets/search_sheet_header.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -22,6 +28,7 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
   final FocusNode _searchFocusNode = FocusNode();
   final LayerLink _layerLink = LayerLink();
   late AnimationController _pulseController;
+  late final Animation<double> _pulseAnimation;
   
   OverlayEntry? _overlayEntry;
   Train? _selectedTrain;
@@ -121,6 +128,7 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
       vsync: this,
       duration: const Duration(milliseconds: 1200),
     )..repeat(reverse: true);
+    _pulseAnimation = Tween<double>(begin: 0.6, end: 1.0).animate(_pulseController);
     
     _searchFocusNode.addListener(() {
       if (_searchFocusNode.hasFocus) {
@@ -414,10 +422,39 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
                   children: [
                     CompositedTransformTarget(
                       link: _layerLink,
-                      child: _buildFloatingHeader(theme),
+                      child: SearchFloatingHeader(
+                        controller: _searchController,
+                        focusNode: _searchFocusNode,
+                        isSearching: _isSearching,
+                        onChanged: (val) {
+                          setState(() {
+                            _isSearching = val.isNotEmpty;
+                          });
+                          _showOverlay(); // Always show overlay when typing
+                          _loadMarkers();
+                        },
+                        onClear: () {
+                          _searchController.clear();
+                          setState(() {
+                            _isSearching = false;
+                            _selectedTrain = null;
+                          });
+                          _showOverlay(); // Re-show popular trains
+                          _loadMarkers();
+                        },
+                      ),
                     ),
                     const SizedBox(height: AppDimensions.s),
-                    _buildFilterBar(theme),
+                    SearchFilterBar(
+                      selectedFilter: _selectedFilter,
+                      onFilterSelected: (filter) {
+                        setState(() {
+                          _selectedFilter = filter;
+                        });
+                        _loadMarkers();
+                        _overlayEntry?.markNeedsBuild();
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -429,8 +466,7 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
               top: size.height * 0.25,
               child: Column(
                 children: [
-                  _buildMapAction(
-                    theme: theme,
+                  MapActionButton(
                     icon: Icons.my_location_rounded,
                     onTap: () async {
                       if (!_locationPermissionGranted) {
@@ -454,8 +490,7 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
                     },
                   ),
                   const SizedBox(height: AppDimensions.m),
-                  _buildMapAction(
-                    theme: theme,
+                  MapActionButton(
                     icon: Icons.layers_outlined,
                     onTap: _cycleMapType,
                   ),
@@ -488,19 +523,21 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
                     child: Column(
                       children: [
                         const SizedBox(height: 12),
-                        _buildHandle(theme),
+                        const SearchSheetHandle(),
                         const SizedBox(height: 20),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: AppDimensions.m),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              _buildSheetHeader(theme),
+                              SearchSheetHeader(
+                                isSearching: _isSearching,
+                                pulseAnimation: _pulseAnimation,
+                              ),
                               const SizedBox(height: AppDimensions.l),
                               if (_selectedTrain != null && filteredTrains.contains(_selectedTrain)) ...[
-                                _buildSectionLabel(
-                                  theme, 
-                                  'SELECTED TRAIN',
+                                SearchSectionLabel(
+                                  label: 'SELECTED TRAIN',
                                   trailing: IconButton(
                                     icon: const Icon(Icons.close_rounded, size: 16),
                                     onPressed: () {
@@ -522,7 +559,9 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
                                 ),
                                 const SizedBox(height: AppDimensions.xl),
                               ],
-                              _buildSectionLabel(theme, _isSearching ? 'SEARCH RESULTS' : 'LIVE NEARBY'),
+                              SearchSectionLabel(
+                                label: _isSearching ? 'SEARCH RESULTS' : 'LIVE NEARBY',
+                              ),
                               const SizedBox(height: AppDimensions.m),
                               if (filteredTrains.isEmpty)
                                 Center(
@@ -571,234 +610,6 @@ class _SearchScreenState extends State<SearchScreen> with SingleTickerProviderSt
               },
             ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildHandle(ThemeData theme) {
-    return Container(
-      width: 40,
-      height: 4,
-      decoration: BoxDecoration(
-        color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(2),
-      ),
-    );
-  }
-
-  Widget _buildFloatingHeader(ThemeData theme) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
-          BoxShadow(
-            color: theme.colorScheme.primary.withValues(alpha: 0.15),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(24),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              color: theme.brightness == Brightness.light
-                  ? Colors.white.withValues(alpha: 0.7)
-                  : Colors.black.withValues(alpha: 0.6),
-              borderRadius: BorderRadius.circular(24),
-              border: Border.all(
-                color: Colors.white.withValues(alpha: 0.2),
-                width: 1.5,
-              ),
-            ),
-            child: TextField(
-              controller: _searchController,
-              focusNode: _searchFocusNode,
-              onChanged: (val) {
-                setState(() {
-                  _isSearching = val.isNotEmpty;
-                });
-                _showOverlay(); // Always show overlay when typing
-                _loadMarkers();
-              },
-              style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
-              decoration: InputDecoration(
-                hintText: 'Search train, station or route...',
-                hintStyle: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
-                ),
-                prefixIcon: Icon(Icons.search_rounded, color: theme.colorScheme.primary),
-                suffixIcon: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 200),
-                  child: _isSearching
-                      ? IconButton(
-                          key: const ValueKey('clear'),
-                          icon: const Icon(Icons.close_rounded),
-                          onPressed: () {
-                            _searchController.clear();
-                            setState(() {
-                              _isSearching = false;
-                              _selectedTrain = null;
-                            });
-                            _showOverlay(); // Re-show popular trains
-                            _loadMarkers();
-                          },
-                        )
-                      : const Icon(
-                          Icons.mic_none_rounded,
-                          key: ValueKey('mic'),
-                        ),
-                ),
-                border: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(vertical: 16),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildFilterBar(ThemeData theme) {
-    final filters = ['All', 'Express', 'Regional', 'Delayed'];
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      physics: const BouncingScrollPhysics(),
-      child: Row(
-        children: filters.map((f) {
-          final bool isSelected = f == _selectedFilter;
-          return Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: FilterChip(
-              label: Text(f),
-              selected: isSelected,
-              onSelected: (_) {
-                setState(() {
-                  _selectedFilter = f;
-                });
-                _loadMarkers();
-                if (_overlayEntry != null) _overlayEntry!.markNeedsBuild();
-              },
-              backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.8),
-              selectedColor: theme.colorScheme.primary.withValues(alpha: 0.15),
-              checkmarkColor: theme.colorScheme.primary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppDimensions.radiusM),
-                side: BorderSide(
-                  color: isSelected ? theme.colorScheme.primary : Colors.transparent,
-                ),
-              ),
-              labelStyle: theme.textTheme.labelLarge?.copyWith(
-                color: isSelected ? theme.colorScheme.primary : theme.colorScheme.onSurface,
-                fontWeight: isSelected ? FontWeight.w800 : FontWeight.w500,
-              ),
-            ),
-          );
-        }).toList(),
-      ),
-    );
-  }
-
-  Widget _buildSheetHeader(ThemeData theme) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        ShaderMask(
-          blendMode: BlendMode.srcIn,
-          shaderCallback: (bounds) => LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [theme.colorScheme.primary, theme.colorScheme.secondary],
-          ).createShader(bounds),
-          child: Text(
-            _isSearching ? 'Search Results' : 'Live Tracking',
-            style: theme.textTheme.headlineMedium?.copyWith(
-              fontWeight: FontWeight.w900,
-              letterSpacing: -1.2,
-            ),
-          ),
-        ),
-        if (!_isSearching)
-          FadeTransition(
-            opacity: Tween<double>(begin: 0.6, end: 1.0).animate(_pulseController),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              decoration: BoxDecoration(
-                color: Colors.red.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: Colors.red.withValues(alpha: 0.2)),
-              ),
-              child: Row(
-                children: [
-                  const Icon(Icons.radio_button_checked, size: 12, color: Colors.red),
-                  const SizedBox(width: 4),
-                  Text(
-                    'LIVE',
-                    style: theme.textTheme.labelSmall?.copyWith(
-                      color: Colors.red,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-      ],
-    );
-  }
-
-  Widget _buildSectionLabel(ThemeData theme, String label, {Widget? trailing}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          label,
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: theme.colorScheme.primary,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 1.5,
-            fontSize: 10,
-          ),
-        ),
-        if (trailing != null) trailing,
-      ],
-    );
-  }
-
-  Widget _buildMapAction({
-    required ThemeData theme,
-    required IconData icon,
-    required VoidCallback onTap,
-  }) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(16),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-            child: Container(
-              width: 48,
-              height: 48,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.surface.withValues(alpha: 0.8),
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: theme.colorScheme.onSurface.withValues(alpha: 0.1),
-                ),
-              ),
-              child: Icon(icon, color: theme.colorScheme.primary),
-            ),
-          ),
         ),
       ),
     );
