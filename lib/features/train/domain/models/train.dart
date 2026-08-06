@@ -2,6 +2,27 @@ import 'package:equatable/equatable.dart';
 
 enum TrainType { express, regional, local }
 
+enum StopStatus { passed, current, upcoming }
+
+class TrainStop extends Equatable {
+  final String stationName;
+  final String arrivalTime;
+  final String? platform;
+  final String? delay;
+  final StopStatus status;
+
+  const TrainStop({
+    required this.stationName,
+    required this.arrivalTime,
+    this.platform,
+    this.delay,
+    required this.status,
+  });
+
+  @override
+  List<Object?> get props => [stationName, arrivalTime, platform, delay, status];
+}
+
 class Train extends Equatable {
   final String id;
   final String name;
@@ -13,6 +34,7 @@ class Train extends Equatable {
   final double? latitude;
   final double? longitude;
   final String? imageUrl;
+  final List<TrainStop> stops;
 
   const Train({
     required this.id,
@@ -25,6 +47,7 @@ class Train extends Equatable {
     this.latitude,
     this.longitude,
     this.imageUrl,
+    this.stops = const [],
   });
 
   @override
@@ -39,5 +62,6 @@ class Train extends Equatable {
         latitude,
         longitude,
         imageUrl,
+        stops,
       ];
 }

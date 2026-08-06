@@ -6,12 +6,14 @@ class LiveStatusCard extends StatelessWidget {
   final String status;
   final Color statusColor;
   final Animation<double> pulseAnimation;
+  final String? platform;
 
   const LiveStatusCard({
     super.key,
     required this.status,
     required this.statusColor,
     required this.pulseAnimation,
+    this.platform,
   });
 
   @override
@@ -53,17 +55,18 @@ class LiveStatusCard extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: theme.colorScheme.surfaceContainerHighest,
-              borderRadius: BorderRadius.circular(20),
+          if (platform != null)
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Text(
+                'PLATFORM $platform',
+                style: theme.textTheme.labelSmall?.copyWith(fontWeight: FontWeight.bold),
+              ),
             ),
-            child: Text(
-              'PLATFORM 4',
-              style: theme.textTheme.labelSmall?.copyWith(fontWeight: FontWeight.bold),
-            ),
-          ),
         ],
       ),
     );
