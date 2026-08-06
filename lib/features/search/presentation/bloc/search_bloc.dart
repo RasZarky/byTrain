@@ -1,59 +1,158 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../train/domain/models/train.dart';
 
-// Events
-abstract class SearchEvent extends Equatable {
-  @override
-  List<Object> get props => [];
-}
+part 'search_event.dart';
+part 'search_state.dart';
 
-class SearchTrains extends SearchEvent {
-  final String query;
-  SearchTrains(this.query);
-  @override
-  List<Object> get props => [query];
-}
-
-// States
-abstract class SearchState extends Equatable {
-  @override
-  List<Object> get props => [];
-}
-
-class SearchInitial extends SearchState {}
-class SearchLoading extends SearchState {}
-class SearchLoaded extends SearchState {
-  final List<Train> results;
-  SearchLoaded(this.results);
-  @override
-  List<Object> get props => [results];
-}
-class SearchError extends SearchState {
-  final String message;
-  SearchError(this.message);
-  @override
-  List<Object> get props => [message];
-}
-
-// Bloc
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
-  SearchBloc() : super(SearchInitial()) {
-    on<SearchTrains>((event, emit) async {
-      if (event.query.isEmpty) return;
-      
-      emit(SearchLoading());
-      try {
-        await Future.delayed(const Duration(seconds: 1));
-        // Mock results
-        final results = [
-          Train(id: '101', name: 'Express 101', number: event.query, status: 'On Time', departureTime: '10:00 AM', arrivalTime: '2:00 PM'),
-          const Train(id: '102', name: 'Express 102', number: 'EXP102', status: 'On Time', departureTime: '11:00 AM', arrivalTime: '3:00 PM'),
-        ];
-        emit(SearchLoaded(results));
-      } catch (e) {
-        emit(SearchError('Failed to find trains'));
-      }
+  static final List<Train> _mockTrains = [
+    const Train(
+      id: '1',
+      name: 'Karakoram Express',
+      number: '41UP',
+      status: 'On Time',
+      departureTime: '15:30',
+      arrivalTime: '10:00',
+      type: TrainType.express,
+      latitude: 31.5741,
+      longitude: 74.3485,
+    ),
+    const Train(
+      id: '2',
+      name: 'Tezgam',
+      number: '7UP',
+      status: 'Delayed 15m',
+      departureTime: '08:00',
+      arrivalTime: '13:15',
+      type: TrainType.express,
+      latitude: 31.5546,
+      longitude: 74.3122,
+    ),
+    const Train(
+      id: '3',
+      name: 'Green Line',
+      number: '5UP',
+      status: 'On Time',
+      departureTime: '22:00',
+      arrivalTime: '20:30',
+      type: TrainType.express,
+      latitude: 31.4826,
+      longitude: 74.3052,
+    ),
+    const Train(
+      id: '4',
+      name: 'Lahore Passenger',
+      number: '212DN',
+      status: 'On Time',
+      departureTime: '11:00',
+      arrivalTime: '14:30',
+      type: TrainType.regional,
+      latitude: 31.5204,
+      longitude: 74.3587,
+    ),
+    const Train(
+      id: '5',
+      name: 'Babu Passenger',
+      number: '208DN',
+      status: 'Delayed 45m',
+      departureTime: '16:00',
+      arrivalTime: '18:15',
+      type: TrainType.regional,
+      latitude: 31.5100,
+      longitude: 74.3300,
+    ),
+  ];
+
+  SearchBloc() : super(const SearchState()) {
+    on<LoadTrains>((event, emit) {
+      emit(state.copyWith(isLoading: true));
+      final filtered = _filter(_mockTrains, state.searchQuery, state.selectedFilter);
+      emit(state.copyWith(
+        allTrains: _mockTrains,
+        filteredTrains: filtered,
+        isLoading: false,
+      ));
     });
+
+    on<UpdateSearchQuery>((event, emit) {
+      final isSearching = event.query.isNotEmpty;
+      final filtered = _filter(state.allTrains, event.query, state.selectedFilter);
+      emit(state.copyWith(
+        searchQuery: event.query,
+        isSearching: isSearching,
+        filteredTrains: filtered,
+      ));
+    });
+
+    on<SelectFilter>((event, emit) {
+      final filtered = _filter(state.allTrains, state.searchQuery, event.filter);
+      emit(state.copyWith(
+        selectedFilter: event.filter,
+        filteredTrains: filtered,
+      ));
+    });
+
+    on<SelectTrain>((event, emit) {
+      emit(state.copyWith(
+        selectedTrain: () => event.train,
+        searchQuery: event.train != null ? event.train!.name : state.searchQuery,
+        isSearching: event.train != null ? true : state.isSearching,
+      ));
+    });
+
+    on<UpdateLocationPermission>((event, emit) {
+      emit(state.copyWith(locationPermissionGranted: event.granted));
+    });
+
+    on<CycleMapType>((event, emit) {
+      MapType nextMapType;
+      switch (state.mapType) {
+        case MapType.normal:
+          nextMapType = MapType.satellite;
+          break;
+        case MapType.satellite:
+          nextMapType = MapType.hybrid;
+          break;
+        case MapType.hybrid:
+          nextMapType = MapType.terrain;
+          break;
+        case MapType.terrain:
+        default:
+          nextMapType = MapType.normal;
+          break;
+      }
+      emit(state.copyWith(mapType: nextMapType));
+    });
+
+    on<ClearSearch>((event, emit) {
+      final filtered = _filter(state.allTrains, '', state.selectedFilter);
+      emit(state.copyWith(
+        searchQuery: '',
+        isSearching: false,
+        selectedTrain: () => null,
+        filteredTrains: filtered,
+      ));
+    });
+  }
+
+  List<Train> _filter(List<Train> trains, String query, String filter) {
+    final lowerQuery = query.toLowerCase();
+    return trains.where((train) {
+      final matchesQuery = train.name.toLowerCase().contains(lowerQuery) || 
+                          train.number.toLowerCase().contains(lowerQuery);
+      
+      bool matchesFilter = true;
+      if (filter == 'Express') {
+        matchesFilter = train.type == TrainType.express;
+      } else if (filter == 'Regional') {
+        matchesFilter = train.type == TrainType.regional;
+      } else if (filter == 'Delayed') {
+        matchesFilter = train.status.toLowerCase().contains('delayed');
+      }
+
+      return matchesQuery && matchesFilter;
+    }).toList();
   }
 }

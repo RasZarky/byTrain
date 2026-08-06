@@ -1,5 +1,5 @@
 name: by_train
-description: "A train timing tracking application."
+description: "A train tracking application."
 publish_to: 'none'
 
 version: 1.0.0+1
@@ -18,6 +18,10 @@ dependencies:
   skeletonizer: ^2.1.3
   google_fonts: ^6.2.1
   url_launcher: ^6.3.2
+  intl: ^0.18.1
+  google_maps_flutter: ^2.5.3
+  permission_handler: ^11.3.1
+  geolocator: ^11.0.0
 
 dev_dependencies:
   flutter_test:
