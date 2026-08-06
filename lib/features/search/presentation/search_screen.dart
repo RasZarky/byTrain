@@ -464,7 +464,10 @@ class _SearchScreenBodyState extends State<SearchScreenBody> with SingleTickerPr
                                         train: state.selectedTrain!,
                                         isSelected: true,
                                         heroTag: 'selected_${state.selectedTrain!.id}',
-                                        onTap: () => context.push('/train-details/${state.selectedTrain!.id}'),
+                                        onTap: () => context.push(
+                                          '/train-details/${state.selectedTrain!.id}',
+                                          extra: state.selectedTrain,
+                                        ),
                                       ),
                                       const SizedBox(height: AppDimensions.xl),
                                     ],

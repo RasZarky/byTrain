@@ -12,6 +12,7 @@ import '../../features/journey_planner/presentation/journey_planner_screen.dart'
 import '../../features/station/presentation/station_details_screen.dart';
 import '../../features/settings/presentation/settings_screen.dart';
 import '../../features/settings/presentation/about_screen.dart';
+import '../../features/train/domain/models/train.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>();
 final _shellNavigatorHomeKey = GlobalKey<NavigatorState>(
@@ -29,6 +30,7 @@ final _shellNavigatorSettingsKey = GlobalKey<NavigatorState>(
 
 class AppRouter {
   static final router = GoRouter(
+    debugLogDiagnostics: true,
     initialLocation: '/',
     navigatorKey: _rootNavigatorKey,
     routes: [
@@ -95,8 +97,13 @@ class AppRouter {
       GoRoute(
         path: '/train-details/:id',
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) =>
-            TrainDetailsScreen(trainId: state.pathParameters['id']!),
+        builder: (context, state) {
+          final train = state.extra as Train?;
+          return TrainDetailsScreen(
+            trainId: state.pathParameters['id']!,
+            train: train,
+          );
+        },
       ),
       GoRoute(
         path: '/route-details/:id',

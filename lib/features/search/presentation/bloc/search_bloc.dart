@@ -18,6 +18,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       type: TrainType.express,
       latitude: 31.5741,
       longitude: 74.3485,
+      imageUrl: 'https://images.unsplash.com/photo-1532105956626-9569c03602f6?auto=format&fit=crop&w=800&q=80',
     ),
     const Train(
       id: '2',
@@ -29,6 +30,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       type: TrainType.express,
       latitude: 31.5546,
       longitude: 74.3122,
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQne0B6q_11OAY3_pFEIyBCarKCFUdz9ZgDdU-Uy3iOxA&s=10',
     ),
     const Train(
       id: '3',
@@ -40,6 +42,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       type: TrainType.express,
       latitude: 31.4826,
       longitude: 74.3052,
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRvVGdkFWOA6lbDYZsj_Lw1jZnMMJwWcWyHbZgzH1EXA&s=10',
     ),
     const Train(
       id: '4',
@@ -51,6 +54,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       type: TrainType.regional,
       latitude: 31.5204,
       longitude: 74.3587,
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNpkFukdpqJfYnIuwazNU1ZKaeFfx-JaGjoEwsWBEi2w&s=10',
     ),
     const Train(
       id: '5',
@@ -62,6 +66,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       type: TrainType.regional,
       latitude: 31.5100,
       longitude: 74.3300,
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3IKoFeU8G9OZxiqD1ZpcE2ojTRRCtXl9sZNqgseqVAA&s=10',
     ),
   ];
 

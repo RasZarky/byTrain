@@ -146,7 +146,10 @@ class HomeScreen extends StatelessWidget {
                             return TrainCard(
                               train: train,
                               isLoading: isLoading,
-                              onTap: () => context.push('/train-details/${train.id}'),
+                              onTap: () => context.push(
+                                '/train-details/${train.id}',
+                                extra: train,
+                              ),
                             );
                           },
                         ),

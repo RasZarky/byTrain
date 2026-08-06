@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/widgets/custom_card.dart';
@@ -42,7 +43,7 @@ class TrainCard extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildIconContainer(theme, isNarrow ? 40 : 48),
+                    _buildImageOrIcon(theme, isNarrow ? 40 : 48),
                     const SizedBox(width: AppDimensions.m),
                     Expanded(
                       child: Column(
@@ -127,6 +128,26 @@ class TrainCard extends StatelessWidget {
       return Hero(tag: heroTag!, child: cardContent);
     }
     return cardContent;
+  }
+
+  Widget _buildImageOrIcon(ThemeData theme, double size) {
+    final borderRadius = BorderRadius.circular(size * 0.3);
+    
+    if (train.imageUrl != null && train.imageUrl!.isNotEmpty) {
+      return ClipRRect(
+        borderRadius: borderRadius,
+        child: CachedNetworkImage(
+          imageUrl: train.imageUrl!,
+          width: size,
+          height: size,
+          fit: BoxFit.cover,
+          placeholder: (context, url) => _buildIconContainer(theme, size),
+          errorWidget: (context, url, error) => _buildIconContainer(theme, size),
+        ),
+      );
+    }
+    
+    return _buildIconContainer(theme, size);
   }
 
   Widget _buildIconContainer(ThemeData theme, double size) {

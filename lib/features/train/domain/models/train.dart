@@ -12,6 +12,7 @@ class Train extends Equatable {
   final TrainType type;
   final double? latitude;
   final double? longitude;
+  final String? imageUrl;
 
   const Train({
     required this.id,
@@ -23,6 +24,7 @@ class Train extends Equatable {
     this.type = TrainType.regional,
     this.latitude,
     this.longitude,
+    this.imageUrl,
   });
 
   @override
@@ -36,5 +38,6 @@ class Train extends Equatable {
         type,
         latitude,
         longitude,
+        imageUrl,
       ];
 }
