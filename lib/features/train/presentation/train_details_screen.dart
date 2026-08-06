@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -47,8 +49,30 @@ class _TrainDetailsScreenState extends State<TrainDetailsScreen> with SingleTick
       number: '41UP',
       status: 'On Time',
       departureTime: '15:30',
-      arrivalTime: '10:00',
+      arrivalTime: '22:00',
       type: TrainType.express,
+      stops: const [
+        TrainStop(
+          stationName: 'Lahore Junction',
+          arrivalTime: '03:30 PM',
+          status: StopStatus.passed,
+        ),
+        TrainStop(
+          stationName: 'Gujranwala',
+          arrivalTime: '04:45 PM',
+          status: StopStatus.passed,
+        ),
+        TrainStop(
+          stationName: 'Wazirabad Junction',
+          arrivalTime: '05:15 PM',
+          status: StopStatus.current,
+        ),
+        TrainStop(
+          stationName: 'Rawalpindi Station',
+          arrivalTime: '10:00 PM',
+          status: StopStatus.upcoming,
+        ),
+      ],
     );
   }
 
@@ -84,11 +108,11 @@ class _TrainDetailsScreenState extends State<TrainDetailsScreen> with SingleTick
                   const SectionTitle(title: 'JOURNEY DETAILS'),
                   const SizedBox(height: AppDimensions.m),
                   ScheduleTimeline(
-                    departureStation: 'Lahore Junction',
+                    departureStation: train.stops.isNotEmpty ? train.stops.first.stationName : 'Origin',
                     departureTime: train.departureTime,
-                    arrivalStation: 'Rawalpindi Station',
+                    arrivalStation: train.stops.isNotEmpty ? train.stops.last.stationName : 'Destination',
                     arrivalTime: train.arrivalTime,
-                    duration: '4h 30m',
+                    duration: '6h 30m',
                   ),
                   const SizedBox(height: AppDimensions.l),
                   const SectionTitle(title: 'TRAIN INFORMATION'),
@@ -97,7 +121,7 @@ class _TrainDetailsScreenState extends State<TrainDetailsScreen> with SingleTick
                   AppButton(
                     label: 'View Full Route',
                     icon: Icons.map_outlined,
-                    onPressed: () => context.push('/route-details/${widget.trainId}'),
+                    onPressed: () => context.push('/route-details/${widget.trainId}', extra: train),
                   ),
                   const SizedBox(height: AppDimensions.xxl),
                 ],
@@ -116,6 +140,26 @@ class _TrainDetailsScreenState extends State<TrainDetailsScreen> with SingleTick
       stretch: true,
       backgroundColor: theme.scaffoldBackgroundColor,
       elevation: 0,
+      leading: Center(
+        child: ClipOval(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.black.withValues(alpha: 0.4),
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Colors.white.withValues(alpha: 0.1),
+                  width: 1,
+                ),
+              ),
+              child: const BackButton(color: Colors.white),
+            ),
+          ),
+        ),
+      ),
       flexibleSpace: FlexibleSpaceBar(
         stretchModes: const [StretchMode.zoomBackground, StretchMode.blurBackground],
         background: Stack(

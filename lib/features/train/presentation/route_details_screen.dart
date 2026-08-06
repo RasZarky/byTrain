@@ -1,108 +1,150 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/theme/app_dimensions.dart';
-import '../../../core/widgets/custom_card.dart';
+import '../../home/presentation/bloc/home_bloc.dart';
+import '../domain/models/train.dart';
+import 'widgets/live_status_card.dart';
+import 'widgets/route_details_app_bar.dart';
+import 'widgets/route_stop_tile.dart';
+import 'widgets/section_title.dart';
+import 'widgets/station_details_bottom_sheet.dart';
 
-class RouteDetailsScreen extends StatelessWidget {
+class RouteDetailsScreen extends StatefulWidget {
   final String routeId;
-  const RouteDetailsScreen({super.key, required this.routeId});
+  final Train? train;
+
+  const RouteDetailsScreen({
+    super.key,
+    required this.routeId,
+    this.train,
+  });
 
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+  State<RouteDetailsScreen> createState() => _RouteDetailsScreenState();
+}
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Route Details')),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(AppDimensions.m),
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          final isLast = index == 9;
-          final isFirst = index == 0;
+class _RouteDetailsScreenState extends State<RouteDetailsScreen> with SingleTickerProviderStateMixin {
+  late AnimationController _pulseController;
+  late Animation<double> _pulseAnimation;
 
-          return IntrinsicHeight(
-            child: Row(
-              children: [
-                _buildTimeline(theme, isFirst, isLast),
-                const SizedBox(width: AppDimensions.m),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: AppDimensions.s),
-                    child: CustomCard(
-                      padding: const EdgeInsets.all(AppDimensions.m),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Station ${index + 1}',
-                                  style: theme.textTheme.titleMedium,
-                                ),
-                                if (index == 3)
-                                  const Text(
-                                    'Platform 2B',
-                                    style: TextStyle(color: Colors.grey, fontSize: 12),
-                                  ),
-                              ],
-                            ),
-                          ),
-                          Text(
-                            '${10 + index}:00 AM',
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              color: theme.colorScheme.primary,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
-      ),
+  @override
+  void initState() {
+    super.initState();
+    _pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    )..repeat(reverse: true);
+    _pulseAnimation = Tween<double>(begin: 1.0, end: 1.1).animate(
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
   }
 
-  Widget _buildTimeline(ThemeData theme, bool isFirst, bool isLast) {
-    return Column(
-      children: [
-        if (!isFirst)
-          Container(
-            width: 2,
-            height: AppDimensions.m,
-            color: theme.colorScheme.primary.withValues(alpha: 0.3),
-          )
-        else
-          const SizedBox(height: AppDimensions.m),
-        Container(
-          width: 16,
-          height: 16,
-          decoration: BoxDecoration(
-            color: theme.colorScheme.primary,
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.white, width: 2),
-            boxShadow: [
-              BoxShadow(
-                color: theme.colorScheme.primary.withValues(alpha: 0.3),
-                blurRadius: 4,
-                spreadRadius: 1,
-              ),
-            ],
-          ),
+  @override
+  void dispose() {
+    _pulseController.dispose();
+    super.dispose();
+  }
+
+  void _showStationDetails(BuildContext context, String stationName) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => StationDetailsBottomSheet(stationName: stationName),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    // Try to find the train in HomeBloc state if not passed directly
+    Train? trainFromBloc;
+    final homeState = context.read<HomeBloc>().state;
+    if (homeState is HomeLoaded) {
+      try {
+        trainFromBloc = homeState.recentTrains.firstWhere((t) => t.id == widget.routeId);
+      } catch (_) {
+        trainFromBloc = null;
+      }
+    }
+
+    // Use passed train, then Bloc train, then minimal fallback
+    final displayTrain = widget.train ?? trainFromBloc ?? Train(
+      id: widget.routeId,
+      name: 'Train Details',
+      number: '---',
+      status: 'Loading...',
+      departureTime: '--:--',
+      arrivalTime: '--:--',
+      type: TrainType.local,
+      stops: const [
+        TrainStop(
+          stationName: 'Loading Route...',
+          arrivalTime: '--:--',
+          status: StopStatus.passed,
         ),
-        if (!isLast)
-          Expanded(
-            child: Container(
-              width: 2,
-              color: theme.colorScheme.primary.withValues(alpha:0.3),
-            ),
-          )
-        else
-          const SizedBox(height: AppDimensions.m),
       ],
+    );
+
+    final isDelayed = displayTrain.status.toLowerCase().contains('delayed');
+    final statusColor = isDelayed ? Colors.orange : Colors.green;
+
+    return Scaffold(
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          RouteDetailsAppBar(train: displayTrain),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(AppDimensions.m),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  LiveStatusCard(
+                    status: displayTrain.status,
+                    statusColor: statusColor,
+                    pulseAnimation: _pulseAnimation,
+                  ),
+                  const SizedBox(height: AppDimensions.l),
+                  const SectionTitle(title: 'STOPS & TIMELINE'),
+                ],
+              ),
+            ),
+          ),
+          if (displayTrain.stops.isNotEmpty)
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: AppDimensions.m),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final stop = displayTrain.stops[index];
+                    return RouteStopTile(
+                      stationName: stop.stationName,
+                      arrivalTime: stop.arrivalTime,
+                      platform: stop.platform,
+                      delay: stop.delay,
+                      status: stop.status,
+                      isFirst: index == 0,
+                      isLast: index == displayTrain.stops.length - 1,
+                      onTap: () => _showStationDetails(context, stop.stationName),
+                    );
+                  },
+                  childCount: displayTrain.stops.length,
+                ),
+              ),
+            )
+          else
+            const SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.all(AppDimensions.xl),
+                child: Center(child: CircularProgressIndicator()),
+              ),
+            ),
+          const SliverToBoxAdapter(
+            child: SizedBox(height: AppDimensions.xxl),
+          ),
+        ],
+      ),
     );
   }
 }

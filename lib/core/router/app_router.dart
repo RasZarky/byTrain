@@ -108,8 +108,13 @@ class AppRouter {
       GoRoute(
         path: '/route-details/:id',
         parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) =>
-            RouteDetailsScreen(routeId: state.pathParameters['id']!),
+        builder: (context, state) {
+          final train = state.extra as Train?;
+          return RouteDetailsScreen(
+            routeId: state.pathParameters['id']!,
+            train: train,
+          );
+        },
       ),
       GoRoute(
         path: '/station-details/:id',
