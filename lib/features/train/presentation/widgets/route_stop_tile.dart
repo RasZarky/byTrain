@@ -12,6 +12,7 @@ class RouteStopTile extends StatefulWidget {
   final StopStatus status;
   final bool isFirst;
   final bool isLast;
+  final VoidCallback? onTap;
 
   const RouteStopTile({
     super.key,
@@ -23,6 +24,7 @@ class RouteStopTile extends StatefulWidget {
     required this.status,
     this.isFirst = false,
     this.isLast = false,
+    this.onTap,
   });
 
   @override
@@ -79,6 +81,7 @@ class _RouteStopTileState extends State<RouteStopTile> with SingleTickerProvider
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: AppDimensions.s),
               child: CustomCard(
+                onTap: widget.onTap,
                 padding: const EdgeInsets.all(AppDimensions.m),
                 border: isCurrent
                     ? Border.all(color: theme.colorScheme.primary, width: 2)
