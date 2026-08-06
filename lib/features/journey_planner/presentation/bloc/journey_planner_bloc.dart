@@ -124,7 +124,7 @@ class JourneyPlannerBloc extends Bloc<JourneyPlannerEvent, JourneyPlannerState> 
       Journey(
         from: fromStation,
         to: toStation,
-        train: Train(
+        train: const Train(
           id: 'T1',
           name: 'Pakistan Railways',
           number: '101',
@@ -140,7 +140,7 @@ class JourneyPlannerBloc extends Bloc<JourneyPlannerEvent, JourneyPlannerState> 
         Journey(
           from: fromStation,
           to: toStation,
-          train: Train(
+          train: const Train(
             id: 'T2',
             name: 'Green Line',
             number: '102',
@@ -155,7 +155,7 @@ class JourneyPlannerBloc extends Bloc<JourneyPlannerEvent, JourneyPlannerState> 
       Journey(
         from: fromStation,
         to: toStation,
-        train: Train(
+        train: const Train(
           id: 'T3',
           name: 'Tezgam',
           number: '103',
