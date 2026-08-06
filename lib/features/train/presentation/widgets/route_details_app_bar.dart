@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import '../domain/models/train.dart';
+import '../../domain/models/train.dart';
 
 class RouteDetailsAppBar extends StatelessWidget {
   final Train train;
