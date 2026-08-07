@@ -322,6 +322,7 @@ class _StationTextField extends StatelessWidget {
         hintText: hint,
         prefixIcon: Icon(icon, color: iconColor, size: 20),
         filled: false,
+        border: InputBorder.none,
         focusedBorder: InputBorder.none,
         contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
         suffixIcon: controller.text.isNotEmpty
