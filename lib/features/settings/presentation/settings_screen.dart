@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_dimensions.dart';
+import '../../../core/theme/bloc/theme_bloc.dart';
+import '../../../core/theme/bloc/theme_event.dart';
+import '../../../core/theme/bloc/theme_state.dart';
 import '../../../core/widgets/custom_card.dart';
+import 'bloc/settings_bloc.dart';
+import 'bloc/settings_event.dart';
+import 'bloc/settings_state.dart';
+import 'widgets/animated_section.dart';
+import 'widgets/section_header.dart';
+import 'widgets/setting_tile.dart';
+import 'widgets/settings_divider.dart';
+import 'widgets/version_badge.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -9,82 +22,154 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings')),
-      body: ListView(
-        padding: const EdgeInsets.all(AppDimensions.m),
-        children: [
-          _buildSectionHeader(theme, 'General'),
-          CustomCard(
-            padding: EdgeInsets.zero,
-            child: Column(
-              children: [
-                ListTile(
-                  leading: const Icon(Icons.notifications_outlined),
-                  title: const Text('Notifications'),
-                  trailing: Switch(value: true, onChanged: (v) {}),
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          // Modern Collapsing AppBar for a premium look
+          SliverAppBar(
+            expandedHeight: 160,
+            floating: false,
+            pinned: true,
+            backgroundColor: theme.scaffoldBackgroundColor,
+            elevation: 0,
+            scrolledUnderElevation: 0,
+            flexibleSpace: FlexibleSpaceBar(
+              titlePadding: const EdgeInsets.only(left: AppDimensions.m, bottom: 16),
+              centerTitle: false,
+              title: Text(
+                'Settings',
+                style: theme.textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: -1.5,
+                  color: colorScheme.onSurface,
                 ),
-                const Divider(height: 1),
-                ListTile(
-                  leading: const Icon(Icons.dark_mode_outlined),
-                  title: const Text('Dark Mode'),
-                  trailing: Switch(value: false, onChanged: (v) {}),
+              ),
+              background: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      colorScheme.primary.withValues(alpha: 0.05),
+                      theme.scaffoldBackgroundColor,
+                    ],
+                  ),
                 ),
-              ],
+              ),
             ),
           ),
-          const SizedBox(height: AppDimensions.l),
-          _buildSectionHeader(theme, 'Support'),
-          CustomCard(
-            padding: EdgeInsets.zero,
-            child: Column(
-              children: [
-                ListTile(
-                  leading: const Icon(Icons.info_outline),
-                  title: const Text('About ByTrain'),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () => context.push('/settings/about'),
+          
+          SliverPadding(
+            padding: const EdgeInsets.fromLTRB(AppDimensions.m, 0, AppDimensions.m, AppDimensions.xxl),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                const SectionHeader(title: 'Preferences'),
+                AnimatedSection(
+                  index: 1,
+                  child: CustomCard(
+                    padding: EdgeInsets.zero,
+                    child: Column(
+                      children: [
+                        BlocBuilder<SettingsBloc, SettingsState>(
+                          builder: (context, state) {
+                            return SettingTile(
+                              icon: Icons.notifications_rounded,
+                              title: 'Notifications',
+                              subtitle: 'Stay updated with journey alerts',
+                              trailing: Switch.adaptive(
+                                value: state.notificationsEnabled,
+                                onChanged: (v) {
+                                  HapticFeedback.selectionClick();
+                                  context.read<SettingsBloc>().add(NotificationsToggled(v));
+                                },
+                                activeTrackColor: colorScheme.primary.withValues(alpha: 0.5),
+                                activeThumbColor: colorScheme.primary,
+                              ),
+                            );
+                          },
+                        ),
+                        const SettingsDivider(),
+                        BlocBuilder<ThemeBloc, ThemeState>(
+                          builder: (context, state) {
+                            final isDarkMode = state.themeMode == ThemeMode.dark;
+                            return SettingTile(
+                              icon: isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
+                              title: 'Appearance',
+                              subtitle: isDarkMode ? 'Dark Mode' : 'Light Mode',
+                              trailing: Switch.adaptive(
+                                value: isDarkMode,
+                                onChanged: (value) {
+                                  HapticFeedback.selectionClick();
+                                  context.read<ThemeBloc>().add(
+                                        ThemeChanged(value ? ThemeMode.dark : ThemeMode.light),
+                                      );
+                                },
+                                activeTrackColor: colorScheme.primary.withValues(alpha: 0.5),
+                                activeThumbColor: colorScheme.primary,
+                              ),
+                            );
+                          },
+                        ),
+                        const SettingsDivider(),
+                        const SettingTile(
+                          icon: Icons.language_rounded,
+                          title: 'Language',
+                          subtitle: 'English (United Kingdom)',
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                const Divider(height: 1),
-                ListTile(
-                  leading: const Icon(Icons.help_outline),
-                  title: const Text('Help Center'),
-                  trailing: const Icon(Icons.open_in_new, size: 18),
-                  onTap: () {},
+                
+                const SizedBox(height: AppDimensions.l),
+                
+                const SectionHeader(title: 'Support & Legal'),
+                AnimatedSection(
+                  index: 2,
+                  child: CustomCard(
+                    padding: EdgeInsets.zero,
+                    child: Column(
+                      children: [
+                        SettingTile(
+                          icon: Icons.info_rounded,
+                          title: 'About ByTrain',
+                          subtitle: 'Version, licenses and team info',
+                          onTap: () => context.push('/settings/about'),
+                        ),
+                        const SettingsDivider(),
+                        const SettingTile(
+                          icon: Icons.help_center_rounded,
+                          title: 'Help Center',
+                          subtitle: 'FAQs and contact support',
+                        ),
+                        const SettingsDivider(),
+                        const SettingTile(
+                          icon: Icons.privacy_tip_rounded,
+                          title: 'Privacy Policy',
+                          subtitle: 'How we handle your data',
+                        ),
+                        const SettingsDivider(),
+                        const SettingTile(
+                          icon: Icons.description_rounded,
+                          title: 'Terms of Service',
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                const Divider(height: 1),
-                ListTile(
-                  leading: const Icon(Icons.privacy_tip_outlined),
-                  title: const Text('Privacy Policy'),
-                  trailing: const Icon(Icons.open_in_new, size: 18),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: AppDimensions.xl),
-          Center(
-            child: Text(
-              'Version 1.0.0 (Build 100)',
-              style: theme.textTheme.bodyMedium?.copyWith(color: Colors.grey),
+                
+                const SizedBox(height: AppDimensions.xl),
+                
+                const VersionBadge(),
+
+                const SizedBox(height: AppDimensions.xl),
+              ]),
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildSectionHeader(ThemeData theme, String title) {
-    return Padding(
-      padding: const EdgeInsets.only(left: AppDimensions.s, bottom: AppDimensions.s),
-      child: Text(
-        title.toUpperCase(),
-        style: theme.textTheme.titleMedium?.copyWith(
-          color: theme.colorScheme.primary,
-          letterSpacing: 1.1,
-          fontSize: 12,
-        ),
       ),
     );
   }

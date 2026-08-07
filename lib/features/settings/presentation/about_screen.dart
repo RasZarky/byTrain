@@ -1,215 +1,209 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../../core/theme/app_dimensions.dart';
+import '../../../core/widgets/custom_card.dart';
+import 'widgets/animated_section.dart';
+import 'widgets/developer_card.dart';
+import 'widgets/info_tile.dart';
+import 'widgets/section_header.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Scaffold(
-      appBar: AppBar(title: const Text('About & Developers'), elevation: 0),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // App Identity Header
-            Center(
-              child: Column(
-                children: [
-                  Container(
-                    width: 120,
-                    height: 120,
-                    decoration: const BoxDecoration(shape: BoxShape.circle),
-                    child: ClipOval(
-                      child: Image.asset(
-                        'assets/icons/app_icon.png',
-                        fit: BoxFit.cover,
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          // Premium Collapsing Header
+          SliverAppBar(
+            expandedHeight: 200,
+            floating: false,
+            pinned: true,
+            backgroundColor: theme.scaffoldBackgroundColor,
+            elevation: 0,
+            scrolledUnderElevation: 0,
+            flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              title: Text(
+                'About ByTrain',
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.w900,
+                  color: colorScheme.onSurface,
+                  letterSpacing: -0.5,
+                ),
+              ),
+              background: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      colorScheme.primary.withValues(alpha: 0.1),
+                      theme.scaffoldBackgroundColor,
+                    ],
+                  ),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 40),
+                    child: Hero(
+                      tag: 'app_logo',
+                      child: Container(
+                        padding: const EdgeInsets.all(AppDimensions.m),
+                        decoration: BoxDecoration(
+                          color: colorScheme.surface,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.05),
+                              blurRadius: 20,
+                              offset: const Offset(0, 10),
+                            ),
+                          ],
+                        ),
+                        child: Image.asset(
+                          'assets/images/logo.png',
+                          height: 60,
+                          width: 60,
+                          errorBuilder: (context, error, stackTrace) => Icon(
+                            Icons.train_rounded,
+                            size: 60,
+                            color: colorScheme.primary,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Train Timing Tracker',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    'Version 1.0.0',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.grey.shade600,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 32),
-
-            // Development Team Section
-            Text(
-              'Development Team',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-            ),
-            const SizedBox(height: 12),
-            _buildDeveloperTile(
-              name: 'Belal Mohamed',
-              email: 'dixen.bugs@gmail.com',
-              role: 'Lead Mobile Developer',
-            ),
-            const SizedBox(height: 10),
-            _buildDeveloperTile(
-              name: 'Abdul Razak Abubakari',
-              email: 'ubdoolrazak@gmail.com',
-              role: 'Software Engineer',
-            ),
-            const SizedBox(height: 28),
-
-            // Organization & Contact Section
-            Text(
-              'Organization',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-            ),
-            const SizedBox(height: 12),
-            Card(
-              elevation: 0,
-              color: Theme.of(
-                context,
-              ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    _buildInfoRow(
-                      icon: Icons.business,
-                      label: 'Company',
-                      value: 'Apexiums Technologies',
-                    ),
-                    const Divider(height: 20),
-                    _buildInfoRow(
-                      icon: Icons.language,
-                      label: 'Website',
-                      value: 'https://apexiumstechnologies.com/',
-                      isLink: true,
-                      url: 'https://apexiumstechnologies.com/',
-                    ),
-                    const Divider(height: 20),
-                    _buildInfoRow(
-                      icon: Icons.email_outlined,
-                      label: 'Support Contact',
-                      value: 'ammanm0789@gmail.com',
-                      isLink: true,
-                      url: 'mailto:ammanm0789@gmail.com',
-                    ),
-                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+
+          SliverPadding(
+            padding: const EdgeInsets.all(AppDimensions.m),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                AnimatedSection(
+                  index: 0,
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Text(
+                          'Train Timing Tracker',
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: colorScheme.onSurface,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: colorScheme.primary.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Text(
+                            'Version 1.0.0',
+                            style: theme.textTheme.labelSmall?.copyWith(
+                              color: colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppDimensions.xl),
+
+                const SectionHeader(title: 'Development Team'),
+                AnimatedSection(
+                  index: 1,
+                  child: Column(
+                    children: [
+                      DeveloperCard(
+                        name: 'Abdul Razak Abubakari',
+                        role: 'Mobile Developer',
+                        email: 'ubdoolrazak@gmail.com',
+                        imageUrl: 'https://avatars.githubusercontent.com/u/83512618?v=4',
+                        onEmailTap: () => _launchURL('mailto:ubdoolrazak@gmail.com'),
+                      ),
+                      const SizedBox(height: AppDimensions.s),
+                      DeveloperCard(
+                        name: 'Belal Mohamed',
+                        role: 'Mobile Developer',
+                        email: 'dixen.bugs@gmail.com',
+                        imageUrl: 'https://avatars.githubusercontent.com/u/267304485?v=4',
+                        onEmailTap: () => _launchURL('mailto:dixen.bugs@gmail.com'),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: AppDimensions.xl),
+
+                const SectionHeader(title: 'Organization'),
+                AnimatedSection(
+                  index: 2,
+                  child: CustomCard(
+                    padding: EdgeInsets.zero,
+                    child: Column(
+                      children: [
+                        InfoTile(
+                          icon: Icons.business_rounded,
+                          label: 'Company',
+                          value: 'Apexiums Technologies',
+                          onTap: () => _launchURL('https://apexiumstechnologies.com/'),
+                        ),
+                        _buildDivider(colorScheme),
+                        InfoTile(
+                          icon: Icons.language_rounded,
+                          label: 'Website',
+                          value: 'apexiumstechnologies.com',
+                          onTap: () => _launchURL('https://apexiumstechnologies.com/'),
+                        ),
+                        _buildDivider(colorScheme),
+                        InfoTile(
+                          icon: Icons.email_outlined,
+                          label: 'Support',
+                          value: 'ammanm0789@gmail.com',
+                          onTap: () => _launchURL('mailto:ammanm0789@gmail.com'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppDimensions.xxl),
+                
+                Center(
+                  child: Text(
+                    '© 2026 Apexiums Technologies',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.3),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: AppDimensions.xl),
+                const SizedBox(height: AppDimensions.xl),
+              ]),
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildDeveloperTile({
-    required String name,
-    required String email,
-    required String role,
-  }) {
-    return Card(
-      elevation: 0.5,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: Colors.blue.shade50,
-          child: Text(
-            name.substring(0, 1),
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.blue,
-            ),
-          ),
-        ),
-        title: Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              role,
-              style: const TextStyle(fontSize: 12, color: Colors.grey),
-            ),
-            InkWell(
-              onTap: () => _launchURL('mailto:$email'),
-              child: Text(
-                email,
-                style: const TextStyle(
-                  fontSize: 13,
-                  color: Colors.blue,
-                  decoration: TextDecoration.underline,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildInfoRow({
-    required IconData icon,
-    required String label,
-    required String value,
-    bool isLink = false,
-    String? url,
-  }) {
-    final targetUrl = url ?? value;
-
-    return Row(
-      children: [
-        Icon(icon, size: 20, color: Colors.grey.shade700),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: const TextStyle(fontSize: 12, color: Colors.grey),
-              ),
-              isLink
-                  ? InkWell(
-                      onTap: () => _launchURL(targetUrl),
-                      child: Text(
-                        value,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 14,
-                          color: Colors.blue,
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    )
-                  : Text(
-                      value,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                      ),
-                    ),
-            ],
-          ),
-        ),
-      ],
+  Widget _buildDivider(ColorScheme colorScheme) {
+    return Divider(
+      height: 1,
+      indent: 56,
+      endIndent: AppDimensions.m,
+      color: colorScheme.onSurface.withValues(alpha: 0.06),
     );
   }
 
