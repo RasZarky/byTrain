@@ -5,7 +5,7 @@ import 'app_dimensions.dart';
 
 class AppTheme {
   static ThemeData get lightTheme {
-    final ColorScheme colorScheme = const ColorScheme.light(
+    const colorScheme = ColorScheme.light(
       primary: AppColors.primary,
       onPrimary: AppColors.onPrimary,
       secondary: AppColors.accent,
@@ -68,7 +68,7 @@ class AppTheme {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
-          side: BorderSide(color: Colors.black.withOpacity(0.04), width: 1),
+          side: BorderSide(color: Colors.black.withValues(alpha: 0.04), width: 1),
         ),
         margin: const EdgeInsets.symmetric(vertical: 8),
       ),
@@ -92,7 +92,7 @@ class AppTheme {
         ),
         labelStyle: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w500),
         secondaryLabelStyle: GoogleFonts.plusJakartaSans(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white),
-        side: BorderSide(color: Colors.black.withOpacity(0.08)),
+        side: BorderSide(color: Colors.black.withValues(alpha: 0.08)),
       ),
       
       inputDecorationTheme: InputDecorationTheme(
@@ -180,7 +180,7 @@ class AppTheme {
   }
 
   static ThemeData get darkTheme {
-    final ColorScheme colorScheme = const ColorScheme.dark(
+    const colorScheme = ColorScheme.dark(
       primary: AppColors.primaryLight,
       onPrimary: Colors.white,
       secondary: AppColors.accent,
@@ -209,7 +209,7 @@ class AppTheme {
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
-          side: BorderSide(color: Colors.white.withOpacity(0.05), width: 1),
+          side: BorderSide(color: Colors.white.withValues(alpha: 0.05), width: 1),
         ),
       ),
       textTheme: TextTheme(
@@ -229,11 +229,11 @@ class AppTheme {
           fontSize: 20,
         ),
         bodyLarge: GoogleFonts.inter(
-          color: Colors.white.withOpacity(0.9),
+          color: Colors.white.withValues(alpha: 0.9),
           fontSize: 16,
         ),
         bodyMedium: GoogleFonts.inter(
-          color: Colors.white.withOpacity(0.6),
+          color: Colors.white.withValues(alpha: 0.6),
           fontSize: 14,
         ),
       ),
