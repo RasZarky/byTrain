@@ -34,7 +34,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       color: Color(0xFF2FAE8B),
     ),
     OnboardingModel(
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLb7JltTFjqhU9Zu6dIuHVmRHYaAeEDSt3_qk3m8iJtA&s=10',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbQuHMClsBAepPLKsDwWHhaDhRNNFt41AiAFWT5rSLDQ&s=10',
       icon: Icons.confirmation_number_outlined,
       title: 'Tickets in your pocket',
       subtitle: 'Skip the counter with mobile tickets and QR boarding.',
