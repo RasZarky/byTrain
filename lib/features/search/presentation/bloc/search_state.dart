@@ -7,8 +7,6 @@ class SearchState extends Equatable {
   final String selectedFilter;
   final Train? selectedTrain;
   final bool isSearching;
-  final bool locationPermissionGranted;
-  final MapType mapType;
   final bool isLoading;
   final String? errorMessage;
 
@@ -19,8 +17,6 @@ class SearchState extends Equatable {
     this.selectedFilter = 'All',
     this.selectedTrain,
     this.isSearching = false,
-    this.locationPermissionGranted = false,
-    this.mapType = MapType.normal,
     this.isLoading = false,
     this.errorMessage,
   });
@@ -32,8 +28,6 @@ class SearchState extends Equatable {
     String? selectedFilter,
     Train? Function()? selectedTrain,
     bool? isSearching,
-    bool? locationPermissionGranted,
-    MapType? mapType,
     bool? isLoading,
     String? Function()? errorMessage,
   }) {
@@ -44,8 +38,6 @@ class SearchState extends Equatable {
       selectedFilter: selectedFilter ?? this.selectedFilter,
       selectedTrain: selectedTrain != null ? selectedTrain() : this.selectedTrain,
       isSearching: isSearching ?? this.isSearching,
-      locationPermissionGranted: locationPermissionGranted ?? this.locationPermissionGranted,
-      mapType: mapType ?? this.mapType,
       isLoading: isLoading ?? this.isLoading,
       errorMessage: errorMessage != null ? errorMessage() : this.errorMessage,
     );
@@ -59,8 +51,6 @@ class SearchState extends Equatable {
         selectedFilter,
         selectedTrain,
         isSearching,
-        locationPermissionGranted,
-        mapType,
         isLoading,
         errorMessage,
       ];

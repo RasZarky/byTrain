@@ -14,208 +14,223 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final size = MediaQuery.of(context).size;
     
     return Scaffold(
-      body: BlocBuilder<HomeBloc, HomeState>(
-        builder: (context, state) {
-          final bool isLoading = state is HomeLoading;
-          
-          final List<Train> trains = state is HomeLoaded 
-              ? state.recentTrains 
-              : List.generate(3, (index) => const Train(
-                  id: 'loading',
-                  name: 'Loading Train Name',
-                  number: '...',
-                  status: '...',
-                  departureTime: '...',
-                  arrivalTime: '...',
-                ));
+      backgroundColor: theme.scaffoldBackgroundColor,
+      body: Stack(
+        children: [
+          BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              final bool isLoading = state is HomeLoading;
+              
+              final List<Train> trains = state is HomeLoaded 
+                  ? state.recentTrains 
+                  : List.generate(3, (index) => const Train(
+                      id: 'loading',
+                      name: 'Loading Train Name',
+                      number: '0000',
+                      status: 'On Time',
+                      departureTime: '00:00',
+                      arrivalTime: '00:00',
+                    ));
 
-          return RefreshIndicator(
-            onRefresh: () async {
-              context.read<HomeBloc>().add(LoadHomeData());
-            },
-            child: CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  expandedHeight: size.height * 0.5,
-                  floating: false,
-                  pinned: true,
-                  elevation: 0,
-                  stretch: true,
-                  backgroundColor: theme.scaffoldBackgroundColor,
-                  flexibleSpace: FlexibleSpaceBar(
-                    stretchModes: const [
-                      StretchMode.zoomBackground,
-                      StretchMode.blurBackground,
-                    ],
-                    background: Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        Image.asset(
-                          'assets/images/train1.png',
-                          fit: BoxFit.cover,
-                        ),
-                        DecoratedBox(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                theme.scaffoldBackgroundColor.withValues(alpha: 0.0),
-                                theme.scaffoldBackgroundColor.withValues(alpha: 0.7),
-                                theme.scaffoldBackgroundColor,
-                              ],
-                              stops: const [0.0, 0.8, 1.0],
+              return RefreshIndicator(
+                edgeOffset: 380,
+                onRefresh: () async {
+                  context.read<HomeBloc>().add(LoadHomeData());
+                },
+                child: CustomScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  slivers: [
+                    const SliverToBoxAdapter(
+                      child: SizedBox(height: 380),
+                    ),
+                    SliverToBoxAdapter(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildSectionHeader(
+                              theme, 
+                              'Recent Journeys', 
+                              () => context.push('/recent-journeys'),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    titlePadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-                    centerTitle: false,
-                    title: TweenAnimationBuilder<double>(
-                      duration: const Duration(milliseconds: 1000),
-                      tween: Tween(begin: 0.0, end: 1.0),
-                      curve: Curves.easeOutBack,
-                      builder: (context, value, child) {
-                        return Opacity(
-                          opacity: value.clamp(0.0, 1.0),
-                          child: Transform.translate(
-                            offset: Offset(0, 20 * (1 - value)),
-                            child: child,
-                          ),
-                        );
-                      },
-                      child: ShaderMask(
-                        blendMode: BlendMode.srcIn,
-                        shaderCallback: (bounds) => LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            theme.colorScheme.primary,
-                            theme.colorScheme.secondary,
+                            const SizedBox(height: AppDimensions.s),
                           ],
-                        ).createShader(bounds),
-                        child: Text(
-                          'ByTrain',
-                          style: theme.textTheme.headlineMedium?.copyWith(
-                            fontWeight: FontWeight.w900,
-                            letterSpacing: -1.2,
+                        ),
+                      ),
+                    ),
+                    Skeletonizer.sliver(
+                      enabled: isLoading,
+                      child: SliverPadding(
+                        padding: const EdgeInsets.fromLTRB(20, 0, 20, 100),
+                        sliver: SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) {
+                              final train = trains[index];
+                              return TrainCard(
+                                train: train,
+                                isLoading: isLoading,
+                                onTap: () => context.push(
+                                  '/train-details/${train.id}',
+                                  extra: train,
+                                ),
+                              );
+                            },
+                            childCount: trains.length,
                           ),
                         ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 100),
-                  sliver: SliverList(
-                    delegate: SliverChildListDelegate([
-                      _buildGreeting(theme),
-                      const SizedBox(height: AppDimensions.s),
-                      Skeletonizer(
-                        enabled: isLoading,
-                        child: _buildQuickActions(context, theme),
-                      ),
-                      const SizedBox(height: AppDimensions.xl),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Recent Journeys',
-                            style: theme.textTheme.titleLarge,
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: const Text('View All'),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: AppDimensions.s),
-                      Skeletonizer(
-                        enabled: isLoading,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          padding: EdgeInsets.zero,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: trains.length,
-                          itemBuilder: (context, index) {
-                            final train = trains[index];
-                            return TrainCard(
-                              train: train,
-                              isLoading: isLoading,
-                              onTap: () => context.push(
-                                '/train-details/${train.id}',
-                                extra: train,
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                    ]),
-                  ),
-                ),
-              ],
-            ),
-          );
-        },
+              );
+            },
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: _buildHeader(context, theme),
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildGreeting(ThemeData theme) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _buildHeader(BuildContext context, ThemeData theme) {
+    return Stack(
+      clipBehavior: Clip.none,
       children: [
-        Text(
-          _getGreeting(),
-          style: theme.textTheme.bodyLarge?.copyWith(
-            color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+        Container(
+          height: 280,
+          width: double.infinity,
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            color: theme.colorScheme.primary,
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(40),
+              bottomRight: Radius.circular(40),
+            ),
+          ),
+          child: Stack(
+            children: [
+              Positioned(
+                right: -80,
+                bottom: 20,
+                child: Icon(
+                  Icons.train_rounded,
+                  size: 280,
+                  color: Colors.white.withValues(alpha: 0.07),
+                ),
+              ),
+              SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 40, 24, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Travel with comfort",
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          color: Colors.white.withValues(alpha: 0.85),
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        "Explore Your Next\nJourney",
+                        style: theme.textTheme.headlineLarge?.copyWith(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w900,
+                          height: 1.1,
+                          letterSpacing: -1.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        Text(
-          'Where to today?',
-          style: theme.textTheme.headlineLarge,
+        Positioned(
+          bottom: -80,
+          left: 20,
+          right: 20,
+          child: _buildBookingCard(context, theme),
         ),
       ],
     );
   }
 
-  String _getGreeting() {
-    final hour = DateTime.now().hour;
-    if (hour >= 5 && hour < 12) {
-      return 'Good morning,';
-    } else if (hour >= 12 && hour < 17) {
-      return 'Good afternoon,';
-    } else if (hour >= 17 && hour < 21) {
-      return 'Good evening,';
-    } else {
-      return 'Good night,';
-    }
+  Widget _buildBookingCard(BuildContext context, ThemeData theme) {
+    return Container(
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.12),
+            blurRadius: 30,
+            offset: const Offset(0, 15),
+          ),
+        ],
+        border: Border.all(
+          color: theme.colorScheme.outlineVariant.withValues(alpha: 0.1),
+        ),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: QuickActionCard(
+              label: 'Route Planner',
+              icon: Icons.route_rounded,
+              color: theme.colorScheme.primary,
+              onTap: () => context.push('/journey-planner'),
+            ),
+          ),
+          const SizedBox(width: AppDimensions.m),
+          Expanded(
+            child: QuickActionCard(
+              label: 'Search',
+              icon: Icons.search,
+              color: Colors.teal.shade700,
+              onTap: () => context.push('/search'),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
-  Widget _buildQuickActions(BuildContext context, ThemeData theme) {
+  Widget _buildSectionHeader(ThemeData theme, String title, VoidCallback? onAction) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Expanded(
-          child: QuickActionCard(
-            label: 'Search',
-            icon: Icons.search_rounded,
-            color: theme.colorScheme.primary,
-            onTap: () => context.go('/search'),
+        Text(
+          title,
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.w900,
+            letterSpacing: -0.5,
           ),
         ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: QuickActionCard(
-            label: 'Planner',
-            icon: Icons.route_rounded,
-            color: theme.colorScheme.secondary,
-            onTap: () => context.go('/journey-planner'),
+        if (onAction != null)
+          GestureDetector(
+            onTap: onAction,
+            child: Text(
+              'See All',
+              style: TextStyle(
+                color: theme.colorScheme.primary,
+                fontWeight: FontWeight.w700,
+                fontSize: 14,
+              ),
+            ),
           ),
-        ),
       ],
     );
   }

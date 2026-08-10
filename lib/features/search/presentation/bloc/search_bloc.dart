@@ -1,6 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../train/domain/models/train.dart';
 
 part 'search_event.dart';
@@ -16,8 +15,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       departureTime: '15:30',
       arrivalTime: '10:00',
       type: TrainType.express,
-      latitude: 31.5741,
-      longitude: 74.3485,
       imageUrl: 'https://images.unsplash.com/photo-1532105956626-9569c03602f6?auto=format&fit=crop&w=800&q=80',
       stops: [
         TrainStop(stationName: 'Karachi Cantt', arrivalTime: '03:30 PM', status: StopStatus.passed, platform: '1'),
@@ -36,8 +33,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       departureTime: '08:00',
       arrivalTime: '13:15',
       type: TrainType.express,
-      latitude: 31.5546,
-      longitude: 74.3122,
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQne0B6q_11OAY3_pFEIyBCarKCFUdz9ZgDdU-Uy3iOxA&s=10',
       stops: [
         TrainStop(stationName: 'Karachi Cantt', arrivalTime: '08:00 AM', status: StopStatus.passed, platform: '2'),
@@ -55,8 +50,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       departureTime: '22:00',
       arrivalTime: '20:30',
       type: TrainType.express,
-      latitude: 31.4826,
-      longitude: 74.3052,
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRvVGdkFWOA6lbDYZsj_Lw1jZnMMJwWcWyHbZgzH1EXA&s=10',
       stops: [
         TrainStop(stationName: 'Islamabad', arrivalTime: '10:00 PM', status: StopStatus.passed, platform: '1'),
@@ -72,8 +65,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       departureTime: '11:00',
       arrivalTime: '14:30',
       type: TrainType.regional,
-      latitude: 31.5204,
-      longitude: 74.3587,
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNpkFukdpqJfYnIuwazNU1ZKaeFfx-JaGjoEwsWBEi2w&s=10',
       stops: [
         TrainStop(stationName: 'Lahore', arrivalTime: '11:00 AM', status: StopStatus.passed, platform: '4'),
@@ -90,8 +81,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       departureTime: '16:00',
       arrivalTime: '18:15',
       type: TrainType.regional,
-      latitude: 31.5100,
-      longitude: 74.3300,
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3IKoFeU8G9OZxiqD1ZpcE2ojTRRCtXl9sZNqgseqVAA&s=10',
       stops: [
         TrainStop(stationName: 'Lahore', arrivalTime: '04:00 PM', status: StopStatus.passed, platform: '5'),
@@ -136,30 +125,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         searchQuery: event.train != null ? event.train!.name : state.searchQuery,
         isSearching: event.train != null ? true : state.isSearching,
       ));
-    });
-
-    on<UpdateLocationPermission>((event, emit) {
-      emit(state.copyWith(locationPermissionGranted: event.granted));
-    });
-
-    on<CycleMapType>((event, emit) {
-      MapType nextMapType;
-      switch (state.mapType) {
-        case MapType.normal:
-          nextMapType = MapType.satellite;
-          break;
-        case MapType.satellite:
-          nextMapType = MapType.hybrid;
-          break;
-        case MapType.hybrid:
-          nextMapType = MapType.terrain;
-          break;
-        case MapType.terrain:
-        default:
-          nextMapType = MapType.normal;
-          break;
-      }
-      emit(state.copyWith(mapType: nextMapType));
     });
 
     on<ClearSearch>((event, emit) {
