@@ -1,20 +1,13 @@
-import 'dart:async';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:go_router/go_router.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:geolocator/geolocator.dart';
 import '../../../core/theme/app_dimensions.dart';
-import '../../train/domain/models/train.dart';
 import '../../train/presentation/widgets/train_card.dart';
 import 'bloc/search_bloc.dart';
-import 'widgets/map_action_button.dart';
 import 'widgets/search_filter_bar.dart';
 import 'widgets/search_floating_header.dart';
 import 'widgets/search_section_label.dart';
-import 'widgets/search_sheet_handle.dart';
 import 'widgets/search_sheet_header.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -36,30 +29,16 @@ class SearchScreenBody extends StatefulWidget {
   State<SearchScreenBody> createState() => _SearchScreenBodyState();
 }
 
-class _SearchScreenBodyState extends State<SearchScreenBody> with SingleTickerProviderStateMixin {
-  final Completer<GoogleMapController> _mapController = Completer<GoogleMapController>();
+class _SearchScreenBodyState extends State<SearchScreenBody> {
   final TextEditingController _searchController = TextEditingController();
   final FocusNode _searchFocusNode = FocusNode();
   final LayerLink _layerLink = LayerLink();
-  late AnimationController _pulseController;
-  late final Animation<double> _pulseAnimation;
   
   OverlayEntry? _overlayEntry;
-
-  static const CameraPosition _initialPosition = CameraPosition(
-    target: LatLng(31.5741, 74.3485),
-    zoom: 13,
-  );
 
   @override
   void initState() {
     super.initState();
-    _pulseController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1200),
-    )..repeat(reverse: true);
-    _pulseAnimation = Tween<double>(begin: 0.6, end: 1.0).animate(_pulseController);
-    
     _searchFocusNode.addListener(() {
       if (_searchFocusNode.hasFocus) {
         _showOverlay();
@@ -71,15 +50,12 @@ class _SearchScreenBodyState extends State<SearchScreenBody> with SingleTickerPr
         });
       }
     });
-
-    _requestLocationPermission();
   }
 
   @override
   void dispose() {
     _hideOverlay();
     _searchFocusNode.dispose();
-    _pulseController.dispose();
     _searchController.dispose();
     super.dispose();
   }
@@ -205,9 +181,12 @@ class _SearchScreenBodyState extends State<SearchScreenBody> with SingleTickerPr
                                         ),
                                         trailing: Icon(Icons.arrow_outward_rounded, size: 16, color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.3)),
                                         onTap: () {
-                                          context.read<SearchBloc>().add(SelectTrain(train));
                                           _hideOverlay();
                                           _searchFocusNode.unfocus();
+                                          context.push(
+                                            '/train-details/${train.id}',
+                                            extra: train,
+                                          );
                                         },
                                       );
                                     },
@@ -227,304 +206,119 @@ class _SearchScreenBodyState extends State<SearchScreenBody> with SingleTickerPr
     );
   }
 
-  Future<void> _requestLocationPermission() async {
-    final status = await Permission.location.request();
-    if (mounted) {
-      context.read<SearchBloc>().add(UpdateLocationPermission(status.isGranted));
-    }
-  }
-
-  Future<void> _moveCameraTo(Train train) async {
-    if (train.latitude == null || train.longitude == null) return;
-    final GoogleMapController controller = await _mapController.future;
-    controller.animateCamera(
-      CameraUpdate.newLatLngZoom(
-        LatLng(train.latitude!, train.longitude!), 
-        15,
-      ),
-    );
-  }
-
-  Set<Marker> _buildMarkers(SearchState state) {
-    final markers = <Marker>{};
-    for (final train in state.filteredTrains) {
-      if (train.latitude != null && train.longitude != null) {
-        final isSelected = train == state.selectedTrain;
-        markers.add(
-          Marker(
-            markerId: MarkerId('train_${train.id}'),
-            position: LatLng(train.latitude!, train.longitude!),
-            icon: BitmapDescriptor.defaultMarkerWithHue(
-              isSelected ? BitmapDescriptor.hueRed : BitmapDescriptor.hueAzure
-            ),
-            zIndexInt: isSelected ? 1 : 0,
-            onTap: () => context.read<SearchBloc>().add(SelectTrain(train)),
-          ),
-        );
-      }
-    }
-    return markers;
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final size = MediaQuery.of(context).size;
-    final topPadding = MediaQuery.of(context).padding.top;
 
     return Scaffold(
-      extendBodyBehindAppBar: true,
       body: GestureDetector(
         onTap: () {
           _searchFocusNode.unfocus();
           _hideOverlay();
         },
-        child: BlocListener<SearchBloc, SearchState>(
-          listenWhen: (previous, current) => previous.selectedTrain != current.selectedTrain,
-          listener: (context, state) {
-            if (state.selectedTrain != null) {
-              _searchController.text = state.selectedTrain!.name;
-              _moveCameraTo(state.selectedTrain!);
-            }
-          },
-          child: BlocBuilder<SearchBloc, SearchState>(
-            builder: (context, state) {
-              return Stack(
+        child: BlocBuilder<SearchBloc, SearchState>(
+          builder: (context, state) {
+            return SafeArea(
+              child: Column(
                 children: [
-                  // 1. Google Map
-                  GoogleMap(
-                    initialCameraPosition: _initialPosition,
-                    markers: _buildMarkers(state),
-                    onMapCreated: (controller) => _mapController.complete(controller),
-                    onTap: (_) {
-                      context.read<SearchBloc>().add(const SelectTrain(null));
-                      _searchFocusNode.unfocus();
-                      _hideOverlay();
-                    },
-                    mapType: state.mapType,
-                    myLocationEnabled: state.locationPermissionGranted,
-                    myLocationButtonEnabled: false,
-                    zoomControlsEnabled: false,
-                  ),
-
-                  // 2. Top Scrim
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: topPadding + 120,
-                    child: IgnorePointer(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              theme.scaffoldBackgroundColor.withValues(alpha: 0.8),
-                              theme.scaffoldBackgroundColor.withValues(alpha: 0.0),
-                            ],
-                          ),
-                        ),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppDimensions.m,
+                      vertical: AppDimensions.s,
                     ),
-                  ),
-
-                  // 3. Floating Search Bar & Filters
-                  SafeArea(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppDimensions.m,
-                        vertical: AppDimensions.s,
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          CompositedTransformTarget(
-                            link: _layerLink,
-                            child: SearchFloatingHeader(
-                              controller: _searchController,
-                              focusNode: _searchFocusNode,
-                              isSearching: state.isSearching,
-                              onChanged: (val) {
-                                context.read<SearchBloc>().add(UpdateSearchQuery(val));
-                                _showOverlay(); // Always show overlay when typing
-                              },
-                              onClear: () {
-                                _searchController.clear();
-                                context.read<SearchBloc>().add(ClearSearch());
-                                _showOverlay(); // Re-show popular trains
-                              },
-                            ),
-                          ),
-                          const SizedBox(height: AppDimensions.s),
-                          SearchFilterBar(
-                            selectedFilter: state.selectedFilter,
-                            onFilterSelected: (filter) {
-                              context.read<SearchBloc>().add(SelectFilter(filter));
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CompositedTransformTarget(
+                          link: _layerLink,
+                          child: SearchFloatingHeader(
+                            controller: _searchController,
+                            focusNode: _searchFocusNode,
+                            isSearching: state.isSearching,
+                            onChanged: (val) {
+                              context.read<SearchBloc>().add(UpdateSearchQuery(val));
+                              _showOverlay();
+                            },
+                            onClear: () {
+                              _searchController.clear();
+                              context.read<SearchBloc>().add(ClearSearch());
+                              _showOverlay();
                             },
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  // 4. Floating Map Actions
-                  Positioned(
-                    right: AppDimensions.m,
-                    top: size.height * 0.25,
-                    child: Column(
-                      children: [
-                        MapActionButton(
-                          icon: Icons.my_location_rounded,
-                          onTap: () async {
-                            if (!state.locationPermissionGranted) {
-                              await _requestLocationPermission();
-                            }
-                            if (state.locationPermissionGranted) {
-                              try {
-                                final position = await Geolocator.getCurrentPosition();
-                                final controller = await _mapController.future;
-                                controller.animateCamera(
-                                  CameraUpdate.newLatLngZoom(
-                                    LatLng(position.latitude, position.longitude),
-                                    15,
-                                  ),
-                                );
-                              } catch (e) {
-                                final controller = await _mapController.future;
-                                controller.animateCamera(CameraUpdate.newCameraPosition(_initialPosition));
-                              }
-                            }
-                          },
                         ),
-                        const SizedBox(height: AppDimensions.m),
-                        MapActionButton(
-                          icon: Icons.layers_outlined,
-                          onTap: () {
-                            context.read<SearchBloc>().add(CycleMapType());
+                        const SizedBox(height: AppDimensions.s),
+                        SearchFilterBar(
+                          selectedFilter: state.selectedFilter,
+                          onFilterSelected: (filter) {
+                            context.read<SearchBloc>().add(SelectFilter(filter));
                           },
                         ),
                       ],
                     ),
                   ),
 
-                  // 5. Draggable Results Sheet
-                  DraggableScrollableSheet(
-                    initialChildSize: 0.2,
-                    minChildSize: 0.18,
-                    maxChildSize: 0.84,
-                    snap: true,
-                    builder: (context, scrollController) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.surface,
-                          borderRadius: const BorderRadius.vertical(top: Radius.circular(32)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.15),
-                              blurRadius: 30,
-                              offset: const Offset(0, -10),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      physics: const BouncingScrollPhysics(),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: AppDimensions.m),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(height: AppDimensions.m),
+                            SearchSheetHeader(
+                              isSearching: state.isSearching,
                             ),
+                            const SizedBox(height: AppDimensions.l),
+                            SearchSectionLabel(
+                              label: state.isSearching ? 'SEARCH RESULTS' : 'POPULAR TRAINS',
+                            ),
+                            const SizedBox(height: AppDimensions.m),
+                            if (state.filteredTrains.isEmpty)
+                              Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: AppDimensions.xl),
+                                  child: Column(
+                                    children: [
+                                      Icon(Icons.search_off_rounded, size: 48, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
+                                      const SizedBox(height: AppDimensions.m),
+                                      Text(
+                                        'No trains found',
+                                        style: theme.textTheme.bodyLarge?.copyWith(
+                                          color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            else
+                              ListView.builder(
+                                shrinkWrap: true,
+                                padding: EdgeInsets.zero,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: state.filteredTrains.length,
+                                itemBuilder: (context, index) {
+                                  final train = state.filteredTrains[index];
+                                  return TrainCard(
+                                    train: train,
+                                    onTap: () => context.push(
+                                      '/train-details/${train.id}',
+                                      extra: train,
+                                    ),
+                                  );
+                                },
+                              ),
+                            const SizedBox(height: AppDimensions.xl),
                           ],
                         ),
-                        child: SingleChildScrollView(
-                          controller: scrollController,
-                          physics: const BouncingScrollPhysics(),
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 12),
-                              const SearchSheetHandle(),
-                              const SizedBox(height: 20),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: AppDimensions.m),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SearchSheetHeader(
-                                      isSearching: state.isSearching,
-                                      pulseAnimation: _pulseAnimation,
-                                    ),
-                                    const SizedBox(height: AppDimensions.l),
-                                    if (state.selectedTrain != null && state.filteredTrains.contains(state.selectedTrain)) ...[
-                                      SearchSectionLabel(
-                                        label: 'SELECTED TRAIN',
-                                        trailing: IconButton(
-                                          icon: const Icon(Icons.close_rounded, size: 16),
-                                          onPressed: () {
-                                            context.read<SearchBloc>().add(const SelectTrain(null));
-                                          },
-                                          visualDensity: VisualDensity.compact,
-                                          padding: EdgeInsets.zero,
-                                          constraints: const BoxConstraints(),
-                                          color: theme.colorScheme.primary,
-                                        ),
-                                      ),
-                                      const SizedBox(height: AppDimensions.s),
-                                      TrainCard(
-                                        train: state.selectedTrain!,
-                                        isSelected: true,
-                                        heroTag: 'selected_${state.selectedTrain!.id}',
-                                        onTap: () => context.push(
-                                          '/train-details/${state.selectedTrain!.id}',
-                                          extra: state.selectedTrain,
-                                        ),
-                                      ),
-                                      const SizedBox(height: AppDimensions.xl),
-                                    ],
-                                    SearchSectionLabel(
-                                      label: state.isSearching ? 'SEARCH RESULTS' : 'LIVE NEARBY',
-                                    ),
-                                    const SizedBox(height: AppDimensions.m),
-                                    if (state.filteredTrains.isEmpty)
-                                      Center(
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(vertical: AppDimensions.xl),
-                                          child: Column(
-                                            children: [
-                                              Icon(Icons.search_off_rounded, size: 48, color: theme.colorScheme.onSurface.withValues(alpha: 0.2)),
-                                              const SizedBox(height: AppDimensions.m),
-                                              Text(
-                                                'No trains found',
-                                                style: theme.textTheme.bodyLarge?.copyWith(
-                                                  color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      )
-                                    else
-                                      ListView.builder(
-                                        shrinkWrap: true,
-                                        padding: EdgeInsets.zero,
-                                        physics: const NeverScrollableScrollPhysics(),
-                                        itemCount: state.filteredTrains.length,
-                                        itemBuilder: (context, index) {
-                                          final train = state.filteredTrains[index];
-                                          if (train == state.selectedTrain) return const SizedBox.shrink();
-                                          return Padding(
-                                            padding: const EdgeInsets.only(bottom: AppDimensions.m),
-                                            child: TrainCard(
-                                              train: train,
-                                              onTap: () => context.read<SearchBloc>().add(SelectTrain(train)),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    const SizedBox(height: 120),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
+                      ),
+                    ),
                   ),
                 ],
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );

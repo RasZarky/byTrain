@@ -25,6 +25,7 @@ The application follows the **Feature-First Clean Architecture** methodology and
 
 ### 🔍 Smart Autocomplete & Suggestion Overlays
 *   **Glassmorphic Overlay Cards**: Typing in the search bar immediately brings up a custom blurred-glass suggestion panel showing popular trains and suggestions with ease.
+*   **Direct Navigation**: Tapping a suggestion now takes you instantly to the train's detailed view, bypassing redundant search steps for a smoother experience.
 *   **State-driven Sheets**: Uses high-performance nested `DraggableScrollableSheet` menus allowing users to swipe up to reveal live trains or swipe down to review map positions.
 
 ### 📊 Immersive Train Details & Timelines
@@ -77,21 +78,6 @@ lib/
 
 ---
 
-## 📱 Detailed Screen Walkthrough
-
-1.  **Splash Screen**: Branded entry point featuring seamless initialization.
-2.  **Onboarding**: Multi-page interactive tutorial highlighting live map tracking, journey planning, and schedule alerts.
-3.  **Home Screen**: Dynamic time-aware greeting ("Good morning", "Good evening"), quick shortcuts, and a shimmer-enabled list of recent trains.
-4.  **Search & Map**: High-performance mapping dashboard allowing interactive selection of trains, live state tracking, custom markers, and location-based nearby trains.
-5.  **Train Details**: Detail panel presenting train number, origin/destination progress, live indicators, and full timetables.
-6.  **Route Details**: Timeline tree visualizing past and upcoming stops alongside specific platform details.
-7.  **Journey Planner**: Custom state-driven planner with interactive swap configurations, historical search cards, and sorting preferences.
-8.  **Station Details**: Clean breakdown of station codes and interactive facility grids.
-9.  **Settings**: Theme Mode toggle (Light/Dark), notification subscriptions, and localizations.
-10. **About**: Displays the product roadmap, underlying technology details, developer cards, and external linkages.
-
----
-
 ## 🚀 Installation & Running
 
 ### Prerequisites
@@ -100,17 +86,9 @@ lib/
 *   An Android / iOS device (or emulator) with Google Play Services enabled.
 *   A valid **Google Maps API Key**.
 
-### Step 1: Configuration
 
-Before running the application, make sure to add your Google Maps API Key to the project configurations:
 
-*   **Android**: Open `android/app/src/main/AndroidManifest.xml` and insert your API key inside the application block:
-    ```xml
-    <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="YOUR_GOOGLE_MAPS_API_KEY_HERE"/>
-    ```
-
-### Step 2: Clone & Build
+### Step 1: Clone & Build
 
 1.  **Clone the repository**:
     ```bash
@@ -125,6 +103,12 @@ Before running the application, make sure to add your Google Maps API Key to the
     ```bash
     flutter run
     ```
+
+---
+
+## 🆕 Recent Updates
+*   **Optimized Search UX**: Tapping a suggestion in the search overlay now takes you directly to the Train Details page, eliminating unnecessary intermediate search steps.
+*   **Map Navigation Improvements**: Refined the interaction between the search sheet and the interactive Google Maps view.
 
 ---
 

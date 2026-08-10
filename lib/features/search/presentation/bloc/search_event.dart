@@ -33,14 +33,4 @@ class SelectTrain extends SearchEvent {
   List<Object?> get props => [train];
 }
 
-class UpdateLocationPermission extends SearchEvent {
-  final bool granted;
-  const UpdateLocationPermission(this.granted);
-
-  @override
-  List<Object?> get props => [granted];
-}
-
-class CycleMapType extends SearchEvent {}
-
 class ClearSearch extends SearchEvent {}
