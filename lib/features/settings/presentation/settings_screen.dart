@@ -1,15 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_dimensions.dart';
-import '../../../core/theme/bloc/theme_bloc.dart';
-import '../../../core/theme/bloc/theme_event.dart';
-import '../../../core/theme/bloc/theme_state.dart';
 import '../../../core/widgets/custom_card.dart';
-import 'bloc/settings_bloc.dart';
-import 'bloc/settings_event.dart';
-import 'bloc/settings_state.dart';
 import 'widgets/animated_section.dart';
 import 'widgets/section_header.dart';
 import 'widgets/setting_tile.dart';
@@ -66,66 +58,6 @@ class SettingsScreen extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(AppDimensions.m, 0, AppDimensions.m, AppDimensions.xxl),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
-                const SectionHeader(title: 'Preferences'),
-                AnimatedSection(
-                  index: 1,
-                  child: CustomCard(
-                    padding: EdgeInsets.zero,
-                    child: Column(
-                      children: [
-                        BlocBuilder<SettingsBloc, SettingsState>(
-                          builder: (context, state) {
-                            return SettingTile(
-                              icon: Icons.notifications_rounded,
-                              title: 'Notifications',
-                              subtitle: 'Stay updated with journey alerts',
-                              trailing: Switch.adaptive(
-                                value: state.notificationsEnabled,
-                                onChanged: (v) {
-                                  HapticFeedback.selectionClick();
-                                  context.read<SettingsBloc>().add(NotificationsToggled(v));
-                                },
-                                activeTrackColor: colorScheme.primary.withValues(alpha: 0.5),
-                                activeThumbColor: colorScheme.primary,
-                              ),
-                            );
-                          },
-                        ),
-                        const SettingsDivider(),
-                        BlocBuilder<ThemeBloc, ThemeState>(
-                          builder: (context, state) {
-                            final isDarkMode = state.themeMode == ThemeMode.dark;
-                            return SettingTile(
-                              icon: isDarkMode ? Icons.dark_mode_rounded : Icons.light_mode_rounded,
-                              title: 'Appearance',
-                              subtitle: isDarkMode ? 'Dark Mode' : 'Light Mode',
-                              trailing: Switch.adaptive(
-                                value: isDarkMode,
-                                onChanged: (value) {
-                                  HapticFeedback.selectionClick();
-                                  context.read<ThemeBloc>().add(
-                                        ThemeChanged(value ? ThemeMode.dark : ThemeMode.light),
-                                      );
-                                },
-                                activeTrackColor: colorScheme.primary.withValues(alpha: 0.5),
-                                activeThumbColor: colorScheme.primary,
-                              ),
-                            );
-                          },
-                        ),
-                        const SettingsDivider(),
-                        const SettingTile(
-                          icon: Icons.language_rounded,
-                          title: 'Language',
-                          subtitle: 'English (United Kingdom)',
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                
-                const SizedBox(height: AppDimensions.l),
-                
                 const SectionHeader(title: 'Support & Legal'),
                 AnimatedSection(
                   index: 2,
