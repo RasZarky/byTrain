@@ -8,8 +8,12 @@ class AppTheme {
     const colorScheme = ColorScheme.light(
       primary: AppColors.primary,
       onPrimary: AppColors.onPrimary,
+      primaryContainer: Color(0xFFE5F0FF),
+      onPrimaryContainer: AppColors.primary,
       secondary: AppColors.accent,
       onSecondary: AppColors.onAccent,
+      secondaryContainer: Color(0xFFFBE9E7),
+      onSecondaryContainer: AppColors.accent,
       surface: AppColors.surface,
       onSurface: AppColors.textPrimary,
       error: AppColors.error,
@@ -97,17 +101,17 @@ class AppTheme {
       
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.white,
+        fillColor: const Color(0xFFF1F5F9),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimensions.radiusL),
+          borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
           borderSide: BorderSide.none,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimensions.radiusL),
+          borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimensions.radiusL),
+          borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
           borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
@@ -120,13 +124,13 @@ class AppTheme {
         headlineLarge: GoogleFonts.plusJakartaSans(
           color: AppColors.textPrimary,
           fontWeight: FontWeight.w800,
-          fontSize: 30,
-          letterSpacing: -0.5,
+          fontSize: 32,
+          letterSpacing: -1.0,
         ),
         headlineMedium: GoogleFonts.plusJakartaSans(
           color: AppColors.textPrimary,
           fontWeight: FontWeight.w700,
-          fontSize: 24,
+          fontSize: 26,
           letterSpacing: -0.5,
         ),
         titleLarge: GoogleFonts.plusJakartaSans(
@@ -216,12 +220,12 @@ class AppTheme {
         headlineLarge: GoogleFonts.plusJakartaSans(
           color: Colors.white,
           fontWeight: FontWeight.w800,
-          fontSize: 30,
+          fontSize: 32,
         ),
         headlineMedium: GoogleFonts.plusJakartaSans(
           color: Colors.white,
           fontWeight: FontWeight.w700,
-          fontSize: 24,
+          fontSize: 26,
         ),
         titleLarge: GoogleFonts.plusJakartaSans(
           color: Colors.white,

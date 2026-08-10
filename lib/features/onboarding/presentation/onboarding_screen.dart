@@ -20,35 +20,30 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   final List<OnboardingModel> _pages = const [
     OnboardingModel(
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1oUJubC5rFkrRoRvNIOew9HlZSlfBy-9YkHwa9JSKpdXoBeG0w6a3Hac&s=10',
       icon: Icons.train_outlined,
       title: 'Book train tickets in seconds',
       subtitle: 'Search routes, compare fares, and book instantly.',
       color: Color(0xFF378ADD),
     ),
     OnboardingModel(
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOkiIQC91mIezPbtmCm4rsExqt8w0oXYIjfFxT0Njh3g&s=10',
       icon: Icons.map_outlined,
       title: 'Live routes and platforms',
       subtitle: 'Real-time updates on delays, gates, and connections.',
       color: Color(0xFF2FAE8B),
     ),
     OnboardingModel(
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbQuHMClsBAepPLKsDwWHhaDhRNNFt41AiAFWT5rSLDQ&s=10',
       icon: Icons.confirmation_number_outlined,
       title: 'Tickets in your pocket',
       subtitle: 'Skip the counter with mobile tickets and QR boarding.',
       color: Color(0xFFE08A3C),
     ),
     OnboardingModel(
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1JnWpvJfCOuRnkUwpDlfRdpbj_xuqF1hSOqPuYI1FQg&s=10',
       icon: Icons.notifications_outlined,
       title: 'Never miss a departure',
       subtitle: 'Get alerts for delays, platform changes, and boarding time.',
       color: Color(0xFFD1495B),
     ),
     OnboardingModel(
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEE9D_MCJfE37SEripKdsNxWJk2s2QnVLiwdGj2E4EhA&s=10',
       icon: Icons.rocket_launch_outlined,
       title: 'Ready to ride',
       subtitle: 'No account needed start booking your journeys.',
