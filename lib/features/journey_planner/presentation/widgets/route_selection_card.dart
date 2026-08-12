@@ -56,7 +56,10 @@ class RouteSelectionCard extends StatelessWidget {
         ],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(AppDimensions.m),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 12,
+          vertical: AppDimensions.m,
+        ),
         child: Column(
           children: [
             Stack(
@@ -66,7 +69,7 @@ class RouteSelectionCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 24, left: 4, right: 12),
+                      padding: const EdgeInsets.only(top: 24, left: 4, right: 10),
                       child: Column(
                         children: [
                           Container(
@@ -126,8 +129,6 @@ class RouteSelectionCard extends StatelessWidget {
                             focusNode: fromFocusNode,
                             label: 'From Station',
                             hint: 'Where from?',
-                            icon: Icons.location_on_rounded,
-                            iconColor: colorScheme.primary,
                             onClear: () => onClear('from'),
                           ),
                           const Padding(
@@ -138,20 +139,18 @@ class RouteSelectionCard extends StatelessWidget {
                             focusNode: toFocusNode,
                             label: 'To Station',
                             hint: 'Where to?',
-                            icon: Icons.flag_rounded,
-                            iconColor: colorScheme.secondary,
                             onClear: () => onClear('to'),
                           ),
                         ],
                       ),
                     ),
-                    const SizedBox(width: 48),
+                    const SizedBox(width: 32),
                   ],
                 ),
 
                 // Absolute positioned Swap Button with rotation animation
                 Positioned(
-                  right: 4,
+                  right: 0,
                   child: AnimatedRotation(
                     turns: swapTurns,
                     duration: const Duration(milliseconds: 350),
@@ -165,11 +164,11 @@ class RouteSelectionCard extends StatelessWidget {
                         onTap: onSwap,
                         customBorder: const CircleBorder(),
                         child: Padding(
-                          padding: const EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(7.0),
                           child: Icon(
                             Icons.swap_vert_rounded,
                             color: colorScheme.onPrimary,
-                            size: 22,
+                            size: 18,
                           ),
                         ),
                       ),
@@ -189,7 +188,7 @@ class RouteSelectionCard extends StatelessWidget {
                     onTap: onSelectDateTime,
                     borderRadius: BorderRadius.circular(16),
                     child: Ink(
-                      padding: const EdgeInsets.symmetric(horizontal: AppDimensions.m, vertical: 12),
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                       decoration: BoxDecoration(
                         color: colorScheme.onSurface.withValues(alpha: 0.03),
                         borderRadius: BorderRadius.circular(16),
@@ -204,7 +203,7 @@ class RouteSelectionCard extends StatelessWidget {
                             size: 20,
                             color: colorScheme.primary,
                           ),
-                          const SizedBox(width: AppDimensions.m),
+                          const SizedBox(width: AppDimensions.s),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -247,7 +246,7 @@ class RouteSelectionCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     child: Container(
                       height: 52,
-                      padding: const EdgeInsets.symmetric(horizontal: AppDimensions.m),
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: colorScheme.primary.withValues(alpha: 0.15),
@@ -291,8 +290,6 @@ class _StationTextField extends StatelessWidget {
   final FocusNode focusNode;
   final String label;
   final String hint;
-  final IconData icon;
-  final Color iconColor;
   final VoidCallback onClear;
 
   const _StationTextField({
@@ -300,8 +297,6 @@ class _StationTextField extends StatelessWidget {
     required this.focusNode,
     required this.label,
     required this.hint,
-    required this.icon,
-    required this.iconColor,
     required this.onClear,
   });
 
@@ -320,11 +315,10 @@ class _StationTextField extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
         hintText: hint,
-        prefixIcon: Icon(icon, color: iconColor, size: 20),
         filled: false,
         border: InputBorder.none,
         focusedBorder: InputBorder.none,
-        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 0),
         suffixIcon: controller.text.isNotEmpty
             ? IconButton(
                 icon: const Icon(Icons.clear_rounded, size: 18),

@@ -6,7 +6,6 @@ import 'bloc/journey_planner_bloc.dart';
 import 'bloc/journey_planner_event.dart';
 import 'bloc/journey_planner_state.dart';
 import 'widgets/preferences_section.dart';
-import 'widgets/recent_searches_section.dart';
 import 'widgets/results_section.dart';
 import 'widgets/route_selection_card.dart';
 import 'widgets/searching_loader.dart';
@@ -108,6 +107,7 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return BlocListener<JourneyPlannerBloc, JourneyPlannerState>(
       listener: (context, state) {
@@ -122,7 +122,6 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
           );
         }
         
-        // Keep controllers in sync with BLoC state (e.g. after swap or recent search select)
         if (_fromController.text != state.fromStation) {
           _fromController.text = state.fromStation;
         }
@@ -139,29 +138,42 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
           backgroundColor: theme.scaffoldBackgroundColor,
           elevation: 0,
           scrolledUnderElevation: 0,
-          toolbarHeight: 120,
+          toolbarHeight: screenWidth < 360 ? 110 : 130,
           centerTitle: false,
-          titleSpacing: AppDimensions.m,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                'Where are we heading?',
-                style: theme.textTheme.headlineLarge?.copyWith(
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: -1.2,
-                  color: colorScheme.onSurface,
+          titleSpacing: 12,
+          title: Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Where are we heading?',
+                    style: theme.textTheme.headlineLarge?.copyWith(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 30,
+                      letterSpacing: -1.2,
+                      color: colorScheme.onSurface,
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: AppDimensions.xs),
-              Text(
-                'Plan your next train adventure effortlessly.',
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.6),
+                const SizedBox(height: 4),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Plan your next train adventure effortlessly.',
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      fontSize: 16,
+                      color: colorScheme.onSurface.withValues(alpha: 0.6),
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         body: BlocBuilder<JourneyPlannerBloc, JourneyPlannerState>(
@@ -169,9 +181,9 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
             return SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.fromLTRB(
-                AppDimensions.m,
+                12,
                 AppDimensions.s,
-                AppDimensions.m,
+                12,
                 120,
               ),
               child: Column(
@@ -225,13 +237,6 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
                       journeys: state.journeys,
                       fastestRoute: state.fastestRoute,
                       cheapestFirst: state.cheapestFirst,
-                    )
-                  else
-                    RecentSearchesSection(
-                      recentSearches: state.recentSearches,
-                      onClearAll: () => context.read<JourneyPlannerBloc>().add(const RecentSearchesCleared()),
-                      onSearchSelected: (from, to) => 
-                        context.read<JourneyPlannerBloc>().add(RecentSearchSelected(from, to)),
                     ),
                 ],
               ),
