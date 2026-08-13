@@ -15,20 +15,20 @@ class AppColors {
   static const Color background = Color(0xFFF7F8FA);
   static const Color surface = Colors.white;
   static const Color error = Color(0xFFD32F2F);
-  
+
   // Text colors
   static const Color onPrimary = Colors.white;
   static const Color onAccent = Colors.white;
   static const Color textPrimary = Color(0xFF1A1C1E);
   static const Color textSecondary = Color(0xFF6C757D);
   static const Color textHint = Color(0xFFA0A0A0);
-  
+
   // Status colors
   static const Color success = Color(0xFF2E7D32);
   static const Color warning = Color(0xFFFBC02D);
   static const Color info = Color(0xFF0288D1);
 
-  // Deprecated names for backward compatibility if needed, 
+  // Deprecated names for backward compatibility if needed,
   // but let's stick to the new naming for consistency.
   static const Color secondary = accent;
   static const Color onSecondary = onAccent;

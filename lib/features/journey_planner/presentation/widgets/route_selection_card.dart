@@ -5,8 +5,8 @@ import '../../../../core/widgets/app_button.dart';
 class RouteSelectionCard extends StatelessWidget {
   final TextEditingController fromController;
   final TextEditingController toController;
-  final FocusNode fromFocusNode;
-  final FocusNode toFocusNode;
+  final VoidCallback onFromTap;
+  final VoidCallback onToTap;
   final double swapTurns;
   final DateTime selectedDateTime;
   final bool isSearching;
@@ -15,14 +15,13 @@ class RouteSelectionCard extends StatelessWidget {
   final VoidCallback onSearch;
   final VoidCallback onNowPressed;
   final String formattedDateTime;
-  final Function(String) onClear;
 
   const RouteSelectionCard({
     super.key,
     required this.fromController,
     required this.toController,
-    required this.fromFocusNode,
-    required this.toFocusNode,
+    required this.onFromTap,
+    required this.onToTap,
     required this.swapTurns,
     required this.selectedDateTime,
     required this.isSearching,
@@ -31,7 +30,6 @@ class RouteSelectionCard extends StatelessWidget {
     required this.onSearch,
     required this.onNowPressed,
     required this.formattedDateTime,
-    required this.onClear,
   });
 
   @override
@@ -69,7 +67,11 @@ class RouteSelectionCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 24, left: 4, right: 10),
+                      padding: const EdgeInsets.only(
+                        top: 24,
+                        left: 4,
+                        right: 10,
+                      ),
                       child: Column(
                         children: [
                           Container(
@@ -78,13 +80,18 @@ class RouteSelectionCard extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: colorScheme.primary,
                               shape: BoxShape.circle,
-                              border: Border.all(color: colorScheme.surface, width: 2),
+                              border: Border.all(
+                                color: colorScheme.surface,
+                                width: 2,
+                              ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: colorScheme.primary.withValues(alpha: 0.3),
+                                  color: colorScheme.primary.withValues(
+                                    alpha: 0.3,
+                                  ),
                                   blurRadius: 4,
-                                )
-                              ]
+                                ),
+                              ],
                             ),
                           ),
                           Container(
@@ -107,39 +114,42 @@ class RouteSelectionCard extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: colorScheme.secondary,
                               borderRadius: BorderRadius.circular(3),
-                              border: Border.all(color: colorScheme.surface, width: 2),
+                              border: Border.all(
+                                color: colorScheme.surface,
+                                width: 2,
+                              ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: colorScheme.secondary.withValues(alpha: 0.3),
+                                  color: colorScheme.secondary.withValues(
+                                    alpha: 0.3,
+                                  ),
                                   blurRadius: 4,
-                                )
-                              ]
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
 
-                    // Input TextFields
+                    // Read-only station fields; tap to open the station picker.
                     Expanded(
                       child: Column(
                         children: [
                           _StationTextField(
                             controller: fromController,
-                            focusNode: fromFocusNode,
                             label: 'From Station',
-                            hint: 'Where from?',
-                            onClear: () => onClear('from'),
+                            hint: 'Choose departure station',
+                            onTap: onFromTap,
                           ),
                           const Padding(
                             padding: EdgeInsets.symmetric(vertical: 4),
                           ),
                           _StationTextField(
                             controller: toController,
-                            focusNode: toFocusNode,
                             label: 'To Station',
-                            hint: 'Where to?',
-                            onClear: () => onClear('to'),
+                            hint: 'Choose destination station',
+                            onTap: onToTap,
                           ),
                         ],
                       ),
@@ -148,7 +158,6 @@ class RouteSelectionCard extends StatelessWidget {
                   ],
                 ),
 
-                // Absolute positioned Swap Button with rotation animation
                 Positioned(
                   right: 0,
                   child: AnimatedRotation(
@@ -180,7 +189,6 @@ class RouteSelectionCard extends StatelessWidget {
 
             const SizedBox(height: AppDimensions.m),
 
-            // Date & Time Custom selector row
             Row(
               children: [
                 Expanded(
@@ -188,7 +196,10 @@ class RouteSelectionCard extends StatelessWidget {
                     onTap: onSelectDateTime,
                     borderRadius: BorderRadius.circular(16),
                     child: Ink(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 12,
+                      ),
                       decoration: BoxDecoration(
                         color: colorScheme.onSurface.withValues(alpha: 0.03),
                         borderRadius: BorderRadius.circular(16),
@@ -209,9 +220,11 @@ class RouteSelectionCard extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Departure Time',
+                                  'Departure Date',
                                   style: theme.textTheme.labelSmall?.copyWith(
-                                    color: colorScheme.onSurface.withValues(alpha: 0.4),
+                                    color: colorScheme.onSurface.withValues(
+                                      alpha: 0.4,
+                                    ),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -238,7 +251,6 @@ class RouteSelectionCard extends StatelessWidget {
                 ),
                 const SizedBox(width: AppDimensions.s),
 
-                // Quick "Now" button shortcut
                 Material(
                   color: Colors.transparent,
                   child: InkWell(
@@ -271,7 +283,6 @@ class RouteSelectionCard extends StatelessWidget {
 
             const SizedBox(height: AppDimensions.l),
 
-            // Search trigger using our highly customized AppButton widget
             AppButton(
               label: 'Find Best Journeys',
               icon: Icons.search_rounded,
@@ -287,17 +298,15 @@ class RouteSelectionCard extends StatelessWidget {
 
 class _StationTextField extends StatelessWidget {
   final TextEditingController controller;
-  final FocusNode focusNode;
   final String label;
   final String hint;
-  final VoidCallback onClear;
+  final VoidCallback onTap;
 
   const _StationTextField({
     required this.controller,
-    required this.focusNode,
     required this.label,
     required this.hint,
-    required this.onClear,
+    required this.onTap,
   });
 
   @override
@@ -306,7 +315,8 @@ class _StationTextField extends StatelessWidget {
 
     return TextField(
       controller: controller,
-      focusNode: focusNode,
+      readOnly: true,
+      onTap: onTap,
       style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w700),
       decoration: InputDecoration(
         labelText: label,
@@ -315,16 +325,14 @@ class _StationTextField extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
         hintText: hint,
+        hintStyle: theme.textTheme.bodyMedium?.copyWith(
+          color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
+        ),
         filled: false,
         border: InputBorder.none,
         focusedBorder: InputBorder.none,
         contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 0),
-        suffixIcon: controller.text.isNotEmpty
-            ? IconButton(
-                icon: const Icon(Icons.clear_rounded, size: 18),
-                onPressed: onClear,
-              )
-            : null,
+        suffixIcon: const Icon(Icons.chevron_right_rounded, size: 20),
       ),
     );
   }

@@ -37,7 +37,7 @@ class ScheduleTimeline extends StatelessWidget {
             theme,
             'Duration: $duration',
             '',
-            'In Transit',
+            'Total Journey Time',
             false,
             true,
             isMiddle: true,
@@ -46,7 +46,7 @@ class ScheduleTimeline extends StatelessWidget {
             theme,
             arrivalStation,
             arrivalTime,
-            'Estimated Arrival',
+            'Scheduled Arrival',
             false,
             true,
           ),
@@ -73,7 +73,9 @@ class ScheduleTimeline extends StatelessWidget {
                 width: 16,
                 height: 16,
                 decoration: BoxDecoration(
-                  color: isMiddle ? Colors.transparent : theme.colorScheme.primary,
+                  color: isMiddle
+                      ? Colors.transparent
+                      : theme.colorScheme.primary,
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: theme.colorScheme.primary.withValues(alpha: 0.2),
@@ -81,8 +83,11 @@ class ScheduleTimeline extends StatelessWidget {
                   ),
                 ),
                 child: isMiddle
-                    ? Icon(Icons.more_vert,
-                        size: 12, color: theme.colorScheme.primary.withValues(alpha: 0.3))
+                    ? Icon(
+                        Icons.more_vert,
+                        size: 12,
+                        color: theme.colorScheme.primary.withValues(alpha: 0.3),
+                      )
                     : null,
               ),
               if (!isLast)
@@ -109,14 +114,22 @@ class ScheduleTimeline extends StatelessWidget {
                         Text(
                           title,
                           style: theme.textTheme.titleMedium?.copyWith(
-                            fontWeight: isMiddle ? FontWeight.normal : FontWeight.w800,
-                            color: isMiddle ? theme.colorScheme.onSurface.withValues(alpha: 0.5) : null,
+                            fontWeight: isMiddle
+                                ? FontWeight.normal
+                                : FontWeight.w800,
+                            color: isMiddle
+                                ? theme.colorScheme.onSurface.withValues(
+                                    alpha: 0.5,
+                                  )
+                                : null,
                           ),
                         ),
                         Text(
                           subtitle,
                           style: theme.textTheme.labelSmall?.copyWith(
-                            color: theme.colorScheme.onSurface.withValues(alpha: 0.4),
+                            color: theme.colorScheme.onSurface.withValues(
+                              alpha: 0.4,
+                            ),
                           ),
                         ),
                       ],

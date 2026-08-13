@@ -24,7 +24,7 @@ class SearchSheetHeader extends StatelessWidget {
             colors: [theme.colorScheme.primary, theme.colorScheme.secondary],
           ).createShader(bounds),
           child: Text(
-            isSearching ? 'Search Results' : 'Explore Trains',
+            isSearching ? 'Search Results' : 'Explore',
             style: theme.textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.w900,
               letterSpacing: -1.2,

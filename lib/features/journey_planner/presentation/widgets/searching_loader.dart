@@ -7,7 +7,7 @@ class SearchingLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Center(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40),
@@ -16,7 +16,7 @@ class SearchingLoader extends StatelessWidget {
             const CircularProgressIndicator(),
             const SizedBox(height: AppDimensions.m),
             Text(
-              'Searching best routes...',
+              'Searching timetables...',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.w600,
                 color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
@@ -24,7 +24,7 @@ class SearchingLoader extends StatelessWidget {
             ),
             const SizedBox(height: AppDimensions.xs),
             Text(
-              'Fetching real-time timetables and fares',
+              'Matching trains on the selected date',
               style: theme.textTheme.bodySmall,
             ),
           ],

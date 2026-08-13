@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:skeletonizer/skeletonizer.dart';
+
+import '../../../core/data/saved_journeys_store.dart';
 import '../../../core/theme/app_dimensions.dart';
 import '../../../core/widgets/quick_action_card.dart';
-import '../../train/domain/models/train.dart';
-import '../../train/presentation/widgets/train_card.dart';
+import '../../journey_planner/domain/models/saved_journey.dart';
 import 'bloc/home_bloc.dart';
+import 'widgets/saved_journey_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,7 +15,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
       body: Stack(
@@ -22,17 +23,6 @@ class HomeScreen extends StatelessWidget {
           BlocBuilder<HomeBloc, HomeState>(
             builder: (context, state) {
               final bool isLoading = state is HomeLoading;
-              
-              final List<Train> trains = state is HomeLoaded 
-                  ? state.recentTrains 
-                  : List.generate(3, (index) => const Train(
-                      id: 'loading',
-                      name: 'Loading Train Name',
-                      number: '0000',
-                      status: 'On Time',
-                      departureTime: '00:00',
-                      arrivalTime: '00:00',
-                    ));
 
               return RefreshIndicator(
                 edgeOffset: 380,
@@ -42,47 +32,63 @@ class HomeScreen extends StatelessWidget {
                 child: CustomScrollView(
                   physics: const BouncingScrollPhysics(),
                   slivers: [
-                    const SliverToBoxAdapter(
-                      child: SizedBox(height: 380),
-                    ),
+                    const SliverToBoxAdapter(child: SizedBox(height: 380)),
                     SliverToBoxAdapter(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildSectionHeader(
-                              theme, 
-                              'Recent Journeys', 
-                              () => context.push('/recent-journeys'),
-                            ),
-                            const SizedBox(height: AppDimensions.s),
-                          ],
+                        child: _buildSectionHeader(
+                          theme,
+                          'Upcoming Journeys',
+                          (state is HomeLoaded && state.journeys.isNotEmpty)
+                              ? () => context.push('/journey-planner')
+                              : null,
                         ),
                       ),
                     ),
-                    Skeletonizer.sliver(
-                      enabled: isLoading,
-                      child: SliverPadding(
+                    const SliverToBoxAdapter(
+                      child: SizedBox(height: AppDimensions.s),
+                    ),
+                    if (isLoading)
+                      const SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Center(child: CircularProgressIndicator()),
+                      )
+                    else if (state is HomeLoaded && state.journeys.isEmpty)
+                      const SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: _EmptyJourneysState(),
+                      )
+                    else if (state is HomeLoaded)
+                      SliverPadding(
                         padding: const EdgeInsets.fromLTRB(20, 0, 20, 100),
                         sliver: SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                            (context, index) {
-                              final train = trains[index];
-                              return TrainCard(
-                                train: train,
-                                isLoading: isLoading,
-                                onTap: () => context.push(
-                                  '/train-details/${train.id}',
-                                  extra: train,
-                                ),
-                              );
-                            },
-                            childCount: trains.length,
+                          delegate: SliverChildBuilderDelegate((
+                            context,
+                            index,
+                          ) {
+                            final journey = state.journeys[index];
+                            return SavedJourneyCard(
+                              journey: journey,
+                              onTap: () => context.push(
+                                '/train-details/${journey.trainId}',
+                              ),
+                              onRemove: () => _removeJourney(context, journey),
+                            );
+                          }, childCount: state.journeys.length),
+                        ),
+                      )
+                    else if (state is HomeError)
+                      SliverFillRemaining(
+                        hasScrollBody: false,
+                        child: Center(
+                          child: Text(
+                            state.message,
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.error,
+                            ),
                           ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               );
@@ -97,6 +103,16 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _removeJourney(
+    BuildContext context,
+    SavedJourney journey,
+  ) async {
+    await SavedJourneysStore().remove(journey);
+    if (context.mounted) {
+      context.read<HomeBloc>().add(LoadHomeData());
+    }
   }
 
   Widget _buildHeader(BuildContext context, ThemeData theme) {
@@ -207,7 +223,11 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionHeader(ThemeData theme, String title, VoidCallback? onAction) {
+  Widget _buildSectionHeader(
+    ThemeData theme,
+    String title,
+    VoidCallback? onAction,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -223,7 +243,7 @@ class HomeScreen extends StatelessWidget {
           GestureDetector(
             onTap: onAction,
             child: Text(
-              'See All',
+              'Plan New',
               style: TextStyle(
                 color: theme.colorScheme.primary,
                 fontWeight: FontWeight.w700,
@@ -232,6 +252,60 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
       ],
+    );
+  }
+}
+
+class _EmptyJourneysState extends StatelessWidget {
+  const _EmptyJourneysState();
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(32, 0, 32, 120),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: colorScheme.primary.withValues(alpha: 0.08),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.bookmark_border_rounded,
+              size: 44,
+              color: colorScheme.primary,
+            ),
+          ),
+          const SizedBox(height: AppDimensions.l),
+          Text(
+            'No upcoming journeys yet',
+            style: theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w800,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: AppDimensions.s),
+          Text(
+            'Plan a route in the Journey Planner and save it — upcoming\nsaved journeys will appear here.',
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: colorScheme.onSurface.withValues(alpha: 0.6),
+              height: 1.5,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: AppDimensions.l),
+          FilledButton.icon(
+            onPressed: () => context.push('/journey-planner'),
+            icon: const Icon(Icons.route_rounded, size: 18),
+            label: const Text('Plan a Journey'),
+          ),
+        ],
+      ),
     );
   }
 }

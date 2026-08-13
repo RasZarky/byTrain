@@ -29,8 +29,8 @@ class TrainCard extends StatelessWidget {
     Widget cardContent = CustomCard(
       onTap: isLoading ? null : onTap,
       padding: EdgeInsets.zero,
-      border: isSelected 
-          ? Border.all(color: theme.colorScheme.primary, width: 2) 
+      border: isSelected
+          ? Border.all(color: theme.colorScheme.primary, width: 2)
           : null,
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -68,7 +68,9 @@ class TrainCard extends StatelessWidget {
                               Text(
                                 '#${train.number}',
                                 style: theme.textTheme.labelSmall?.copyWith(
-                                  color: theme.colorScheme.onSurface.withValues(alpha: 0.3),
+                                  color: theme.colorScheme.onSurface.withValues(
+                                    alpha: 0.3,
+                                  ),
                                   fontWeight: FontWeight.bold,
                                   letterSpacing: 1,
                                 ),
@@ -79,16 +81,36 @@ class TrainCard extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Flexible(child: _buildTimeBlock(theme, train.departureTime, 'Dep', isNarrow)),
+                              Flexible(
+                                child: _buildTimeBlock(
+                                  theme,
+                                  train.departureTime,
+                                  'Dep',
+                                  isNarrow,
+                                ),
+                              ),
                               Padding(
-                                padding: EdgeInsets.symmetric(horizontal: isNarrow ? AppDimensions.s : AppDimensions.m),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: isNarrow
+                                      ? AppDimensions.s
+                                      : AppDimensions.m,
+                                ),
                                 child: Icon(
                                   Icons.east_rounded,
                                   size: isNarrow ? 14 : 16,
-                                  color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
+                                  color: theme.colorScheme.onSurface.withValues(
+                                    alpha: 0.2,
+                                  ),
                                 ),
                               ),
-                              Flexible(child: _buildTimeBlock(theme, train.arrivalTime, 'Arr', isNarrow)),
+                              Flexible(
+                                child: _buildTimeBlock(
+                                  theme,
+                                  train.arrivalTime,
+                                  'Arr',
+                                  isNarrow,
+                                ),
+                              ),
                             ],
                           ),
                         ],
@@ -103,7 +125,7 @@ class TrainCard extends StatelessWidget {
                   vertical: AppDimensions.s + 2,
                 ),
                 decoration: BoxDecoration(
-                  color: isSelected 
+                  color: isSelected
                       ? theme.colorScheme.primary.withValues(alpha: 0.05)
                       : theme.colorScheme.onSurface.withValues(alpha: 0.02),
                   borderRadius: const BorderRadius.vertical(
@@ -132,7 +154,7 @@ class TrainCard extends StatelessWidget {
 
   Widget _buildImageOrIcon(ThemeData theme, double size) {
     final borderRadius = BorderRadius.circular(size * 0.3);
-    
+
     if (train.imageUrl != null && train.imageUrl!.isNotEmpty) {
       return ClipRRect(
         borderRadius: borderRadius,
@@ -142,11 +164,12 @@ class TrainCard extends StatelessWidget {
           height: size,
           fit: BoxFit.cover,
           placeholder: (context, url) => _buildIconContainer(theme, size),
-          errorWidget: (context, url, error) => _buildIconContainer(theme, size),
+          errorWidget: (context, url, error) =>
+              _buildIconContainer(theme, size),
         ),
       );
     }
-    
+
     return _buildIconContainer(theme, size);
   }
 
@@ -172,15 +195,16 @@ class TrainCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Icon(
-        Icons.train_rounded,
-        color: Colors.white,
-        size: size * 0.5,
-      ),
+      child: Icon(Icons.train_rounded, color: Colors.white, size: size * 0.5),
     );
   }
 
-  Widget _buildTimeBlock(ThemeData theme, String time, String label, bool isNarrow) {
+  Widget _buildTimeBlock(
+    ThemeData theme,
+    String time,
+    String label,
+    bool isNarrow,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -223,10 +247,7 @@ class TrainCard extends StatelessWidget {
             Container(
               width: 6,
               height: 6,
-              decoration: BoxDecoration(
-                color: color,
-                shape: BoxShape.circle,
-              ),
+              decoration: BoxDecoration(color: color, shape: BoxShape.circle),
             ),
             const SizedBox(width: 6),
             Flexible(

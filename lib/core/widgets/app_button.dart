@@ -28,7 +28,8 @@ class AppButton extends StatefulWidget {
   State<AppButton> createState() => _AppButtonState();
 }
 
-class _AppButtonState extends State<AppButton> with SingleTickerProviderStateMixin {
+class _AppButtonState extends State<AppButton>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
 
@@ -39,9 +40,10 @@ class _AppButtonState extends State<AppButton> with SingleTickerProviderStateMix
       vsync: this,
       duration: const Duration(milliseconds: 100),
     );
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.97).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.97,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -107,8 +109,8 @@ class _AppButtonState extends State<AppButton> with SingleTickerProviderStateMix
 
     if (isDisabled && widget.variant == AppButtonVariant.primary) {
       return BoxDecoration(
-        color: theme.brightness == Brightness.light 
-            ? Colors.black.withValues(alpha: 0.05) 
+        color: theme.brightness == Brightness.light
+            ? Colors.black.withValues(alpha: 0.05)
             : Colors.white.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(AppDimensions.radiusL),
       );
@@ -146,7 +148,9 @@ class _AppButtonState extends State<AppButton> with SingleTickerProviderStateMix
       case AppButtonVariant.outline:
         return BoxDecoration(
           border: Border.all(
-            color: isDisabled ? colorScheme.outline.withValues(alpha: 0.2) : baseColor,
+            color: isDisabled
+                ? colorScheme.outline.withValues(alpha: 0.2)
+                : baseColor,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(AppDimensions.radiusL),
@@ -202,8 +206,8 @@ class _AppButtonState extends State<AppButton> with SingleTickerProviderStateMix
   }
 
   Widget _buildLoader(ThemeData theme) {
-    final color = widget.variant == AppButtonVariant.primary 
-        ? theme.colorScheme.onPrimary 
+    final color = widget.variant == AppButtonVariant.primary
+        ? theme.colorScheme.onPrimary
         : (widget.color ?? theme.colorScheme.primary);
     return SizedBox(
       width: 22,

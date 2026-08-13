@@ -4,11 +4,7 @@ class AnimatedSection extends StatelessWidget {
   final int index;
   final Widget child;
 
-  const AnimatedSection({
-    super.key,
-    required this.index,
-    required this.child,
-  });
+  const AnimatedSection({super.key, required this.index, required this.child});
 
   @override
   Widget build(BuildContext context) {

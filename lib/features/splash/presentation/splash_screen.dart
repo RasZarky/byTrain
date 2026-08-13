@@ -1,3 +1,4 @@
+import 'package:by_train/core/data/onboarding_store.dart';
 import 'package:by_train/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -11,7 +12,8 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _markOpacity;
   late final Animation<double> _wordmarkOpacity;
@@ -42,13 +44,13 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       curve: const Interval(0.0, 0.4, curve: Curves.easeIn),
     );
 
-    _wordmarkSlide = Tween<Offset>(
-      begin: const Offset(0, 0.08),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: _controller,
-      curve: const Interval(0.15, 0.7, curve: Curves.easeOutCubic),
-    ));
+    _wordmarkSlide =
+        Tween<Offset>(begin: const Offset(0, 0.08), end: Offset.zero).animate(
+          CurvedAnimation(
+            parent: _controller,
+            curve: const Interval(0.15, 0.7, curve: Curves.easeOutCubic),
+          ),
+        );
 
     _wordmarkOpacity = CurvedAnimation(
       parent: _controller,
@@ -66,7 +68,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
   void _startNavigation() async {
     await Future.delayed(const Duration(milliseconds: 2200));
-    if (mounted) context.go('/onboarding');
+    if (!mounted) return;
+    // Onboarding only shows on the very first launch.
+    final seen = await OnboardingStore().hasCompleted();
+    if (!mounted) return;
+    context.go(seen ? '/home' : '/onboarding');
   }
 
   @override
@@ -89,7 +95,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                
                 FadeTransition(
                   opacity: _markOpacity,
                   child: Container(

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import '../../../core/data/pakrail_repository.dart';
+import '../../../core/data/saved_journeys_store.dart';
 import '../../../core/theme/app_dimensions.dart';
+import '../domain/models/journey.dart';
+import '../domain/models/saved_journey.dart';
+import '../../station/domain/models/station.dart';
 import 'bloc/journey_planner_bloc.dart';
 import 'bloc/journey_planner_event.dart';
 import 'bloc/journey_planner_state.dart';
@@ -9,6 +14,7 @@ import 'widgets/preferences_section.dart';
 import 'widgets/results_section.dart';
 import 'widgets/route_selection_card.dart';
 import 'widgets/searching_loader.dart';
+import 'widgets/station_picker_sheet.dart';
 
 class JourneyPlannerScreen extends StatelessWidget {
   const JourneyPlannerScreen({super.key});
@@ -16,7 +22,7 @@ class JourneyPlannerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => JourneyPlannerBloc(),
+      create: (context) => JourneyPlannerBloc(repository: PakRailRepository()),
       child: const JourneyPlannerView(),
     );
   }
@@ -29,12 +35,16 @@ class JourneyPlannerView extends StatefulWidget {
   State<JourneyPlannerView> createState() => _JourneyPlannerViewState();
 }
 
-class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProviderStateMixin {
+class _JourneyPlannerViewState extends State<JourneyPlannerView>
+    with TickerProviderStateMixin {
   late final TextEditingController _fromController;
   late final TextEditingController _toController;
-  
-  final FocusNode _fromFocusNode = FocusNode();
-  final FocusNode _toFocusNode = FocusNode();
+
+  late final PakRailRepository _repository;
+
+  /// Identities of journeys already saved (train id + departure time), used
+  /// to show a saved indicator on the result cards.
+  Set<String> _savedKeys = const {};
 
   late final AnimationController _resultsFadeController;
   late final Animation<double> _resultsFadeAnimation;
@@ -44,8 +54,9 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
   void initState() {
     super.initState();
     final bloc = context.read<JourneyPlannerBloc>();
-    _fromController = TextEditingController(text: bloc.state.fromStation);
-    _toController = TextEditingController(text: bloc.state.toStation);
+    _repository = PakRailRepository();
+    _fromController = TextEditingController(text: bloc.state.from?.name ?? '');
+    _toController = TextEditingController(text: bloc.state.to?.name ?? '');
 
     _resultsFadeController = AnimationController(
       vsync: this,
@@ -61,19 +72,30 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
         curve: Curves.easeOutCubic,
       ),
     );
+
+    _loadSavedKeys();
+  }
+
+  Future<void> _loadSavedKeys() async {
+    final saved = await SavedJourneysStore().load();
+    if (!mounted) return;
+    setState(() {
+      _savedKeys = {for (final j in saved) j.key};
+    });
   }
 
   @override
   void dispose() {
     _fromController.dispose();
     _toController.dispose();
-    _fromFocusNode.dispose();
-    _toFocusNode.dispose();
     _resultsFadeController.dispose();
     super.dispose();
   }
 
-  Future<void> _selectDateTime(BuildContext context, DateTime currentDateTime) async {
+  Future<void> _selectDateTime(
+    BuildContext context,
+    DateTime currentDateTime,
+  ) async {
     final DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: currentDateTime,
@@ -103,6 +125,53 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
     }
   }
 
+  Future<void> _saveJourney(Journey journey) async {
+    final savedJourney = SavedJourney.fromJourney(journey);
+    final added = await SavedJourneysStore().add(savedJourney);
+    if (!mounted) return;
+    setState(() {
+      _savedKeys = {..._savedKeys, savedJourney.key};
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          added
+              ? 'Journey saved — view it on Home'
+              : 'This journey is already saved',
+        ),
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
+    );
+  }
+
+  Future<void> _showStationPicker({required bool isFrom}) async {
+    final stations = await _repository.loadStations();
+    if (!mounted) return;
+    final selected = await showModalBottomSheet<Station>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => StationPickerSheet(
+        stations: stations,
+        title: isFrom
+            ? 'Choose Departure Station'
+            : 'Choose Destination Station',
+      ),
+    );
+    if (selected != null && mounted) {
+      final bloc = context.read<JourneyPlannerBloc>();
+      bloc.add(
+        isFrom ? FromStationSelected(selected) : ToStationSelected(selected),
+      );
+      if (isFrom) {
+        _fromController.text = selected.name;
+      } else {
+        _toController.text = selected.name;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -111,22 +180,25 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
 
     return BlocListener<JourneyPlannerBloc, JourneyPlannerState>(
       listener: (context, state) {
-        if (state.status == JourneyPlannerStatus.failure && state.errorMessage != null) {
+        if (state.status == JourneyPlannerStatus.failure &&
+            state.errorMessage != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(state.errorMessage!),
               behavior: SnackBarBehavior.floating,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
               backgroundColor: theme.colorScheme.error,
             ),
           );
         }
-        
-        if (_fromController.text != state.fromStation) {
-          _fromController.text = state.fromStation;
+
+        if (_fromController.text != (state.from?.name ?? '')) {
+          _fromController.text = state.from?.name ?? '';
         }
-        if (_toController.text != state.toStation) {
-          _toController.text = state.toStation;
+        if (_toController.text != (state.to?.name ?? '')) {
+          _toController.text = state.to?.name ?? '';
         }
 
         if (state.status == JourneyPlannerStatus.success) {
@@ -180,39 +252,32 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
           builder: (context, state) {
             return SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(
-                12,
-                AppDimensions.s,
-                12,
-                120,
-              ),
+              padding: const EdgeInsets.fromLTRB(12, AppDimensions.s, 12, 120),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   RouteSelectionCard(
                     fromController: _fromController,
                     toController: _toController,
-                    fromFocusNode: _fromFocusNode,
-                    toFocusNode: _toFocusNode,
+                    onFromTap: () => _showStationPicker(isFrom: true),
+                    onToTap: () => _showStationPicker(isFrom: false),
                     swapTurns: state.swapTurns,
                     selectedDateTime: state.selectedDateTime,
                     isSearching: state.status == JourneyPlannerStatus.loading,
-                    onSwap: () => context.read<JourneyPlannerBloc>().add(const StationsSwapped()),
-                    onSelectDateTime: () => _selectDateTime(context, state.selectedDateTime),
+                    onSwap: () => context.read<JourneyPlannerBloc>().add(
+                      const StationsSwapped(),
+                    ),
+                    onSelectDateTime: () =>
+                        _selectDateTime(context, state.selectedDateTime),
                     onSearch: () {
-                      _fromFocusNode.unfocus();
-                      _toFocusNode.unfocus();
-                      context.read<JourneyPlannerBloc>().add(const SearchStarted());
+                      context.read<JourneyPlannerBloc>().add(
+                        const SearchStarted(),
+                      );
                     },
-                    onNowPressed: () => context.read<JourneyPlannerBloc>().add(DateTimeChanged(DateTime.now())),
+                    onNowPressed: () => context.read<JourneyPlannerBloc>().add(
+                      DateTimeChanged(DateTime.now()),
+                    ),
                     formattedDateTime: _formatDateTime(state.selectedDateTime),
-                    onClear: (field) {
-                      if (field == 'from') {
-                        context.read<JourneyPlannerBloc>().add(const FromStationChanged(''));
-                      } else {
-                        context.read<JourneyPlannerBloc>().add(const ToStationChanged(''));
-                      }
-                    },
                   ),
 
                   const SizedBox(height: AppDimensions.l),
@@ -220,10 +285,12 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
                   PreferencesSection(
                     fastestRoute: state.fastestRoute,
                     directOnly: state.directOnly,
-                    cheapestFirst: state.cheapestFirst,
-                    onFastestRouteToggle: () => context.read<JourneyPlannerBloc>().add(const FastestRouteToggled()),
-                    onDirectOnlyToggle: () => context.read<JourneyPlannerBloc>().add(const DirectOnlyToggled()),
-                    onCheapestFirstToggle: () => context.read<JourneyPlannerBloc>().add(const CheapestFirstToggled()),
+                    onFastestRouteToggle: () => context
+                        .read<JourneyPlannerBloc>()
+                        .add(const FastestRouteToggled()),
+                    onDirectOnlyToggle: () => context
+                        .read<JourneyPlannerBloc>()
+                        .add(const DirectOnlyToggled()),
                   ),
 
                   const SizedBox(height: AppDimensions.xl),
@@ -236,7 +303,8 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView> with TickerProv
                       slideAnimation: _resultsSlideAnimation,
                       journeys: state.journeys,
                       fastestRoute: state.fastestRoute,
-                      cheapestFirst: state.cheapestFirst,
+                      savedKeys: _savedKeys,
+                      onSaveJourney: _saveJourney,
                     ),
                 ],
               ),

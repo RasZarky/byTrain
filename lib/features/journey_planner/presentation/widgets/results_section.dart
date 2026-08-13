@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimensions.dart';
 import '../../domain/models/journey.dart';
+import '../../domain/models/saved_journey.dart';
 import 'journey_card.dart';
 
 class ResultsSection extends StatelessWidget {
@@ -8,7 +9,8 @@ class ResultsSection extends StatelessWidget {
   final Animation<double> slideAnimation;
   final List<Journey> journeys;
   final bool fastestRoute;
-  final bool cheapestFirst;
+  final Set<String> savedKeys;
+  final ValueChanged<Journey>? onSaveJourney;
 
   const ResultsSection({
     super.key,
@@ -16,8 +18,22 @@ class ResultsSection extends StatelessWidget {
     required this.slideAnimation,
     required this.journeys,
     required this.fastestRoute,
-    required this.cheapestFirst,
+    this.savedKeys = const {},
+    this.onSaveJourney,
   });
+
+  /// The journey with the shortest duration among the results (if any).
+  Journey? get _fastest {
+    Journey? best;
+    for (final j in journeys) {
+      if (best == null ||
+          j.arrivalTime.difference(j.departureTime) <
+              best.arrivalTime.difference(best.departureTime)) {
+        best = j;
+      }
+    }
+    return best;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,11 +81,15 @@ class ResultsSection extends StatelessWidget {
             itemCount: journeys.length,
             itemBuilder: (context, index) {
               final journey = journeys[index];
-              // Simplified logic for tagging fastest/cheapest in the list
               return JourneyCard(
                 journey: journey,
-                isFastest: fastestRoute && index == 0, // Placeholder logic
-                isCheapest: cheapestFirst && index == 0, // Placeholder logic
+                isFastest: fastestRoute && identical(journey, _fastest),
+                isSaved: savedKeys.contains(
+                  SavedJourney.keyFor(journey.train.id, journey.departureTime),
+                ),
+                onSave: onSaveJourney == null
+                    ? null
+                    : () => onSaveJourney!(journey),
               );
             },
           ),

@@ -7,6 +7,7 @@ enum StopStatus { passed, current, upcoming }
 class TrainStop extends Equatable {
   final String stationName;
   final String arrivalTime;
+  final String? departureTime;
   final String? platform;
   final String? delay;
   final StopStatus status;
@@ -14,13 +15,21 @@ class TrainStop extends Equatable {
   const TrainStop({
     required this.stationName,
     required this.arrivalTime,
+    this.departureTime,
     this.platform,
     this.delay,
     required this.status,
   });
 
   @override
-  List<Object?> get props => [stationName, arrivalTime, platform, delay, status];
+  List<Object?> get props => [
+    stationName,
+    arrivalTime,
+    departureTime,
+    platform,
+    delay,
+    status,
+  ];
 }
 
 class Train extends Equatable {
@@ -30,6 +39,7 @@ class Train extends Equatable {
   final String status;
   final String departureTime;
   final String arrivalTime;
+  final int? durationMin;
   final TrainType type;
   final double? latitude;
   final double? longitude;
@@ -43,6 +53,7 @@ class Train extends Equatable {
     required this.status,
     required this.departureTime,
     required this.arrivalTime,
+    this.durationMin,
     this.type = TrainType.regional,
     this.latitude,
     this.longitude,
@@ -52,16 +63,17 @@ class Train extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        name,
-        number,
-        status,
-        departureTime,
-        arrivalTime,
-        type,
-        latitude,
-        longitude,
-        imageUrl,
-        stops,
-      ];
+    id,
+    name,
+    number,
+    status,
+    departureTime,
+    arrivalTime,
+    durationMin,
+    type,
+    latitude,
+    longitude,
+    imageUrl,
+    stops,
+  ];
 }

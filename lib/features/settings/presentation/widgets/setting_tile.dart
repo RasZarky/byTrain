@@ -43,11 +43,7 @@ class SettingTile extends StatelessWidget {
             color: colorScheme.primary.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(AppDimensions.radiusM),
           ),
-          child: Icon(
-            icon,
-            color: colorScheme.primary,
-            size: 22,
-          ),
+          child: Icon(icon, color: colorScheme.primary, size: 22),
         ),
         title: Text(
           title,
@@ -64,7 +60,8 @@ class SettingTile extends StatelessWidget {
                 ),
               )
             : null,
-        trailing: trailing ??
+        trailing:
+            trailing ??
             Icon(
               Icons.arrow_forward_ios_rounded,
               color: colorScheme.onSurface.withValues(alpha: 0.2),

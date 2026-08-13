@@ -5,25 +5,21 @@ import 'preference_chip.dart';
 class PreferencesSection extends StatelessWidget {
   final bool fastestRoute;
   final bool directOnly;
-  final bool cheapestFirst;
   final VoidCallback onFastestRouteToggle;
   final VoidCallback onDirectOnlyToggle;
-  final VoidCallback onCheapestFirstToggle;
 
   const PreferencesSection({
     super.key,
     required this.fastestRoute,
     required this.directOnly,
-    required this.cheapestFirst,
     required this.onFastestRouteToggle,
     required this.onDirectOnlyToggle,
-    required this.onCheapestFirstToggle,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -55,13 +51,6 @@ class PreferencesSection extends StatelessWidget {
                 label: 'Direct Only',
                 isSelected: directOnly,
                 onTap: onDirectOnlyToggle,
-              ),
-              const SizedBox(width: AppDimensions.s),
-              PreferenceChip(
-                icon: Icons.savings_rounded,
-                label: 'Cheapest First',
-                isSelected: cheapestFirst,
-                onTap: onCheapestFirstToggle,
               ),
             ],
           ),
