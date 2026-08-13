@@ -138,11 +138,15 @@ class SavedJourneyCard extends StatelessWidget {
                   color: colorScheme.onSurface.withValues(alpha: 0.4),
                 ),
                 const SizedBox(width: 6),
-                Text(
-                  'Departs $dep · ${duration.inHours}h ${duration.inMinutes.remainder(60)}m',
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: colorScheme.onSurface.withValues(alpha: 0.6),
-                    fontWeight: FontWeight.w600,
+                Expanded(
+                  child: Text(
+                    'Departs $dep · ${duration.inHours}h ${duration.inMinutes.remainder(60)}m',
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: colorScheme.onSurface.withValues(alpha: 0.6),
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
                 const Spacer(),
