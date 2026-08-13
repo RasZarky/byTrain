@@ -8,13 +8,15 @@ import '../../domain/models/journey.dart';
 class JourneyCard extends StatelessWidget {
   final Journey journey;
   final bool isFastest;
-  final bool isCheapest;
+  final bool isSaved;
+  final VoidCallback? onSave;
 
   const JourneyCard({
     super.key,
     required this.journey,
     this.isFastest = false,
-    this.isCheapest = false,
+    this.isSaved = false,
+    this.onSave,
   });
 
   String _formatDuration(DateTime start, DateTime end) {
@@ -30,7 +32,10 @@ class JourneyCard extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final fromTime = DateFormat('HH:mm').format(journey.departureTime);
     final toTime = DateFormat('HH:mm').format(journey.arrivalTime);
-    final duration = _formatDuration(journey.departureTime, journey.arrivalTime);
+    final duration = _formatDuration(
+      journey.departureTime,
+      journey.arrivalTime,
+    );
 
     return CustomCard(
       padding: EdgeInsets.zero,
@@ -41,13 +46,8 @@ class JourneyCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
         child: Container(
           decoration: BoxDecoration(
-            border: (isFastest || isCheapest)
-                ? Border(
-                    left: BorderSide(
-                      color: isFastest ? colorScheme.primary : colorScheme.secondary,
-                      width: 5,
-                    ),
-                  )
+            border: isFastest
+                ? Border(left: BorderSide(color: colorScheme.primary, width: 5))
                 : null,
           ),
           child: Padding(
@@ -67,30 +67,52 @@ class JourneyCard extends StatelessWidget {
                             bg: colorScheme.primary.withValues(alpha: 0.1),
                             text: colorScheme.primary,
                           ),
-                        if (isCheapest)
+                        if (isSaved)
                           _JourneyTag(
-                            label: 'CHEAPEST',
-                            icon: Icons.savings_rounded,
-                            bg: colorScheme.secondary.withValues(alpha: 0.1),
-                            text: colorScheme.onSecondaryFixedVariant,
+                            label: 'SAVED',
+                            icon: Icons.bookmark_rounded,
+                            bg: colorScheme.tertiary.withValues(alpha: 0.12),
+                            text: colorScheme.tertiary,
                           ),
-                        if (!isFastest && !isCheapest)
+                        if (!isFastest && !isSaved)
                           Text(
                             journey.train.name.toUpperCase(),
                             style: theme.textTheme.labelSmall?.copyWith(
                               fontWeight: FontWeight.w800,
-                              color: colorScheme.onSurface.withValues(alpha: 0.4),
+                              color: colorScheme.onSurface.withValues(
+                                alpha: 0.4,
+                              ),
                               letterSpacing: 1.0,
                             ),
                           ),
                       ],
                     ),
-                    Text(
-                      duration,
-                      style: theme.textTheme.labelMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: colorScheme.onSurface.withValues(alpha: 0.6),
-                      ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (onSave != null)
+                          IconButton(
+                            onPressed: onSave,
+                            tooltip: isSaved ? 'Saved' : 'Save journey',
+                            visualDensity: VisualDensity.compact,
+                            icon: Icon(
+                              isSaved
+                                  ? Icons.bookmark_rounded
+                                  : Icons.bookmark_border_rounded,
+                              size: 20,
+                              color: isSaved
+                                  ? colorScheme.tertiary
+                                  : colorScheme.primary,
+                            ),
+                          ),
+                        Text(
+                          duration,
+                          style: theme.textTheme.labelMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: colorScheme.onSurface.withValues(alpha: 0.6),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -142,9 +164,13 @@ class JourneyCard extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                journey.train.status, // Assuming platform info might be here or status
+                                journey
+                                    .train
+                                    .status, // Assuming platform info might be here or status
                                 style: theme.textTheme.bodySmall?.copyWith(
-                                  color: colorScheme.onSurface.withValues(alpha: 0.4),
+                                  color: colorScheme.onSurface.withValues(
+                                    alpha: 0.4,
+                                  ),
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -161,16 +187,23 @@ class JourneyCard extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 3,
+                                ),
                                 decoration: BoxDecoration(
-                                  color: colorScheme.onSurface.withValues(alpha: 0.05),
+                                  color: colorScheme.onSurface.withValues(
+                                    alpha: 0.05,
+                                  ),
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                                 child: Text(
                                   'Direct', // Simplified for now
                                   style: theme.textTheme.labelSmall?.copyWith(
                                     fontWeight: FontWeight.bold,
-                                    color: colorScheme.onSurface.withValues(alpha: 0.6),
+                                    color: colorScheme.onSurface.withValues(
+                                      alpha: 0.6,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -206,24 +239,26 @@ class JourneyCard extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text(
-                          'Rs. ${journey.price.toInt()}',
-                          style: theme.textTheme.headlineMedium?.copyWith(
-                            fontWeight: FontWeight.w900,
-                            color: colorScheme.primary,
-                            fontSize: 22,
+                        if (journey.price != null) ...[
+                          Text(
+                            'Rs. ${journey.price!.toInt()}',
+                            style: theme.textTheme.headlineMedium?.copyWith(
+                              fontWeight: FontWeight.w900,
+                              color: colorScheme.primary,
+                              fontSize: 22,
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: AppDimensions.s),
+                          const SizedBox(width: AppDimensions.s),
+                        ],
                         Icon(
                           Icons.arrow_forward_ios_rounded,
                           size: 14,
                           color: colorScheme.primary,
                         ),
                       ],
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),

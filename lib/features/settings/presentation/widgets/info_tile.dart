@@ -35,9 +35,7 @@ class InfoTile extends StatelessWidget {
       ),
       subtitle: Text(
         value,
-        style: theme.textTheme.bodyLarge?.copyWith(
-          fontWeight: FontWeight.w600,
-        ),
+        style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
       ),
       trailing: Icon(
         Icons.open_in_new_rounded,

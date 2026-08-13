@@ -3,13 +3,9 @@ import 'package:equatable/equatable.dart';
 class SettingsState extends Equatable {
   final bool notificationsEnabled;
 
-  const SettingsState({
-    this.notificationsEnabled = true,
-  });
+  const SettingsState({this.notificationsEnabled = true});
 
-  SettingsState copyWith({
-    bool? notificationsEnabled,
-  }) {
+  SettingsState copyWith({bool? notificationsEnabled}) {
     return SettingsState(
       notificationsEnabled: notificationsEnabled ?? this.notificationsEnabled,
     );

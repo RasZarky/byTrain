@@ -1,3 +1,4 @@
+import 'package:by_train/core/data/onboarding_store.dart';
 import 'package:by_train/features/onboarding/domain/onboarding_model.dart';
 import 'package:by_train/features/onboarding/presentation/widgets/onboarding_widget.dart';
 import 'package:flutter/material.dart';
@@ -66,6 +67,7 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   void _next() {
     if (_isLastPage) {
+      OnboardingStore().markCompleted();
       context.go('/home');
       return;
     }
@@ -203,7 +205,9 @@ class _OnboardingScreenState extends State<OnboardingScreen>
                                   FadeTransition(
                                     opacity: anim,
                                     child: ScaleTransition(
-                                        scale: anim, child: child),
+                                      scale: anim,
+                                      child: child,
+                                    ),
                                   ),
                               child: Row(
                                 key: ValueKey(_isLastPage),

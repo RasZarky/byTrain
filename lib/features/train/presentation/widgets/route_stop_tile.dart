@@ -3,7 +3,7 @@ import '../../../../core/theme/app_dimensions.dart';
 import '../../../../core/widgets/custom_card.dart';
 import '../../domain/models/train.dart';
 
-class RouteStopTile extends StatefulWidget {
+class RouteStopTile extends StatelessWidget {
   final String stationName;
   final String arrivalTime;
   final String? departureTime;
@@ -28,49 +28,10 @@ class RouteStopTile extends StatefulWidget {
   });
 
   @override
-  State<RouteStopTile> createState() => _RouteStopTileState();
-}
-
-class _RouteStopTileState extends State<RouteStopTile> with SingleTickerProviderStateMixin {
-  late AnimationController _pulseController;
-  late Animation<double> _pulseAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _pulseController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1200),
-    );
-    if (widget.status == StopStatus.current) {
-      _pulseController.repeat(reverse: true);
-    }
-    _pulseAnimation = Tween<double>(begin: 0.6, end: 1.0).animate(
-      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
-    );
-  }
-
-  @override
-  void didUpdateWidget(RouteStopTile oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.status == StopStatus.current && !_pulseController.isAnimating) {
-      _pulseController.repeat(reverse: true);
-    } else if (widget.status != StopStatus.current && _pulseController.isAnimating) {
-      _pulseController.stop();
-    }
-  }
-
-  @override
-  void dispose() {
-    _pulseController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isCurrent = widget.status == StopStatus.current;
-    final isPassed = widget.status == StopStatus.passed;
+    final isCurrent = status == StopStatus.current;
+    final isPassed = status == StopStatus.passed;
 
     return IntrinsicHeight(
       child: Row(
@@ -81,13 +42,15 @@ class _RouteStopTileState extends State<RouteStopTile> with SingleTickerProvider
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: AppDimensions.s),
               child: CustomCard(
-                onTap: widget.onTap,
+                onTap: onTap,
                 padding: const EdgeInsets.all(AppDimensions.m),
                 border: isCurrent
                     ? Border.all(color: theme.colorScheme.primary, width: 2)
                     : null,
                 color: isPassed
-                    ? theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.3)
+                    ? theme.colorScheme.surfaceContainerHighest.withValues(
+                        alpha: 0.3,
+                      )
                     : theme.colorScheme.surface,
                 child: Row(
                   children: [
@@ -96,27 +59,38 @@ class _RouteStopTileState extends State<RouteStopTile> with SingleTickerProvider
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            widget.stationName,
+                            stationName,
                             style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: isCurrent ? FontWeight.w900 : FontWeight.w700,
-                              color: isPassed ? theme.colorScheme.onSurface.withValues(alpha: 0.5) : null,
+                              fontWeight: isCurrent
+                                  ? FontWeight.w900
+                                  : FontWeight.w700,
+                              color: isPassed
+                                  ? theme.colorScheme.onSurface.withValues(
+                                      alpha: 0.5,
+                                    )
+                                  : null,
                               letterSpacing: -0.5,
                             ),
                           ),
                           const SizedBox(height: 4),
                           Row(
                             children: [
-                              if (widget.platform != null) ...[
+                              if (platform != null) ...[
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 6,
+                                    vertical: 2,
+                                  ),
                                   decoration: BoxDecoration(
-                                    color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                                    color: theme.colorScheme.onSurface
+                                        .withValues(alpha: 0.05),
                                     borderRadius: BorderRadius.circular(4),
                                   ),
                                   child: Text(
-                                    'PLAT ${widget.platform}',
+                                    'PLAT $platform',
                                     style: theme.textTheme.labelSmall?.copyWith(
-                                      color: theme.colorScheme.onSurface.withValues(alpha: 0.5),
+                                      color: theme.colorScheme.onSurface
+                                          .withValues(alpha: 0.5),
                                       fontSize: 9,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -126,7 +100,10 @@ class _RouteStopTileState extends State<RouteStopTile> with SingleTickerProvider
                               ],
                               if (isCurrent)
                                 Container(
-                                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 6,
+                                    vertical: 2,
+                                  ),
                                   decoration: BoxDecoration(
                                     color: Colors.green.withValues(alpha: 0.1),
                                     borderRadius: BorderRadius.circular(4),
@@ -149,18 +126,20 @@ class _RouteStopTileState extends State<RouteStopTile> with SingleTickerProvider
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          widget.arrivalTime,
+                          arrivalTime,
                           style: theme.textTheme.titleMedium?.copyWith(
                             color: isPassed
-                                ? theme.colorScheme.onSurface.withValues(alpha: 0.5)
+                                ? theme.colorScheme.onSurface.withValues(
+                                    alpha: 0.5,
+                                  )
                                 : theme.colorScheme.primary,
                             fontWeight: FontWeight.w900,
                             fontFamily: 'monospace',
                           ),
                         ),
-                        if (widget.delay != null)
+                        if (delay != null)
                           Text(
-                            widget.delay!,
+                            delay!,
                             style: theme.textTheme.labelSmall?.copyWith(
                               color: Colors.orange,
                               fontWeight: FontWeight.bold,
@@ -180,38 +159,39 @@ class _RouteStopTileState extends State<RouteStopTile> with SingleTickerProvider
   }
 
   Widget _buildTimeline(ThemeData theme, bool isCurrent, bool isPassed) {
-    final color = isPassed ? theme.colorScheme.primary.withValues(alpha: 0.3) : theme.colorScheme.primary;
+    final color = isPassed
+        ? theme.colorScheme.primary.withValues(alpha: 0.3)
+        : theme.colorScheme.primary;
 
     return Column(
       children: [
         Container(
           width: 2,
           height: AppDimensions.m,
-          color: widget.isFirst ? Colors.transparent : theme.colorScheme.primary.withValues(alpha: 0.3),
+          color: isFirst
+              ? Colors.transparent
+              : theme.colorScheme.primary.withValues(alpha: 0.3),
         ),
         if (isCurrent)
-          ScaleTransition(
-            scale: _pulseAnimation,
-            child: Container(
-              width: 24,
-              height: 24,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.primary,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: theme.colorScheme.primary.withValues(alpha: 0.2),
-                  width: 6,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: theme.colorScheme.primary.withValues(alpha: 0.4),
-                    blurRadius: 10,
-                    spreadRadius: 2,
-                  )
-                ],
+          Container(
+            width: 24,
+            height: 24,
+            decoration: BoxDecoration(
+              color: theme.colorScheme.primary,
+              shape: BoxShape.circle,
+              border: Border.all(
+                color: theme.colorScheme.primary.withValues(alpha: 0.2),
+                width: 6,
               ),
-              child: const Icon(Icons.train, size: 12, color: Colors.white),
+              boxShadow: [
+                BoxShadow(
+                  color: theme.colorScheme.primary.withValues(alpha: 0.4),
+                  blurRadius: 10,
+                  spreadRadius: 2,
+                ),
+              ],
             ),
+            child: const Icon(Icons.train, size: 12, color: Colors.white),
           )
         else
           Container(
@@ -220,16 +200,13 @@ class _RouteStopTileState extends State<RouteStopTile> with SingleTickerProvider
             decoration: BoxDecoration(
               color: isPassed ? Colors.transparent : theme.colorScheme.surface,
               shape: BoxShape.circle,
-              border: Border.all(
-                color: color,
-                width: 2,
-              ),
+              border: Border.all(color: color, width: 2),
             ),
             child: isPassed
                 ? Icon(Icons.check_circle, size: 16, color: color)
                 : null,
           ),
-        if (!widget.isLast)
+        if (!isLast)
           Expanded(
             child: Container(
               width: 2,

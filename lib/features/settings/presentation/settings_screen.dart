@@ -29,7 +29,10 @@ class SettingsScreen extends StatelessWidget {
             elevation: 0,
             scrolledUnderElevation: 0,
             flexibleSpace: FlexibleSpaceBar(
-              titlePadding: const EdgeInsets.only(left: AppDimensions.m, bottom: 16),
+              titlePadding: const EdgeInsets.only(
+                left: AppDimensions.m,
+                bottom: 16,
+              ),
               centerTitle: false,
               title: Text(
                 'Settings',
@@ -53,9 +56,14 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
           ),
-          
+
           SliverPadding(
-            padding: const EdgeInsets.fromLTRB(AppDimensions.m, 0, AppDimensions.m, AppDimensions.xxl),
+            padding: const EdgeInsets.fromLTRB(
+              AppDimensions.m,
+              0,
+              AppDimensions.m,
+              AppDimensions.xxl,
+            ),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 const SectionHeader(title: 'Support & Legal'),
@@ -92,9 +100,9 @@ class SettingsScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                
+
                 const SizedBox(height: AppDimensions.xl),
-                
+
                 const VersionBadge(),
 
                 const SizedBox(height: AppDimensions.xl),

@@ -25,6 +25,16 @@ class SelectFilter extends SearchEvent {
   List<Object?> get props => [filter];
 }
 
+/// Filters the result type shown on the Search page:
+/// 'All', 'Trains', 'Stations' or 'Routes'.
+class SelectContentFilter extends SearchEvent {
+  final String filter;
+  const SelectContentFilter(this.filter);
+
+  @override
+  List<Object?> get props => [filter];
+}
+
 class SelectTrain extends SearchEvent {
   final Train? train;
   const SelectTrain(this.train);
@@ -33,4 +43,6 @@ class SelectTrain extends SearchEvent {
   List<Object?> get props => [train];
 }
 
-class ClearSearch extends SearchEvent {}
+class ClearSearch extends SearchEvent {
+  const ClearSearch();
+}

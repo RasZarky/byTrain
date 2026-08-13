@@ -5,7 +5,6 @@ import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/home/presentation/main_screen.dart';
 import '../../features/search/presentation/search_screen.dart';
-import '../../features/search/presentation/search_results_screen.dart';
 import '../../features/train/presentation/train_details_screen.dart';
 import '../../features/train/presentation/route_details_screen.dart';
 import '../../features/journey_planner/presentation/journey_planner_screen.dart';
@@ -29,7 +28,11 @@ final _shellNavigatorSettingsKey = GlobalKey<NavigatorState>(
 );
 
 class AppRouter {
-  static final router = GoRouter(
+  /// The app's router. Tests call [buildRouter] instead so each test starts
+  /// from a fresh navigation state.
+  static final GoRouter router = buildRouter();
+
+  static GoRouter buildRouter() => GoRouter(
     debugLogDiagnostics: true,
     initialLocation: '/',
     navigatorKey: _rootNavigatorKey,
@@ -89,11 +92,6 @@ class AppRouter {
         ],
       ),
       // Detail routes that should probably be on top of the shell
-      GoRoute(
-        path: '/search-results',
-        parentNavigatorKey: _rootNavigatorKey,
-        builder: (context, state) => const SearchResultsScreen(),
-      ),
       GoRoute(
         path: '/train-details/:id',
         parentNavigatorKey: _rootNavigatorKey,

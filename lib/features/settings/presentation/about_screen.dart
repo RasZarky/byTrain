@@ -102,7 +102,10 @@ class AboutScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 4),
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
                             color: colorScheme.primary.withValues(alpha: 0.1),
                             borderRadius: BorderRadius.circular(20),
@@ -130,16 +133,20 @@ class AboutScreen extends StatelessWidget {
                         name: 'Abdul Razak Abubakari',
                         role: 'Mobile Developer',
                         email: 'ubdoolrazak@gmail.com',
-                        imageUrl: 'https://avatars.githubusercontent.com/u/83512618?v=4',
-                        onEmailTap: () => _launchURL('mailto:ubdoolrazak@gmail.com'),
+                        imageUrl:
+                            'https://avatars.githubusercontent.com/u/83512618?v=4',
+                        onEmailTap: () =>
+                            _launchURL('mailto:ubdoolrazak@gmail.com'),
                       ),
                       const SizedBox(height: AppDimensions.s),
                       DeveloperCard(
                         name: 'Belal Mohamed',
                         role: 'Mobile Developer',
                         email: 'dixen.bugs@gmail.com',
-                        imageUrl: 'https://avatars.githubusercontent.com/u/267304485?v=4',
-                        onEmailTap: () => _launchURL('mailto:dixen.bugs@gmail.com'),
+                        imageUrl:
+                            'https://avatars.githubusercontent.com/u/267304485?v=4',
+                        onEmailTap: () =>
+                            _launchURL('mailto:dixen.bugs@gmail.com'),
                       ),
                     ],
                   ),
@@ -158,28 +165,31 @@ class AboutScreen extends StatelessWidget {
                           icon: Icons.business_rounded,
                           label: 'Company',
                           value: 'Apexiums Technologies',
-                          onTap: () => _launchURL('https://apexiumstechnologies.com/'),
+                          onTap: () =>
+                              _launchURL('https://apexiumstechnologies.com/'),
                         ),
                         _buildDivider(colorScheme),
                         InfoTile(
                           icon: Icons.language_rounded,
                           label: 'Website',
                           value: 'apexiumstechnologies.com',
-                          onTap: () => _launchURL('https://apexiumstechnologies.com/'),
+                          onTap: () =>
+                              _launchURL('https://apexiumstechnologies.com/'),
                         ),
                         _buildDivider(colorScheme),
                         InfoTile(
                           icon: Icons.email_outlined,
                           label: 'Support',
                           value: 'ammanm0789@gmail.com',
-                          onTap: () => _launchURL('mailto:ammanm0789@gmail.com'),
+                          onTap: () =>
+                              _launchURL('mailto:ammanm0789@gmail.com'),
                         ),
                       ],
                     ),
                   ),
                 ),
                 const SizedBox(height: AppDimensions.xxl),
-                
+
                 Center(
                   child: Text(
                     '© 2026 Apexiums Technologies',

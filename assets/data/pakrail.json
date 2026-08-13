@@ -1,0 +1,5947 @@
+{
+  "meta": {
+    "dataAsOf": "2026-08-12",
+    "season": "Summer timetable 2026 (15 Apr – 14 Oct 2026)",
+    "sources": [
+      "https://www.pakinformation.com/railway-timings/",
+      "https://www.wikidata.org/wiki/Property:P6785",
+      "https://en.wikipedia.org/wiki/List_of_named_passenger_trains_of_Pakistan"
+    ],
+    "trainCount": 13,
+    "serviceCount": 26,
+    "stationCount": 142
+  },
+  "stations": [
+    {
+      "id": "karachi cantt",
+      "name": "Karachi Cantt",
+      "code": "KC",
+      "city": "Karachi",
+      "province": "Sindh"
+    },
+    {
+      "id": "hyderabad jn",
+      "name": "Hyderabad Junction",
+      "code": "HDR",
+      "city": "Hyderabad",
+      "province": "Sindh"
+    },
+    {
+      "id": "rohri jn",
+      "name": "Rohri Junction",
+      "code": "ROH",
+      "city": "Rohri",
+      "province": "Sindh"
+    },
+    {
+      "id": "bahawalpur",
+      "name": "Bahawalpur",
+      "code": "BWPR",
+      "city": "Bahawalpur",
+      "province": "Punjab"
+    },
+    {
+      "id": "khanewal",
+      "name": "Khanewal",
+      "code": "",
+      "city": "Khanewal",
+      "province": "Punjab"
+    },
+    {
+      "id": "toba tek singh",
+      "name": "Toba Tek Singh",
+      "code": "TTSG",
+      "city": "Toba Tek Singh",
+      "province": "Punjab"
+    },
+    {
+      "id": "faisalabad",
+      "name": "Faisalabad",
+      "code": "FSLD",
+      "city": "Faisalabad",
+      "province": "Punjab"
+    },
+    {
+      "id": "lahore jn",
+      "name": "Lahore Junction",
+      "code": "LHR",
+      "city": "Lahore",
+      "province": "Punjab"
+    },
+    {
+      "id": "landhi",
+      "name": "Landhi",
+      "code": "LND",
+      "city": "Karachi",
+      "province": "Sindh"
+    },
+    {
+      "id": "drigh road",
+      "name": "Drigh Road",
+      "code": "DID",
+      "city": "Karachi",
+      "province": "Sindh"
+    },
+    {
+      "id": "tando adam",
+      "name": "Tando Adam",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "shahdadpur",
+      "name": "Shahdadpur",
+      "code": "SDU",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "nawabshah jn",
+      "name": "Nawabshah Junction",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "mahrabpur",
+      "name": "Mahrabpur",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "khairpur",
+      "name": "Khairpur",
+      "code": "KHP",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "ghotki",
+      "name": "Ghotki",
+      "code": "GHK",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "rahim yar khan",
+      "name": "Rahim Yar Khan",
+      "code": "RYK",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "khanpur jn",
+      "name": "Khanpur Junction",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "multan cantt",
+      "name": "Multan Cantt",
+      "code": "MUL",
+      "city": "Multan",
+      "province": "Punjab"
+    },
+    {
+      "id": "khanewal jn",
+      "name": "Khanewal Junction",
+      "code": "KWL",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "mian channun",
+      "name": "Mian Channun",
+      "code": "MYH",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "chichawatni",
+      "name": "Chichawatni",
+      "code": "CCE",
+      "city": "Chichawatni",
+      "province": "Punjab"
+    },
+    {
+      "id": "sahiwal",
+      "name": "Sahiwal",
+      "code": "SWAL",
+      "city": "Sahiwal",
+      "province": "Punjab"
+    },
+    {
+      "id": "okara",
+      "name": "Okara",
+      "code": "OKR",
+      "city": "Okara",
+      "province": "Punjab"
+    },
+    {
+      "id": "pattoki",
+      "name": "Pattoki",
+      "code": "PTO",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "kot radha kishan",
+      "name": "Kot Radha Kishan",
+      "code": "KRK",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "raiwind jn",
+      "name": "Raiwind Junction",
+      "code": "RND",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "gujranwala",
+      "name": "Gujranwala",
+      "code": "GRW",
+      "city": "Gujranwala",
+      "province": "Punjab"
+    },
+    {
+      "id": "wazirabad jn",
+      "name": "Wazirabad Junction",
+      "code": "WZD",
+      "city": "Wazirabad",
+      "province": "Punjab"
+    },
+    {
+      "id": "gujrat",
+      "name": "Gujrat",
+      "code": "GRT",
+      "city": "Gujrat",
+      "province": "Punjab"
+    },
+    {
+      "id": "lala musa jn",
+      "name": "Lala Musa Junction",
+      "code": "LLM",
+      "city": "Lala Musa",
+      "province": "Punjab"
+    },
+    {
+      "id": "jhelum",
+      "name": "Jhelum",
+      "code": "JMR",
+      "city": "Jhelum",
+      "province": "Punjab"
+    },
+    {
+      "id": "gujar khan",
+      "name": "Gujar Khan",
+      "code": "GKN",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "chaklala",
+      "name": "Chaklala",
+      "code": "CKL",
+      "city": "Rawalpindi",
+      "province": "Punjab"
+    },
+    {
+      "id": "rawalpindi",
+      "name": "Rawalpindi",
+      "code": "RWP",
+      "city": "Rawalpindi",
+      "province": "Punjab"
+    },
+    {
+      "id": "mahrabpur jn",
+      "name": "Mahrabpur Junction",
+      "code": "MHR",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "tando adam jn",
+      "name": "Tando Adam Junction",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "landhi jn",
+      "name": "Landhi Junction",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "margalla",
+      "name": "Margalla",
+      "code": "",
+      "city": "Islamabad",
+      "province": "Islamabad Capital Territory"
+    },
+    {
+      "id": "pano akil",
+      "name": "Pano Akil",
+      "code": "PNL",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "mirpur mathelo",
+      "name": "Mirpur Mathelo",
+      "code": "MRP",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "daharki",
+      "name": "Daharki",
+      "code": "DRK",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "sadiqabad",
+      "name": "Sadiqabad",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "liaqatpur",
+      "name": "Liaqatpur",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "dera nawab sahib",
+      "name": "Dera Nawab Sahib",
+      "code": "DWBS",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "samasata jn",
+      "name": "Samasata Junction",
+      "code": "SMA",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "lodhran jn",
+      "name": "Lodhran Junction",
+      "code": "LON",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "shujabad",
+      "name": "Shujabad",
+      "code": "SJB",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "okara cantt",
+      "name": "Okara Cantt",
+      "code": "OKC",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "kot radha kishn",
+      "name": "Kot Radha Kishn",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "kot lakhpat",
+      "name": "Kot Lakhpat",
+      "code": "LKP",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "lahore cantt",
+      "name": "Lahore Cantt",
+      "code": "LRC",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "attock city jn",
+      "name": "Attock City Junction",
+      "code": "ATCY",
+      "city": "Attock",
+      "province": "Punjab"
+    },
+    {
+      "id": "jhangira road",
+      "name": "Jhangira Road",
+      "code": "JHR",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "nowshera jn",
+      "name": "Nowshera Junction",
+      "code": "NSR",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "peshawar city",
+      "name": "Peshawar City",
+      "code": "PSH",
+      "city": "Peshawar",
+      "province": "Khyber Pakhtunkhwa"
+    },
+    {
+      "id": "peshawar cantt",
+      "name": "Peshawar Cantt",
+      "code": "PSC",
+      "city": "Peshawar",
+      "province": "Khyber Pakhtunkhwa"
+    },
+    {
+      "id": "nawabshah",
+      "name": "Nawabshah",
+      "code": "NWS",
+      "city": "Nawabshah",
+      "province": "Sindh"
+    },
+    {
+      "id": "raheem yar khan",
+      "name": "Raheem Yar Khan",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "raiwind",
+      "name": "Raiwind",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "quetta",
+      "name": "Quetta",
+      "code": "QTA",
+      "city": "Quetta",
+      "province": "Balochistan"
+    },
+    {
+      "id": "kolpur",
+      "name": "Kolpur",
+      "code": "KLR",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "mach",
+      "name": "Mach",
+      "code": "MCH",
+      "city": "Mach",
+      "province": "Balochistan"
+    },
+    {
+      "id": "ab i gum",
+      "name": "Ab I Gum",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "sibi jn",
+      "name": "Sibi Junction",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "bakhtiarabad domki",
+      "name": "Bakhtiarabad Domki",
+      "code": "BKDK",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "dera murad jamali",
+      "name": "Dera Murad Jamali",
+      "code": "DMJJ",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "dera allahyar",
+      "name": "Dera Allahyar",
+      "code": "DAHR",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "jacobabad jn",
+      "name": "Jacobabad Junction",
+      "code": "JCD",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "shikarpur",
+      "name": "Shikarpur",
+      "code": "SHP",
+      "city": "Shikarpur",
+      "province": "Sindh"
+    },
+    {
+      "id": "sukkur jn",
+      "name": "Sukkur Junction",
+      "code": "SUK",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "pano aqil",
+      "name": "Pano Aqil",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "khanpur",
+      "name": "Khanpur",
+      "code": "KPR",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "samasatta",
+      "name": "Samasatta",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "lodhran",
+      "name": "Lodhran",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "mian channu",
+      "name": "Mian Channu",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "kharian",
+      "name": "Kharian",
+      "code": "KRN",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "gujjar khan",
+      "name": "Gujjar Khan",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "jahingira road",
+      "name": "Jahingira Road",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "jahangira road",
+      "name": "Jahangira Road",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "kot radhan kishan",
+      "name": "Kot Radhan Kishan",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "khan pur",
+      "name": "Khan Pur",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "sadikabad",
+      "name": "Sadikabad",
+      "code": "SDK",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "padidan",
+      "name": "Padidan",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "abdul hakim",
+      "name": "Abdul Hakim",
+      "code": "XG",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "shorkot cantt jn",
+      "name": "Shorkot Cantt Junction",
+      "code": "SKO",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "gojra",
+      "name": "Gojra",
+      "code": "GJA",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "chak jhumra",
+      "name": "Chak Jhumra",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "sangla hill jn",
+      "name": "Sangla Hill Junction",
+      "code": "SLL",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "sukheke",
+      "name": "Sukheke",
+      "code": "SKE",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "hafizabad",
+      "name": "Hafizabad",
+      "code": "HFD",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "alipur chatta",
+      "name": "Alipur Chatta",
+      "code": "ACHH",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "dina",
+      "name": "Dina",
+      "code": "DIN",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "chak jhumra jn",
+      "name": "Chak Jhumra Junction",
+      "code": "CKJ",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "karachi city",
+      "name": "Karachi City",
+      "code": "KYC",
+      "city": "Karachi",
+      "province": "Sindh"
+    },
+    {
+      "id": "drig road",
+      "name": "Drig Road",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "kotri jn",
+      "name": "Kotri Junction",
+      "code": "KOT",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "shadadpur",
+      "name": "Shadadpur",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "sarhari",
+      "name": "Sarhari",
+      "code": "SRH",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "pad idan",
+      "name": "Pad Idan",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "bhiria road",
+      "name": "Bhiria Road",
+      "code": "BRO",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "gambat",
+      "name": "Gambat",
+      "code": "GBT",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "mubarakpur",
+      "name": "Mubarakpur",
+      "code": "MBK",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "gilawala",
+      "name": "Gilawala",
+      "code": "GLW",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "abdul hakeem",
+      "name": "Abdul Hakeem",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "jhang sadar",
+      "name": "Jhang Sadar",
+      "code": "JGH",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "sillanwali",
+      "name": "Sillanwali",
+      "code": "SWY",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "shahinabad jn",
+      "name": "Shahinabad Junction",
+      "code": "SHND",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "sargodha jn",
+      "name": "Sargodha Junction",
+      "code": "SRQ",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "bhalwal",
+      "name": "Bhalwal",
+      "code": "BWQ",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "phularwan",
+      "name": "Phularwan",
+      "code": "PHW",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "malakwal jn",
+      "name": "Malakwal Junction",
+      "code": "MKW",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "mandi baha ud din",
+      "name": "Mandi Baha Ud Din",
+      "code": "MBDN",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "dinga",
+      "name": "Dinga",
+      "code": "DGH",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "golra sharif",
+      "name": "Golra Sharif",
+      "code": "",
+      "city": "Islamabad",
+      "province": "Islamabad Capital Territory"
+    },
+    {
+      "id": "taxila jn",
+      "name": "Taxila Junction",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "kot najib ullah",
+      "name": "Kot Najib Ullah",
+      "code": "KJQ",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "haripur hazara",
+      "name": "Haripur Hazara",
+      "code": "HRU",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "baldher",
+      "name": "Baldher",
+      "code": "BZD",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "havelian",
+      "name": "Havelian",
+      "code": "HVN",
+      "city": "Havelian",
+      "province": "Khyber Pakhtunkhwa"
+    },
+    {
+      "id": "shahdarpur",
+      "name": "Shahdarpur",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "multan",
+      "name": "Multan",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "sangla hill",
+      "name": "Sangla Hill",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "badami bagh",
+      "name": "Badami Bagh",
+      "code": "BBG",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "shahdara bagh jn",
+      "name": "Shahdara Bagh Junction",
+      "code": "SDR",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "srirampura",
+      "name": "Srirampura",
+      "code": "SRPA",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "kala khatai",
+      "name": "Kala Khatai",
+      "code": "KLKT",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "narang",
+      "name": "Narang",
+      "code": "NRNG",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "mehta suja",
+      "name": "Mehta Suja",
+      "code": "MSJ",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "baddomalhi",
+      "name": "Baddomalhi",
+      "code": "BDML",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "raya khas",
+      "name": "Raya Khas",
+      "code": "RKHS",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "daud",
+      "name": "Daud",
+      "code": "",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "pejowali",
+      "name": "Pejowali",
+      "code": "PJWL",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "narowal jn",
+      "name": "Narowal Junction",
+      "code": "NWL",
+      "city": "Narowal",
+      "province": "Punjab"
+    },
+    {
+      "id": "jand jn",
+      "name": "Jand Junction",
+      "code": "JAD",
+      "city": "Jand",
+      "province": "Punjab"
+    },
+    {
+      "id": "langar",
+      "name": "Langar",
+      "code": "LGR",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "chur sharif halt",
+      "name": "Chur Sharif Halt",
+      "code": "CHSF",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "nammal",
+      "name": "Nammal",
+      "code": "NLM",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "domel",
+      "name": "Domel",
+      "code": "DOME",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "basal jn",
+      "name": "Basal Junction",
+      "code": "BOS",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "sulaimanabad",
+      "name": "Sulaimanabad",
+      "code": "SLMA",
+      "city": "",
+      "province": ""
+    },
+    {
+      "id": "jhalar",
+      "name": "Jhalar",
+      "code": "JRN",
+      "city": "",
+      "province": ""
+    }
+  ],
+  "trains": [
+    {
+      "id": "karakoram-express",
+      "name": "Karakoram Express",
+      "type": "express",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "tezgam",
+      "name": "Tezgam",
+      "type": "express",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "green-line",
+      "name": "Green Line",
+      "type": "express",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "khyber-mail",
+      "name": "Khyber Mail",
+      "type": "express",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "pak-business-express",
+      "name": "Pak Business Express",
+      "type": "express",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "rawal-express",
+      "name": "Rawal Express",
+      "type": "express",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "jaffar-express",
+      "name": "Jaffar Express",
+      "type": "express",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "pakistan-express",
+      "name": "Pakistan Express",
+      "type": "express",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "hazara-express",
+      "name": "Hazara Express",
+      "type": "express",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "shalimar-express",
+      "name": "Shalimar Express",
+      "type": "express",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "faiz-ahmed-faiz-passenger",
+      "name": "Faiz Ahmed Faiz Passenger",
+      "type": "passenger",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "jand-passenger",
+      "name": "Jand Passenger",
+      "type": "passenger",
+      "days": "Daily",
+      "imageUrl": null
+    },
+    {
+      "id": "subak-khram",
+      "name": "Subak Kharam",
+      "type": "express",
+      "days": "Daily",
+      "imageUrl": null
+    }
+  ],
+  "services": [
+    {
+      "id": "41UP",
+      "trainId": "karakoram-express",
+      "number": "41UP",
+      "direction": "UP",
+      "originStationId": "karachi cantt",
+      "destinationStationId": "lahore jn",
+      "departureTime": "15:00",
+      "arrivalTime": "09:20",
+      "durationMin": 1100,
+      "stops": [
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "15:00",
+          "departureTime": "15:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "17:30",
+          "departureTime": "17:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "21:35",
+          "departureTime": "22:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "02:15",
+          "departureTime": "02:17",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal",
+          "stationName": "Khanewal",
+          "arrivalTime": "03:40",
+          "departureTime": "04:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "toba tek singh",
+          "stationName": "Toba Tek Singh",
+          "arrivalTime": "05:14",
+          "departureTime": "05:16",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "faisalabad",
+          "stationName": "Faisalabad",
+          "arrivalTime": "06:35",
+          "departureTime": "06:45",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "09:20",
+          "departureTime": "09:20",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "42DN",
+      "trainId": "karakoram-express",
+      "number": "42DN",
+      "direction": "DN",
+      "originStationId": "lahore jn",
+      "destinationStationId": "karachi cantt",
+      "departureTime": "15:00",
+      "arrivalTime": "09:50",
+      "durationMin": 1130,
+      "stops": [
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "15:00",
+          "departureTime": "15:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "faisalabad",
+          "stationName": "Faisalabad",
+          "arrivalTime": "17:15",
+          "departureTime": "17:25",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "toba tek singh",
+          "stationName": "Toba Tek Singh",
+          "arrivalTime": "18:25",
+          "departureTime": "18:27",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal",
+          "stationName": "Khanewal",
+          "arrivalTime": "20:00",
+          "departureTime": "20:20",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "21:40",
+          "departureTime": "21:42",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "02:05",
+          "departureTime": "02:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "06:50",
+          "departureTime": "06:55",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "landhi",
+          "stationName": "Landhi",
+          "arrivalTime": "08:45",
+          "departureTime": "08:47",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "drigh road",
+          "stationName": "Drigh Road",
+          "arrivalTime": "09:18",
+          "departureTime": "09:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "09:50",
+          "departureTime": "09:50",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "7UP",
+      "trainId": "tezgam",
+      "number": "7UP",
+      "direction": "UP",
+      "originStationId": "karachi cantt",
+      "destinationStationId": "rawalpindi",
+      "departureTime": "17:30",
+      "arrivalTime": "20:00",
+      "durationMin": 1590,
+      "stops": [
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "17:30",
+          "departureTime": "17:30",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "20:02",
+          "departureTime": "20:04",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "tando adam",
+          "stationName": "Tando Adam",
+          "arrivalTime": "21:07",
+          "departureTime": "21:09",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "shahdadpur",
+          "stationName": "Shahdadpur",
+          "arrivalTime": "21:26",
+          "departureTime": "21:28",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "nawabshah jn",
+          "stationName": "Nawabshah Junction",
+          "arrivalTime": "21:57",
+          "departureTime": "21:59",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "mahrabpur",
+          "stationName": "Mahrabpur",
+          "arrivalTime": "23:09",
+          "departureTime": "23:11",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khairpur",
+          "stationName": "Khairpur",
+          "arrivalTime": "00:10",
+          "departureTime": "00:12",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "01:35",
+          "departureTime": "02:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "ghotki",
+          "stationName": "Ghotki",
+          "arrivalTime": "02:45",
+          "departureTime": "02:47",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "04:34",
+          "departureTime": "04:36",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanpur jn",
+          "stationName": "Khanpur Junction",
+          "arrivalTime": "05:35",
+          "departureTime": "05:40",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "07:16",
+          "departureTime": "07:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "multan cantt",
+          "stationName": "Multan Cantt",
+          "arrivalTime": "08:35",
+          "departureTime": "08:55",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal jn",
+          "stationName": "Khanewal Junction",
+          "arrivalTime": "09:35",
+          "departureTime": "09:40",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mian channun",
+          "stationName": "Mian Channun",
+          "arrivalTime": "10:12",
+          "departureTime": "10:14",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "chichawatni",
+          "stationName": "Chichawatni",
+          "arrivalTime": "10:40",
+          "departureTime": "10:42",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sahiwal",
+          "stationName": "Sahiwal",
+          "arrivalTime": "11:23",
+          "departureTime": "11:25",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "okara",
+          "stationName": "Okara",
+          "arrivalTime": "11:52",
+          "departureTime": "11:54",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "pattoki",
+          "stationName": "Pattoki",
+          "arrivalTime": "12:26",
+          "departureTime": "12:28",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "kot radha kishan",
+          "stationName": "Kot Radha Kishan",
+          "arrivalTime": "12:50",
+          "departureTime": "12:52",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "raiwind jn",
+          "stationName": "Raiwind Junction",
+          "arrivalTime": "13:00",
+          "departureTime": "13:05",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "14:00",
+          "departureTime": "14:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujranwala",
+          "stationName": "Gujranwala",
+          "arrivalTime": "15:25",
+          "departureTime": "15:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "wazirabad jn",
+          "stationName": "Wazirabad Junction",
+          "arrivalTime": "15:55",
+          "departureTime": "15:57",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujrat",
+          "stationName": "Gujrat",
+          "arrivalTime": "16:13",
+          "departureTime": "16:15",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "16:47",
+          "departureTime": "16:49",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "17:31",
+          "departureTime": "17:33",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujar khan",
+          "stationName": "Gujar Khan",
+          "arrivalTime": "18:48",
+          "departureTime": "18:50",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "chaklala",
+          "stationName": "Chaklala",
+          "arrivalTime": "19:45",
+          "departureTime": "19:47",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "20:00",
+          "departureTime": "20:00",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "8DN",
+      "trainId": "tezgam",
+      "number": "8DN",
+      "direction": "DN",
+      "originStationId": "rawalpindi",
+      "destinationStationId": "karachi cantt",
+      "departureTime": "08:00",
+      "arrivalTime": "10:30",
+      "durationMin": 1590,
+      "stops": [
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "08:00",
+          "departureTime": "08:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chaklala",
+          "stationName": "Chaklala",
+          "arrivalTime": "08:09",
+          "departureTime": "08:11",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujar khan",
+          "stationName": "Gujar Khan",
+          "arrivalTime": "08:52",
+          "departureTime": "08:54",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "10:06",
+          "departureTime": "10:08",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "11:00",
+          "departureTime": "11:05",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujrat",
+          "stationName": "Gujrat",
+          "arrivalTime": "11:22",
+          "departureTime": "11:24",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "wazirabad jn",
+          "stationName": "Wazirabad Junction",
+          "arrivalTime": "11:40",
+          "departureTime": "11:42",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujranwala",
+          "stationName": "Gujranwala",
+          "arrivalTime": "12:10",
+          "departureTime": "12:15",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "13:15",
+          "departureTime": "13:45",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "raiwind jn",
+          "stationName": "Raiwind Junction",
+          "arrivalTime": "14:20",
+          "departureTime": "14:25",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "kot radha kishan",
+          "stationName": "Kot Radha Kishan",
+          "arrivalTime": "14:43",
+          "departureTime": "14:45",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "pattoki",
+          "stationName": "Pattoki",
+          "arrivalTime": "14:56",
+          "departureTime": "14:58",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "okara",
+          "stationName": "Okara",
+          "arrivalTime": "15:41",
+          "departureTime": "15:43",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sahiwal",
+          "stationName": "Sahiwal",
+          "arrivalTime": "16:27",
+          "departureTime": "16:29",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chichawatni",
+          "stationName": "Chichawatni",
+          "arrivalTime": "17:00",
+          "departureTime": "17:02",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "mian channun",
+          "stationName": "Mian Channun",
+          "arrivalTime": "17:28",
+          "departureTime": "17:30",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal jn",
+          "stationName": "Khanewal Junction",
+          "arrivalTime": "18:10",
+          "departureTime": "18:15",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "multan cantt",
+          "stationName": "Multan Cantt",
+          "arrivalTime": "18:50",
+          "departureTime": "19:10",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "20:25",
+          "departureTime": "20:29",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanpur jn",
+          "stationName": "Khanpur Junction",
+          "arrivalTime": "22:10",
+          "departureTime": "22:15",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "22:47",
+          "departureTime": "22:49",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "01:30",
+          "departureTime": "01:55",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khairpur",
+          "stationName": "Khairpur",
+          "arrivalTime": "02:22",
+          "departureTime": "02:24",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mahrabpur jn",
+          "stationName": "Mahrabpur Junction",
+          "arrivalTime": "03:02",
+          "departureTime": "03:04",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "nawabshah jn",
+          "stationName": "Nawabshah Junction",
+          "arrivalTime": "04:54",
+          "departureTime": "04:56",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "shahdadpur",
+          "stationName": "Shahdadpur",
+          "arrivalTime": "05:47",
+          "departureTime": "05:49",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "tando adam jn",
+          "stationName": "Tando Adam Junction",
+          "arrivalTime": "06:22",
+          "departureTime": "06:24",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "07:10",
+          "departureTime": "07:15",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "landhi jn",
+          "stationName": "Landhi Junction",
+          "arrivalTime": "09:15",
+          "departureTime": "09:17",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "drigh road",
+          "stationName": "Drigh Road",
+          "arrivalTime": "09:55",
+          "departureTime": "09:57",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "10:30",
+          "departureTime": "10:30",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "5UP",
+      "trainId": "green-line",
+      "number": "5UP",
+      "direction": "UP",
+      "originStationId": "karachi cantt",
+      "destinationStationId": "margalla",
+      "departureTime": "22:00",
+      "arrivalTime": "20:10",
+      "durationMin": 1330,
+      "stops": [
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "22:00",
+          "departureTime": "22:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "00:30",
+          "departureTime": "00:35",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "04:35",
+          "departureTime": "05:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "09:15",
+          "departureTime": "09:17",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal",
+          "stationName": "Khanewal",
+          "arrivalTime": "10:40",
+          "departureTime": "11:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "14:35",
+          "departureTime": "15:10",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "chaklala",
+          "stationName": "Chaklala",
+          "arrivalTime": "19:22",
+          "departureTime": "19:24",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "19:35",
+          "departureTime": "19:50",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "margalla",
+          "stationName": "Margalla",
+          "arrivalTime": "20:10",
+          "departureTime": "20:10",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "6DN",
+      "trainId": "green-line",
+      "number": "6DN",
+      "direction": "DN",
+      "originStationId": "margalla",
+      "destinationStationId": "karachi cantt",
+      "departureTime": "15:00",
+      "arrivalTime": "13:50",
+      "durationMin": 1370,
+      "stops": [
+        {
+          "stationId": "margalla",
+          "stationName": "Margalla",
+          "arrivalTime": "15:00",
+          "departureTime": "15:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "15:20",
+          "departureTime": "15:40",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chaklala",
+          "stationName": "Chaklala",
+          "arrivalTime": "15:49",
+          "departureTime": "15:51",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "20:05",
+          "departureTime": "20:40",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal",
+          "stationName": "Khanewal",
+          "arrivalTime": "00:15",
+          "departureTime": "00:35",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "01:55",
+          "departureTime": "01:57",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "06:15",
+          "departureTime": "06:40",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "10:55",
+          "departureTime": "11:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "drigh road",
+          "stationName": "Drigh Road",
+          "arrivalTime": "13:19",
+          "departureTime": "13:21",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "13:50",
+          "departureTime": "13:50",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "1UP",
+      "trainId": "khyber-mail",
+      "number": "1UP",
+      "direction": "UP",
+      "originStationId": "karachi cantt",
+      "destinationStationId": "peshawar cantt",
+      "departureTime": "22:15",
+      "arrivalTime": "06:05",
+      "durationMin": 1910,
+      "stops": [
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "22:15",
+          "departureTime": "22:15",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "drigh road",
+          "stationName": "Drigh Road",
+          "arrivalTime": "22:35",
+          "departureTime": "22:37",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "landhi jn",
+          "stationName": "Landhi Junction",
+          "arrivalTime": "22:56",
+          "departureTime": "22:58",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "01:05",
+          "departureTime": "01:15",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "nawabshah jn",
+          "stationName": "Nawabshah Junction",
+          "arrivalTime": "02:50",
+          "departureTime": "02:52",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khairpur",
+          "stationName": "Khairpur",
+          "arrivalTime": "05:02",
+          "departureTime": "05:04",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "05:55",
+          "departureTime": "06:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "pano akil",
+          "stationName": "Pano Akil",
+          "arrivalTime": "06:50",
+          "departureTime": "06:55",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "ghotki",
+          "stationName": "Ghotki",
+          "arrivalTime": "07:16",
+          "departureTime": "07:18",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mirpur mathelo",
+          "stationName": "Mirpur Mathelo",
+          "arrivalTime": "07:40",
+          "departureTime": "07:42",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "daharki",
+          "stationName": "Daharki",
+          "arrivalTime": "07:58",
+          "departureTime": "08:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sadiqabad",
+          "stationName": "Sadiqabad",
+          "arrivalTime": "09:00",
+          "departureTime": "09:02",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "09:36",
+          "departureTime": "09:38",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanpur jn",
+          "stationName": "Khanpur Junction",
+          "arrivalTime": "10:40",
+          "departureTime": "10:45",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "liaqatpur",
+          "stationName": "Liaqatpur",
+          "arrivalTime": "11:18",
+          "departureTime": "11:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "dera nawab sahib",
+          "stationName": "Dera Nawab Sahib",
+          "arrivalTime": "11:50",
+          "departureTime": "11:52",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "samasata jn",
+          "stationName": "Samasata Junction",
+          "arrivalTime": "12:25",
+          "departureTime": "12:45",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "13:00",
+          "departureTime": "13:05",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lodhran jn",
+          "stationName": "Lodhran Junction",
+          "arrivalTime": "13:25",
+          "departureTime": "13:27",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "shujabad",
+          "stationName": "Shujabad",
+          "arrivalTime": "14:01",
+          "departureTime": "14:03",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "multan cantt",
+          "stationName": "Multan Cantt",
+          "arrivalTime": "14:35",
+          "departureTime": "14:43",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal jn",
+          "stationName": "Khanewal Junction",
+          "arrivalTime": "15:35",
+          "departureTime": "15:40",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mian channun",
+          "stationName": "Mian Channun",
+          "arrivalTime": "16:12",
+          "departureTime": "16:14",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "chichawatni",
+          "stationName": "Chichawatni",
+          "arrivalTime": "16:40",
+          "departureTime": "16:42",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sahiwal",
+          "stationName": "Sahiwal",
+          "arrivalTime": "17:15",
+          "departureTime": "17:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "okara cantt",
+          "stationName": "Okara Cantt",
+          "arrivalTime": "17:43",
+          "departureTime": "17:45",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "okara",
+          "stationName": "Okara",
+          "arrivalTime": "17:55",
+          "departureTime": "17:57",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "pattoki",
+          "stationName": "Pattoki",
+          "arrivalTime": "18:30",
+          "departureTime": "18:32",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "kot radha kishn",
+          "stationName": "Kot Radha Kishn",
+          "arrivalTime": "18:54",
+          "departureTime": "18:56",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "raiwind jn",
+          "stationName": "Raiwind Junction",
+          "arrivalTime": "19:15",
+          "departureTime": "19:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "kot lakhpat",
+          "stationName": "Kot Lakhpat",
+          "arrivalTime": "19:46",
+          "departureTime": "19:48",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lahore cantt",
+          "stationName": "Lahore Cantt",
+          "arrivalTime": "20:10",
+          "departureTime": "20:12",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "20:30",
+          "departureTime": "21:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujranwala",
+          "stationName": "Gujranwala",
+          "arrivalTime": "22:10",
+          "departureTime": "22:15",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "wazirabad jn",
+          "stationName": "Wazirabad Junction",
+          "arrivalTime": "22:40",
+          "departureTime": "22:42",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujrat",
+          "stationName": "Gujrat",
+          "arrivalTime": "22:58",
+          "departureTime": "23:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "23:22",
+          "departureTime": "23:25",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "23:56",
+          "departureTime": "23:58",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "02:15",
+          "departureTime": "02:45",
+          "dayOffset": 2,
+          "platform": null
+        },
+        {
+          "stationId": "attock city jn",
+          "stationName": "Attock City Junction",
+          "arrivalTime": "04:10",
+          "departureTime": "04:14",
+          "dayOffset": 2,
+          "platform": null
+        },
+        {
+          "stationId": "jhangira road",
+          "stationName": "Jhangira Road",
+          "arrivalTime": "04:50",
+          "departureTime": "04:54",
+          "dayOffset": 2,
+          "platform": null
+        },
+        {
+          "stationId": "nowshera jn",
+          "stationName": "Nowshera Junction",
+          "arrivalTime": "05:10",
+          "departureTime": "05:14",
+          "dayOffset": 2,
+          "platform": null
+        },
+        {
+          "stationId": "peshawar city",
+          "stationName": "Peshawar City",
+          "arrivalTime": "05:46",
+          "departureTime": "05:50",
+          "dayOffset": 2,
+          "platform": null
+        },
+        {
+          "stationId": "peshawar cantt",
+          "stationName": "Peshawar Cantt",
+          "arrivalTime": "06:05",
+          "departureTime": "06:05",
+          "dayOffset": 2,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "2DN",
+      "trainId": "khyber-mail",
+      "number": "2DN",
+      "direction": "DN",
+      "originStationId": "peshawar cantt",
+      "destinationStationId": "karachi cantt",
+      "departureTime": "22:00",
+      "arrivalTime": "06:20",
+      "durationMin": 1940,
+      "stops": [
+        {
+          "stationId": "peshawar cantt",
+          "stationName": "Peshawar Cantt",
+          "arrivalTime": "22:00",
+          "departureTime": "22:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "peshawar city",
+          "stationName": "Peshawar City",
+          "arrivalTime": "22:10",
+          "departureTime": "22:12",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "nowshera jn",
+          "stationName": "Nowshera Junction",
+          "arrivalTime": "22:42",
+          "departureTime": "22:46",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jhangira road",
+          "stationName": "Jhangira Road",
+          "arrivalTime": "23:02",
+          "departureTime": "23:04",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "attock city jn",
+          "stationName": "Attock City Junction",
+          "arrivalTime": "23:45",
+          "departureTime": "23:49",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "01:35",
+          "departureTime": "02:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "04:00",
+          "departureTime": "04:02",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "04:50",
+          "departureTime": "04:55",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujrat",
+          "stationName": "Gujrat",
+          "arrivalTime": "05:12",
+          "departureTime": "05:14",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "wazirabad jn",
+          "stationName": "Wazirabad Junction",
+          "arrivalTime": "05:30",
+          "departureTime": "05:33",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujranwala",
+          "stationName": "Gujranwala",
+          "arrivalTime": "06:00",
+          "departureTime": "06:05",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "07:15",
+          "departureTime": "07:50",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lahore cantt",
+          "stationName": "Lahore Cantt",
+          "arrivalTime": "08:02",
+          "departureTime": "08:04",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "kot lakhpat",
+          "stationName": "Kot Lakhpat",
+          "arrivalTime": "08:15",
+          "departureTime": "08:17",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "raiwind jn",
+          "stationName": "Raiwind Junction",
+          "arrivalTime": "08:40",
+          "departureTime": "08:45",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "kot radha kishn",
+          "stationName": "Kot Radha Kishn",
+          "arrivalTime": "09:00",
+          "departureTime": "09:02",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "pattoki",
+          "stationName": "Pattoki",
+          "arrivalTime": "09:25",
+          "departureTime": "09:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "okara",
+          "stationName": "Okara",
+          "arrivalTime": "10:12",
+          "departureTime": "10:14",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "okara cantt",
+          "stationName": "Okara Cantt",
+          "arrivalTime": "10:28",
+          "departureTime": "10:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sahiwal",
+          "stationName": "Sahiwal",
+          "arrivalTime": "11:00",
+          "departureTime": "11:05",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "chichawatni",
+          "stationName": "Chichawatni",
+          "arrivalTime": "11:36",
+          "departureTime": "11:38",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mian channun",
+          "stationName": "Mian Channun",
+          "arrivalTime": "12:04",
+          "departureTime": "12:06",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal jn",
+          "stationName": "Khanewal Junction",
+          "arrivalTime": "12:50",
+          "departureTime": "12:55",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "multan cantt",
+          "stationName": "Multan Cantt",
+          "arrivalTime": "13:40",
+          "departureTime": "13:48",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "shujabad",
+          "stationName": "Shujabad",
+          "arrivalTime": "14:16",
+          "departureTime": "14:18",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lodhran jn",
+          "stationName": "Lodhran Junction",
+          "arrivalTime": "14:50",
+          "departureTime": "14:52",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "15:10",
+          "departureTime": "15:15",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "samasata jn",
+          "stationName": "Samasata Junction",
+          "arrivalTime": "15:30",
+          "departureTime": "15:50",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "dera nawab sahib",
+          "stationName": "Dera Nawab Sahib",
+          "arrivalTime": "16:21",
+          "departureTime": "16:23",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "liaqatpur",
+          "stationName": "Liaqatpur",
+          "arrivalTime": "16:53",
+          "departureTime": "16:55",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanpur jn",
+          "stationName": "Khanpur Junction",
+          "arrivalTime": "17:35",
+          "departureTime": "17:40",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "18:12",
+          "departureTime": "18:14",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sadiqabad",
+          "stationName": "Sadiqabad",
+          "arrivalTime": "18:35",
+          "departureTime": "18:37",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "daharki",
+          "stationName": "Daharki",
+          "arrivalTime": "19:15",
+          "departureTime": "19:17",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mirpur mathelo",
+          "stationName": "Mirpur Mathelo",
+          "arrivalTime": "19:36",
+          "departureTime": "19:38",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "ghotki",
+          "stationName": "Ghotki",
+          "arrivalTime": "20:10",
+          "departureTime": "20:12",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "pano akil",
+          "stationName": "Pano Akil",
+          "arrivalTime": "20:45",
+          "departureTime": "20:50",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "21:40",
+          "departureTime": "22:05",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "nawabshah jn",
+          "stationName": "Nawabshah Junction",
+          "arrivalTime": "00:41",
+          "departureTime": "00:43",
+          "dayOffset": 2,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "03:00",
+          "departureTime": "03:10",
+          "dayOffset": 2,
+          "platform": null
+        },
+        {
+          "stationId": "landhi jn",
+          "stationName": "Landhi Junction",
+          "arrivalTime": "05:08",
+          "departureTime": "05:10",
+          "dayOffset": 2,
+          "platform": null
+        },
+        {
+          "stationId": "drigh road",
+          "stationName": "Drigh Road",
+          "arrivalTime": "05:48",
+          "departureTime": "05:50",
+          "dayOffset": 2,
+          "platform": null
+        },
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "06:20",
+          "departureTime": "06:20",
+          "dayOffset": 2,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "33UP",
+      "trainId": "pak-business-express",
+      "number": "33UP",
+      "direction": "UP",
+      "originStationId": "karachi cantt",
+      "destinationStationId": "lahore jn",
+      "departureTime": "16:00",
+      "arrivalTime": "10:20",
+      "durationMin": 1100,
+      "stops": [
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "16:00",
+          "departureTime": "16:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "18:35",
+          "departureTime": "18:40",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "nawabshah",
+          "stationName": "Nawabshah",
+          "arrivalTime": "20:13",
+          "departureTime": "20:15",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "23:10",
+          "departureTime": "23:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "raheem yar khan",
+          "stationName": "Raheem Yar Khan",
+          "arrivalTime": "02:22",
+          "departureTime": "02:24",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "04:43",
+          "departureTime": "04:45",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal",
+          "stationName": "Khanewal",
+          "arrivalTime": "06:05",
+          "departureTime": "06:25",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "chichawatni",
+          "stationName": "Chichawatni",
+          "arrivalTime": "07:15",
+          "departureTime": "07:17",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sahiwal",
+          "stationName": "Sahiwal",
+          "arrivalTime": "07:52",
+          "departureTime": "07:54",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "raiwind",
+          "stationName": "Raiwind",
+          "arrivalTime": "09:15",
+          "departureTime": "09:19",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "kot lakhpat",
+          "stationName": "Kot Lakhpat",
+          "arrivalTime": "09:45",
+          "departureTime": "09:47",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "10:20",
+          "departureTime": "10:20",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "34DN",
+      "trainId": "pak-business-express",
+      "number": "34DN",
+      "direction": "DN",
+      "originStationId": "lahore jn",
+      "destinationStationId": "karachi cantt",
+      "departureTime": "16:30",
+      "arrivalTime": "11:30",
+      "durationMin": 1140,
+      "stops": [
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "16:30",
+          "departureTime": "16:30",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "kot lakhpat",
+          "stationName": "Kot Lakhpat",
+          "arrivalTime": "16:47",
+          "departureTime": "16:49",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "raiwind",
+          "stationName": "Raiwind",
+          "arrivalTime": "17:11",
+          "departureTime": "17:15",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sahiwal",
+          "stationName": "Sahiwal",
+          "arrivalTime": "19:04",
+          "departureTime": "19:06",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chichawatni",
+          "stationName": "Chichawatni",
+          "arrivalTime": "19:35",
+          "departureTime": "19:37",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal",
+          "stationName": "Khanewal",
+          "arrivalTime": "20:30",
+          "departureTime": "20:50",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "22:10",
+          "departureTime": "22:14",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "raheem yar khan",
+          "stationName": "Raheem Yar Khan",
+          "arrivalTime": "00:17",
+          "departureTime": "00:19",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "03:00",
+          "departureTime": "03:25",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "nawabshah",
+          "stationName": "Nawabshah",
+          "arrivalTime": "06:10",
+          "departureTime": "06:12",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "08:15",
+          "departureTime": "08:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "landhi",
+          "stationName": "Landhi",
+          "arrivalTime": "10:23",
+          "departureTime": "10:25",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "drigh road",
+          "stationName": "Drigh Road",
+          "arrivalTime": "11:01",
+          "departureTime": "11:03",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "11:30",
+          "departureTime": "11:30",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "105UP",
+      "trainId": "rawal-express",
+      "number": "105UP",
+      "direction": "UP",
+      "originStationId": "lahore jn",
+      "destinationStationId": "rawalpindi",
+      "departureTime": "00:30",
+      "arrivalTime": "05:00",
+      "durationMin": 270,
+      "stops": [
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "00:30",
+          "departureTime": "00:30",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chaklala",
+          "stationName": "Chaklala",
+          "arrivalTime": "04:45",
+          "departureTime": "04:47",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "05:00",
+          "departureTime": "05:00",
+          "dayOffset": 0,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "106DN",
+      "trainId": "rawal-express",
+      "number": "106DN",
+      "direction": "DN",
+      "originStationId": "rawalpindi",
+      "destinationStationId": "lahore jn",
+      "departureTime": "00:30",
+      "arrivalTime": "04:40",
+      "durationMin": 250,
+      "stops": [
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "00:30",
+          "departureTime": "00:30",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "04:40",
+          "departureTime": "04:40",
+          "dayOffset": 0,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "39UP",
+      "trainId": "jaffar-express",
+      "number": "39UP",
+      "direction": "UP",
+      "originStationId": "quetta",
+      "destinationStationId": "peshawar cantt",
+      "departureTime": "09:00",
+      "arrivalTime": "19:35",
+      "durationMin": 2075,
+      "stops": [
+        {
+          "stationId": "quetta",
+          "stationName": "Quetta",
+          "arrivalTime": "09:00",
+          "departureTime": "09:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "kolpur",
+          "stationName": "Kolpur",
+          "arrivalTime": "09:45",
+          "departureTime": "09:50",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "mach",
+          "stationName": "Mach",
+          "arrivalTime": "11:00",
+          "departureTime": "11:15",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "ab i gum",
+          "stationName": "Ab I Gum",
+          "arrivalTime": "11:45",
+          "departureTime": "11:47",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sibi jn",
+          "stationName": "Sibi Junction",
+          "arrivalTime": "13:40",
+          "departureTime": "14:10",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bakhtiarabad domki",
+          "stationName": "Bakhtiarabad Domki",
+          "arrivalTime": "15:18",
+          "departureTime": "15:20",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "dera murad jamali",
+          "stationName": "Dera Murad Jamali",
+          "arrivalTime": "16:22",
+          "departureTime": "16:24",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "dera allahyar",
+          "stationName": "Dera Allahyar",
+          "arrivalTime": "17:04",
+          "departureTime": "17:06",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jacobabad jn",
+          "stationName": "Jacobabad Junction",
+          "arrivalTime": "17:35",
+          "departureTime": "17:50",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "shikarpur",
+          "stationName": "Shikarpur",
+          "arrivalTime": "19:00",
+          "departureTime": "19:05",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sukkur jn",
+          "stationName": "Sukkur Junction",
+          "arrivalTime": "20:00",
+          "departureTime": "20:05",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "20:25",
+          "departureTime": "20:50",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "pano aqil",
+          "stationName": "Pano Aqil",
+          "arrivalTime": "21:30",
+          "departureTime": "21:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "ghotki",
+          "stationName": "Ghotki",
+          "arrivalTime": "21:58",
+          "departureTime": "22:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sadiqabad",
+          "stationName": "Sadiqabad",
+          "arrivalTime": "23:16",
+          "departureTime": "23:18",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "23:50",
+          "departureTime": "23:52",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanpur",
+          "stationName": "Khanpur",
+          "arrivalTime": "00:53",
+          "departureTime": "00:55",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "samasatta",
+          "stationName": "Samasatta",
+          "arrivalTime": "02:16",
+          "departureTime": "02:18",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "02:30",
+          "departureTime": "02:33",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lodhran",
+          "stationName": "Lodhran",
+          "arrivalTime": "02:54",
+          "departureTime": "02:56",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "multan cantt",
+          "stationName": "Multan Cantt",
+          "arrivalTime": "04:00",
+          "departureTime": "04:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal jn",
+          "stationName": "Khanewal Junction",
+          "arrivalTime": "05:00",
+          "departureTime": "05:05",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mian channu",
+          "stationName": "Mian Channu",
+          "arrivalTime": "05:38",
+          "departureTime": "05:40",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "chichawatni",
+          "stationName": "Chichawatni",
+          "arrivalTime": "06:07",
+          "departureTime": "06:09",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sahiwal",
+          "stationName": "Sahiwal",
+          "arrivalTime": "06:48",
+          "departureTime": "06:50",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "okara",
+          "stationName": "Okara",
+          "arrivalTime": "07:18",
+          "departureTime": "07:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "pattoki",
+          "stationName": "Pattoki",
+          "arrivalTime": "07:52",
+          "departureTime": "07:54",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "raiwind jn",
+          "stationName": "Raiwind Junction",
+          "arrivalTime": "08:25",
+          "departureTime": "08:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "kot lakhpat",
+          "stationName": "Kot Lakhpat",
+          "arrivalTime": "08:58",
+          "departureTime": "09:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lahore cantt",
+          "stationName": "Lahore Cantt",
+          "arrivalTime": "09:20",
+          "departureTime": "09:22",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "09:40",
+          "departureTime": "10:15",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujranwala",
+          "stationName": "Gujranwala",
+          "arrivalTime": "11:24",
+          "departureTime": "11:26",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "wazirabad jn",
+          "stationName": "Wazirabad Junction",
+          "arrivalTime": "12:05",
+          "departureTime": "12:07",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujrat",
+          "stationName": "Gujrat",
+          "arrivalTime": "12:25",
+          "departureTime": "12:27",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "12:45",
+          "departureTime": "12:47",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "kharian",
+          "stationName": "Kharian",
+          "arrivalTime": "13:01",
+          "departureTime": "13:03",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "13:26",
+          "departureTime": "13:28",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujjar khan",
+          "stationName": "Gujjar Khan",
+          "arrivalTime": "14:55",
+          "departureTime": "14:57",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "16:00",
+          "departureTime": "16:25",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "attock city jn",
+          "stationName": "Attock City Junction",
+          "arrivalTime": "17:49",
+          "departureTime": "17:51",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "jahingira road",
+          "stationName": "Jahingira Road",
+          "arrivalTime": "18:27",
+          "departureTime": "18:29",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "nowshera jn",
+          "stationName": "Nowshera Junction",
+          "arrivalTime": "18:45",
+          "departureTime": "18:47",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "peshawar city",
+          "stationName": "Peshawar City",
+          "arrivalTime": "19:27",
+          "departureTime": "19:29",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "peshawar cantt",
+          "stationName": "Peshawar Cantt",
+          "arrivalTime": "19:35",
+          "departureTime": "19:35",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "40DN",
+      "trainId": "jaffar-express",
+      "number": "40DN",
+      "direction": "DN",
+      "originStationId": "peshawar cantt",
+      "destinationStationId": "quetta",
+      "departureTime": "06:00",
+      "arrivalTime": "15:40",
+      "durationMin": 2020,
+      "stops": [
+        {
+          "stationId": "peshawar cantt",
+          "stationName": "Peshawar Cantt",
+          "arrivalTime": "06:00",
+          "departureTime": "06:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "peshawar city",
+          "stationName": "Peshawar City",
+          "arrivalTime": "06:09",
+          "departureTime": "06:11",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "nowshera jn",
+          "stationName": "Nowshera Junction",
+          "arrivalTime": "06:41",
+          "departureTime": "06:43",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jahangira road",
+          "stationName": "Jahangira Road",
+          "arrivalTime": "07:00",
+          "departureTime": "07:02",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "attock city jn",
+          "stationName": "Attock City Junction",
+          "arrivalTime": "07:40",
+          "departureTime": "07:42",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "09:10",
+          "departureTime": "09:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujjar khan",
+          "stationName": "Gujjar Khan",
+          "arrivalTime": "10:27",
+          "departureTime": "10:29",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "11:38",
+          "departureTime": "11:40",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "kharian",
+          "stationName": "Kharian",
+          "arrivalTime": "12:00",
+          "departureTime": "12:02",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "12:45",
+          "departureTime": "12:48",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujrat",
+          "stationName": "Gujrat",
+          "arrivalTime": "13:08",
+          "departureTime": "13:10",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "wazirabad jn",
+          "stationName": "Wazirabad Junction",
+          "arrivalTime": "13:25",
+          "departureTime": "13:27",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujranwala",
+          "stationName": "Gujranwala",
+          "arrivalTime": "13:55",
+          "departureTime": "13:57",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "15:00",
+          "departureTime": "15:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lahore cantt",
+          "stationName": "Lahore Cantt",
+          "arrivalTime": "15:48",
+          "departureTime": "15:50",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "raiwind jn",
+          "stationName": "Raiwind Junction",
+          "arrivalTime": "16:20",
+          "departureTime": "16:25",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "kot radhan kishan",
+          "stationName": "Kot Radhan Kishan",
+          "arrivalTime": "16:45",
+          "departureTime": "16:47",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "pattoki",
+          "stationName": "Pattoki",
+          "arrivalTime": "17:00",
+          "departureTime": "17:02",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "okara",
+          "stationName": "Okara",
+          "arrivalTime": "17:43",
+          "departureTime": "17:45",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sahiwal",
+          "stationName": "Sahiwal",
+          "arrivalTime": "18:30",
+          "departureTime": "18:32",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chichawatni",
+          "stationName": "Chichawatni",
+          "arrivalTime": "19:02",
+          "departureTime": "19:04",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "mian channu",
+          "stationName": "Mian Channu",
+          "arrivalTime": "19:30",
+          "departureTime": "19:32",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal jn",
+          "stationName": "Khanewal Junction",
+          "arrivalTime": "20:05",
+          "departureTime": "20:10",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "multan cantt",
+          "stationName": "Multan Cantt",
+          "arrivalTime": "20:45",
+          "departureTime": "21:05",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lodhran",
+          "stationName": "Lodhran",
+          "arrivalTime": "22:05",
+          "departureTime": "22:07",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "22:27",
+          "departureTime": "22:30",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khan pur",
+          "stationName": "Khan Pur",
+          "arrivalTime": "00:08",
+          "departureTime": "00:10",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "00:42",
+          "departureTime": "00:44",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sadikabad",
+          "stationName": "Sadikabad",
+          "arrivalTime": "01:04",
+          "departureTime": "01:06",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "ghotki",
+          "stationName": "Ghotki",
+          "arrivalTime": "02:13",
+          "departureTime": "02:15",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "pano akil",
+          "stationName": "Pano Akil",
+          "arrivalTime": "02:40",
+          "departureTime": "02:50",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "03:35",
+          "departureTime": "04:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sukkur jn",
+          "stationName": "Sukkur Junction",
+          "arrivalTime": "04:10",
+          "departureTime": "04:15",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "shikarpur",
+          "stationName": "Shikarpur",
+          "arrivalTime": "05:00",
+          "departureTime": "05:02",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "jacobabad jn",
+          "stationName": "Jacobabad Junction",
+          "arrivalTime": "06:10",
+          "departureTime": "06:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "dera allahyar",
+          "stationName": "Dera Allahyar",
+          "arrivalTime": "06:45",
+          "departureTime": "06:47",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "dera murad jamali",
+          "stationName": "Dera Murad Jamali",
+          "arrivalTime": "07:25",
+          "departureTime": "07:27",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bakhtiarabad domki",
+          "stationName": "Bakhtiarabad Domki",
+          "arrivalTime": "08:30",
+          "departureTime": "08:32",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sibi jn",
+          "stationName": "Sibi Junction",
+          "arrivalTime": "10:05",
+          "departureTime": "10:35",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "ab i gum",
+          "stationName": "Ab I Gum",
+          "arrivalTime": "12:10",
+          "departureTime": "12:15",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mach",
+          "stationName": "Mach",
+          "arrivalTime": "12:45",
+          "departureTime": "13:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "kolpur",
+          "stationName": "Kolpur",
+          "arrivalTime": "14:20",
+          "departureTime": "14:25",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "quetta",
+          "stationName": "Quetta",
+          "arrivalTime": "15:40",
+          "departureTime": "15:40",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "45UP",
+      "trainId": "pakistan-express",
+      "number": "45UP",
+      "direction": "UP",
+      "originStationId": "karachi cantt",
+      "destinationStationId": "rawalpindi",
+      "departureTime": "14:00",
+      "arrivalTime": "16:45",
+      "durationMin": 1605,
+      "stops": [
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "14:00",
+          "departureTime": "14:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "landhi jn",
+          "stationName": "Landhi Junction",
+          "arrivalTime": "14:33",
+          "departureTime": "14:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "16:36",
+          "departureTime": "16:38",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "tando adam jn",
+          "stationName": "Tando Adam Junction",
+          "arrivalTime": "17:39",
+          "departureTime": "17:41",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "padidan",
+          "stationName": "Padidan",
+          "arrivalTime": "18:58",
+          "departureTime": "19:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khairpur",
+          "stationName": "Khairpur",
+          "arrivalTime": "20:25",
+          "departureTime": "20:27",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "21:10",
+          "departureTime": "21:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "ghotki",
+          "stationName": "Ghotki",
+          "arrivalTime": "22:16",
+          "departureTime": "22:18",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sadikabad",
+          "stationName": "Sadikabad",
+          "arrivalTime": "23:21",
+          "departureTime": "23:23",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "23:45",
+          "departureTime": "23:47",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanpur jn",
+          "stationName": "Khanpur Junction",
+          "arrivalTime": "01:05",
+          "departureTime": "01:10",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "02:45",
+          "departureTime": "02:50",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lodhran",
+          "stationName": "Lodhran",
+          "arrivalTime": "03:11",
+          "departureTime": "03:13",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "multan cantt",
+          "stationName": "Multan Cantt",
+          "arrivalTime": "04:15",
+          "departureTime": "04:40",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal jn",
+          "stationName": "Khanewal Junction",
+          "arrivalTime": "05:20",
+          "departureTime": "05:25",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "abdul hakim",
+          "stationName": "Abdul Hakim",
+          "arrivalTime": "05:52",
+          "departureTime": "05:54",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "shorkot cantt jn",
+          "stationName": "Shorkot Cantt Junction",
+          "arrivalTime": "06:30",
+          "departureTime": "06:35",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "toba tek singh",
+          "stationName": "Toba Tek Singh",
+          "arrivalTime": "07:00",
+          "departureTime": "07:02",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gojra",
+          "stationName": "Gojra",
+          "arrivalTime": "07:24",
+          "departureTime": "07:26",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "faisalabad",
+          "stationName": "Faisalabad",
+          "arrivalTime": "08:30",
+          "departureTime": "09:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "chak jhumra",
+          "stationName": "Chak Jhumra",
+          "arrivalTime": "09:43",
+          "departureTime": "09:45",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sangla hill jn",
+          "stationName": "Sangla Hill Junction",
+          "arrivalTime": "10:11",
+          "departureTime": "10:13",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sukheke",
+          "stationName": "Sukheke",
+          "arrivalTime": "10:41",
+          "departureTime": "10:43",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "hafizabad",
+          "stationName": "Hafizabad",
+          "arrivalTime": "11:30",
+          "departureTime": "11:35",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "alipur chatta",
+          "stationName": "Alipur Chatta",
+          "arrivalTime": "12:00",
+          "departureTime": "12:02",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "wazirabad jn",
+          "stationName": "Wazirabad Junction",
+          "arrivalTime": "12:50",
+          "departureTime": "12:55",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujrat",
+          "stationName": "Gujrat",
+          "arrivalTime": "13:15",
+          "departureTime": "13:17",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "13:40",
+          "departureTime": "13:42",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "14:14",
+          "departureTime": "14:16",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "dina",
+          "stationName": "Dina",
+          "arrivalTime": "14:32",
+          "departureTime": "14:34",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujar khan",
+          "stationName": "Gujar Khan",
+          "arrivalTime": "15:25",
+          "departureTime": "15:27",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "chaklala",
+          "stationName": "Chaklala",
+          "arrivalTime": "16:32",
+          "departureTime": "16:34",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "16:45",
+          "departureTime": "16:45",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "46DN",
+      "trainId": "pakistan-express",
+      "number": "46DN",
+      "direction": "DN",
+      "originStationId": "rawalpindi",
+      "destinationStationId": "karachi cantt",
+      "departureTime": "06:00",
+      "arrivalTime": "08:15",
+      "durationMin": 1575,
+      "stops": [
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "06:00",
+          "departureTime": "06:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujar khan",
+          "stationName": "Gujar Khan",
+          "arrivalTime": "06:48",
+          "departureTime": "06:50",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "dina",
+          "stationName": "Dina",
+          "arrivalTime": "07:41",
+          "departureTime": "07:43",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "08:00",
+          "departureTime": "08:02",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "08:45",
+          "departureTime": "08:47",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujrat",
+          "stationName": "Gujrat",
+          "arrivalTime": "09:18",
+          "departureTime": "09:20",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "wazirabad jn",
+          "stationName": "Wazirabad Junction",
+          "arrivalTime": "09:40",
+          "departureTime": "09:45",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "alipur chatta",
+          "stationName": "Alipur Chatta",
+          "arrivalTime": "10:25",
+          "departureTime": "10:27",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "hafizabad",
+          "stationName": "Hafizabad",
+          "arrivalTime": "10:50",
+          "departureTime": "10:55",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sukheke",
+          "stationName": "Sukheke",
+          "arrivalTime": "11:29",
+          "departureTime": "11:31",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sangla hill jn",
+          "stationName": "Sangla Hill Junction",
+          "arrivalTime": "12:00",
+          "departureTime": "12:02",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chak jhumra jn",
+          "stationName": "Chak Jhumra Junction",
+          "arrivalTime": "12:33",
+          "departureTime": "12:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "faisalabad",
+          "stationName": "Faisalabad",
+          "arrivalTime": "13:15",
+          "departureTime": "13:45",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gojra",
+          "stationName": "Gojra",
+          "arrivalTime": "14:24",
+          "departureTime": "14:26",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "toba tek singh",
+          "stationName": "Toba Tek Singh",
+          "arrivalTime": "14:58",
+          "departureTime": "15:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "shorkot cantt jn",
+          "stationName": "Shorkot Cantt Junction",
+          "arrivalTime": "15:40",
+          "departureTime": "15:45",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "abdul hakim",
+          "stationName": "Abdul Hakim",
+          "arrivalTime": "16:09",
+          "departureTime": "16:11",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal jn",
+          "stationName": "Khanewal Junction",
+          "arrivalTime": "16:50",
+          "departureTime": "16:55",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "multan cantt",
+          "stationName": "Multan Cantt",
+          "arrivalTime": "17:30",
+          "departureTime": "17:55",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lodhran",
+          "stationName": "Lodhran",
+          "arrivalTime": "18:55",
+          "departureTime": "18:57",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "19:15",
+          "departureTime": "19:20",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanpur jn",
+          "stationName": "Khanpur Junction",
+          "arrivalTime": "21:00",
+          "departureTime": "21:05",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "21:37",
+          "departureTime": "21:39",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sadikabad",
+          "stationName": "Sadikabad",
+          "arrivalTime": "22:00",
+          "departureTime": "22:02",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "ghotki",
+          "stationName": "Ghotki",
+          "arrivalTime": "23:05",
+          "departureTime": "23:07",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "00:15",
+          "departureTime": "00:40",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "padidan",
+          "stationName": "Padidan",
+          "arrivalTime": "02:06",
+          "departureTime": "02:08",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "tando adam jn",
+          "stationName": "Tando Adam Junction",
+          "arrivalTime": "04:28",
+          "departureTime": "04:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "05:15",
+          "departureTime": "05:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "landhi jn",
+          "stationName": "Landhi Junction",
+          "arrivalTime": "07:12",
+          "departureTime": "07:14",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "drigh road",
+          "stationName": "Drigh Road",
+          "arrivalTime": "07:45",
+          "departureTime": "07:47",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "08:15",
+          "departureTime": "08:15",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "11UP",
+      "trainId": "hazara-express",
+      "number": "11UP",
+      "direction": "UP",
+      "originStationId": "karachi city",
+      "destinationStationId": "havelian",
+      "departureTime": "06:35",
+      "arrivalTime": "15:10",
+      "durationMin": 1955,
+      "stops": [
+        {
+          "stationId": "karachi city",
+          "stationName": "Karachi City",
+          "arrivalTime": "06:35",
+          "departureTime": "06:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "06:45",
+          "departureTime": "07:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "drig road",
+          "stationName": "Drig Road",
+          "arrivalTime": "07:22",
+          "departureTime": "07:24",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "landhi jn",
+          "stationName": "Landhi Junction",
+          "arrivalTime": "07:42",
+          "departureTime": "07:44",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "kotri jn",
+          "stationName": "Kotri Junction",
+          "arrivalTime": "09:31",
+          "departureTime": "09:33",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "09:55",
+          "departureTime": "10:05",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "tando adam jn",
+          "stationName": "Tando Adam Junction",
+          "arrivalTime": "10:57",
+          "departureTime": "10:59",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "shadadpur",
+          "stationName": "Shadadpur",
+          "arrivalTime": "11:16",
+          "departureTime": "11:18",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sarhari",
+          "stationName": "Sarhari",
+          "arrivalTime": "11:44",
+          "departureTime": "11:46",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "nawabshah jn",
+          "stationName": "Nawabshah Junction",
+          "arrivalTime": "11:48",
+          "departureTime": "11:50",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "pad idan",
+          "stationName": "Pad Idan",
+          "arrivalTime": "12:32",
+          "departureTime": "12:34",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bhiria road",
+          "stationName": "Bhiria Road",
+          "arrivalTime": "12:47",
+          "departureTime": "12:49",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "mahrabpur jn",
+          "stationName": "Mahrabpur Junction",
+          "arrivalTime": "13:10",
+          "departureTime": "13:12",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gambat",
+          "stationName": "Gambat",
+          "arrivalTime": "13:50",
+          "departureTime": "13:52",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khairpur",
+          "stationName": "Khairpur",
+          "arrivalTime": "14:26",
+          "departureTime": "14:28",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "15:10",
+          "departureTime": "15:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "pano akil",
+          "stationName": "Pano Akil",
+          "arrivalTime": "16:02",
+          "departureTime": "16:04",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "ghotki",
+          "stationName": "Ghotki",
+          "arrivalTime": "16:25",
+          "departureTime": "16:27",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "mirpur mathelo",
+          "stationName": "Mirpur Mathelo",
+          "arrivalTime": "16:50",
+          "departureTime": "16:52",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "daharki",
+          "stationName": "Daharki",
+          "arrivalTime": "17:08",
+          "departureTime": "17:10",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sadiqabad",
+          "stationName": "Sadiqabad",
+          "arrivalTime": "17:48",
+          "departureTime": "17:50",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "18:20",
+          "departureTime": "18:25",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanpur jn",
+          "stationName": "Khanpur Junction",
+          "arrivalTime": "19:15",
+          "departureTime": "19:20",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "liaqatpur",
+          "stationName": "Liaqatpur",
+          "arrivalTime": "19:54",
+          "departureTime": "19:56",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "dera nawab sahib",
+          "stationName": "Dera Nawab Sahib",
+          "arrivalTime": "20:26",
+          "departureTime": "20:28",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "mubarakpur",
+          "stationName": "Mubarakpur",
+          "arrivalTime": "20:43",
+          "departureTime": "20:45",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "samasata jn",
+          "stationName": "Samasata Junction",
+          "arrivalTime": "21:09",
+          "departureTime": "21:11",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "21:25",
+          "departureTime": "21:30",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lodhran jn",
+          "stationName": "Lodhran Junction",
+          "arrivalTime": "21:53",
+          "departureTime": "21:55",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gilawala",
+          "stationName": "Gilawala",
+          "arrivalTime": "22:16",
+          "departureTime": "22:18",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "shujabad",
+          "stationName": "Shujabad",
+          "arrivalTime": "22:37",
+          "departureTime": "22:39",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "multan cantt",
+          "stationName": "Multan Cantt",
+          "arrivalTime": "23:10",
+          "departureTime": "23:40",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal jn",
+          "stationName": "Khanewal Junction",
+          "arrivalTime": "00:20",
+          "departureTime": "00:25",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "abdul hakeem",
+          "stationName": "Abdul Hakeem",
+          "arrivalTime": "00:51",
+          "departureTime": "00:53",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "shorkot cantt jn",
+          "stationName": "Shorkot Cantt Junction",
+          "arrivalTime": "01:25",
+          "departureTime": "01:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "jhang sadar",
+          "stationName": "Jhang Sadar",
+          "arrivalTime": "02:55",
+          "departureTime": "03:00",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sillanwali",
+          "stationName": "Sillanwali",
+          "arrivalTime": "04:46",
+          "departureTime": "04:48",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "shahinabad jn",
+          "stationName": "Shahinabad Junction",
+          "arrivalTime": "05:07",
+          "departureTime": "05:09",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sargodha jn",
+          "stationName": "Sargodha Junction",
+          "arrivalTime": "05:30",
+          "departureTime": "05:40",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bhalwal",
+          "stationName": "Bhalwal",
+          "arrivalTime": "06:27",
+          "departureTime": "06:27",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "phularwan",
+          "stationName": "Phularwan",
+          "arrivalTime": "06:48",
+          "departureTime": "06:50",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "malakwal jn",
+          "stationName": "Malakwal Junction",
+          "arrivalTime": "07:30",
+          "departureTime": "07:35",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mandi baha ud din",
+          "stationName": "Mandi Baha Ud Din",
+          "arrivalTime": "08:02",
+          "departureTime": "08:04",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "dinga",
+          "stationName": "Dinga",
+          "arrivalTime": "08:28",
+          "departureTime": "08:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "08:55",
+          "departureTime": "09:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "10:00",
+          "departureTime": "10:02",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gujar khan",
+          "stationName": "Gujar Khan",
+          "arrivalTime": "11:10",
+          "departureTime": "11:12",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "12:10",
+          "departureTime": "12:40",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "golra sharif",
+          "stationName": "Golra Sharif",
+          "arrivalTime": "12:57",
+          "departureTime": "12:59",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "taxila jn",
+          "stationName": "Taxila Junction",
+          "arrivalTime": "13:17",
+          "departureTime": "13:19",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "kot najib ullah",
+          "stationName": "Kot Najib Ullah",
+          "arrivalTime": "13:45",
+          "departureTime": "13:47",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "haripur hazara",
+          "stationName": "Haripur Hazara",
+          "arrivalTime": "14:07",
+          "departureTime": "14:09",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "baldher",
+          "stationName": "Baldher",
+          "arrivalTime": "14:28",
+          "departureTime": "14:29",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "havelian",
+          "stationName": "Havelian",
+          "arrivalTime": "15:10",
+          "departureTime": "15:10",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "12DN",
+      "trainId": "hazara-express",
+      "number": "12DN",
+      "direction": "DN",
+      "originStationId": "havelian",
+      "destinationStationId": "karachi city",
+      "departureTime": "14:00",
+      "arrivalTime": "23:25",
+      "durationMin": 2005,
+      "stops": [
+        {
+          "stationId": "havelian",
+          "stationName": "Havelian",
+          "arrivalTime": "14:00",
+          "departureTime": "14:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "baldher",
+          "stationName": "Baldher",
+          "arrivalTime": "14:32",
+          "departureTime": "14:33",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "haripur hazara",
+          "stationName": "Haripur Hazara",
+          "arrivalTime": "15:06",
+          "departureTime": "15:08",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "kot najib ullah",
+          "stationName": "Kot Najib Ullah",
+          "arrivalTime": "15:18",
+          "departureTime": "15:20",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "taxila jn",
+          "stationName": "Taxila Junction",
+          "arrivalTime": "15:46",
+          "departureTime": "15:48",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "golra sharif",
+          "stationName": "Golra Sharif",
+          "arrivalTime": "16:05",
+          "departureTime": "16:07",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "16:25",
+          "departureTime": "16:55",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chaklala",
+          "stationName": "Chaklala",
+          "arrivalTime": "17:03",
+          "departureTime": "17:05",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujar khan",
+          "stationName": "Gujar Khan",
+          "arrivalTime": "17:45",
+          "departureTime": "17:47",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "19:03",
+          "departureTime": "19:05",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "19:50",
+          "departureTime": "20:15",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "dinga",
+          "stationName": "Dinga",
+          "arrivalTime": "20:40",
+          "departureTime": "20:42",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "mandi baha ud din",
+          "stationName": "Mandi Baha Ud Din",
+          "arrivalTime": "21:05",
+          "departureTime": "21:10",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "malakwal jn",
+          "stationName": "Malakwal Junction",
+          "arrivalTime": "21:40",
+          "departureTime": "21:45",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "phularwan",
+          "stationName": "Phularwan",
+          "arrivalTime": "22:20",
+          "departureTime": "22:22",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bhalwal",
+          "stationName": "Bhalwal",
+          "arrivalTime": "22:48",
+          "departureTime": "22:50",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sargodha jn",
+          "stationName": "Sargodha Junction",
+          "arrivalTime": "23:45",
+          "departureTime": "23:55",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "shahinabad jn",
+          "stationName": "Shahinabad Junction",
+          "arrivalTime": "00:19",
+          "departureTime": "00:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sillanwali",
+          "stationName": "Sillanwali",
+          "arrivalTime": "00:34",
+          "departureTime": "00:34",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "jhang sadar",
+          "stationName": "Jhang Sadar",
+          "arrivalTime": "02:00",
+          "departureTime": "02:05",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "shorkot cantt jn",
+          "stationName": "Shorkot Cantt Junction",
+          "arrivalTime": "04:00",
+          "departureTime": "04:05",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "abdul hakim",
+          "stationName": "Abdul Hakim",
+          "arrivalTime": "04:30",
+          "departureTime": "04:32",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanewal jn",
+          "stationName": "Khanewal Junction",
+          "arrivalTime": "05:15",
+          "departureTime": "05:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "multan cantt",
+          "stationName": "Multan Cantt",
+          "arrivalTime": "06:00",
+          "departureTime": "06:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "shujabad",
+          "stationName": "Shujabad",
+          "arrivalTime": "07:00",
+          "departureTime": "07:03",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "lodhran jn",
+          "stationName": "Lodhran Junction",
+          "arrivalTime": "07:21",
+          "departureTime": "07:23",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "08:05",
+          "departureTime": "08:10",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "samasata jn",
+          "stationName": "Samasata Junction",
+          "arrivalTime": "08:25",
+          "departureTime": "08:27",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mubarakpur",
+          "stationName": "Mubarakpur",
+          "arrivalTime": "08:47",
+          "departureTime": "08:49",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "dera nawab sahib",
+          "stationName": "Dera Nawab Sahib",
+          "arrivalTime": "09:04",
+          "departureTime": "09:06",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "liaqatpur",
+          "stationName": "Liaqatpur",
+          "arrivalTime": "09:36",
+          "departureTime": "09:38",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khanpur jn",
+          "stationName": "Khanpur Junction",
+          "arrivalTime": "10:25",
+          "departureTime": "10:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "11:05",
+          "departureTime": "11:10",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sadikabad",
+          "stationName": "Sadikabad",
+          "arrivalTime": "11:30",
+          "departureTime": "11:32",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "daharki",
+          "stationName": "Daharki",
+          "arrivalTime": "12:09",
+          "departureTime": "12:11",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mirpur mathelo",
+          "stationName": "Mirpur Mathelo",
+          "arrivalTime": "12:27",
+          "departureTime": "12:29",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "ghotki",
+          "stationName": "Ghotki",
+          "arrivalTime": "12:51",
+          "departureTime": "12:53",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "pano akil",
+          "stationName": "Pano Akil",
+          "arrivalTime": "13:21",
+          "departureTime": "13:23",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "14:10",
+          "departureTime": "14:35",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "khairpur",
+          "stationName": "Khairpur",
+          "arrivalTime": "15:02",
+          "departureTime": "15:04",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "gambat",
+          "stationName": "Gambat",
+          "arrivalTime": "15:26",
+          "departureTime": "15:28",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "mahrabpur jn",
+          "stationName": "Mahrabpur Junction",
+          "arrivalTime": "15:50",
+          "departureTime": "15:52",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "bhiria road",
+          "stationName": "Bhiria Road",
+          "arrivalTime": "16:13",
+          "departureTime": "16:15",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "pad idan",
+          "stationName": "Pad Idan",
+          "arrivalTime": "16:33",
+          "departureTime": "16:35",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "nawabshah jn",
+          "stationName": "Nawabshah Junction",
+          "arrivalTime": "17:48",
+          "departureTime": "17:50",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "sarhari",
+          "stationName": "Sarhari",
+          "arrivalTime": "18:15",
+          "departureTime": "18:20",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "shahdarpur",
+          "stationName": "Shahdarpur",
+          "arrivalTime": "18:42",
+          "departureTime": "18:44",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "tando adam",
+          "stationName": "Tando Adam",
+          "arrivalTime": "19:11",
+          "departureTime": "19:13",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "20:00",
+          "departureTime": "20:10",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "kotri jn",
+          "stationName": "Kotri Junction",
+          "arrivalTime": "20:28",
+          "departureTime": "20:30",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "landhi jn",
+          "stationName": "Landhi Junction",
+          "arrivalTime": "22:08",
+          "departureTime": "22:10",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "drig road",
+          "stationName": "Drig Road",
+          "arrivalTime": "22:40",
+          "departureTime": "22:42",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "23:10",
+          "departureTime": "23:15",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "karachi city",
+          "stationName": "Karachi City",
+          "arrivalTime": "23:25",
+          "departureTime": "23:25",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "27UP",
+      "trainId": "shalimar-express",
+      "number": "27UP",
+      "direction": "UP",
+      "originStationId": "karachi cantt",
+      "destinationStationId": "lahore jn",
+      "departureTime": "06:45",
+      "arrivalTime": "01:55",
+      "durationMin": 1150,
+      "stops": [
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "06:45",
+          "departureTime": "06:45",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "drigh road",
+          "stationName": "Drigh Road",
+          "arrivalTime": "07:03",
+          "departureTime": "07:05",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "landhi",
+          "stationName": "Landhi",
+          "arrivalTime": "07:20",
+          "departureTime": "07:22",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "09:20",
+          "departureTime": "09:25",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "nawabshah jn",
+          "stationName": "Nawabshah Junction",
+          "arrivalTime": "10:56",
+          "departureTime": "10:58",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "13:35",
+          "departureTime": "14:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "ghotki",
+          "stationName": "Ghotki",
+          "arrivalTime": "14:41",
+          "departureTime": "14:43",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "16:10",
+          "departureTime": "16:12",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanpur",
+          "stationName": "Khanpur",
+          "arrivalTime": "17:04",
+          "departureTime": "17:06",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "18:39",
+          "departureTime": "18:41",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "multan",
+          "stationName": "Multan",
+          "arrivalTime": "19:55",
+          "departureTime": "20:15",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "toba tek singh",
+          "stationName": "Toba Tek Singh",
+          "arrivalTime": "22:04",
+          "departureTime": "22:06",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "faisalabad",
+          "stationName": "Faisalabad",
+          "arrivalTime": "23:25",
+          "departureTime": "23:30",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "01:55",
+          "departureTime": "01:55",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "28DN",
+      "trainId": "shalimar-express",
+      "number": "28DN",
+      "direction": "DN",
+      "originStationId": "lahore jn",
+      "destinationStationId": "karachi cantt",
+      "departureTime": "07:10",
+      "arrivalTime": "02:55",
+      "durationMin": 1185,
+      "stops": [
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "07:10",
+          "departureTime": "07:10",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sangla hill",
+          "stationName": "Sangla Hill",
+          "arrivalTime": "08:27",
+          "departureTime": "08:29",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "faisalabad",
+          "stationName": "Faisalabad",
+          "arrivalTime": "09:40",
+          "departureTime": "09:45",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "toba tek singh",
+          "stationName": "Toba Tek Singh",
+          "arrivalTime": "10:53",
+          "departureTime": "10:55",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "multan",
+          "stationName": "Multan",
+          "arrivalTime": "12:50",
+          "departureTime": "13:10",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "bahawalpur",
+          "stationName": "Bahawalpur",
+          "arrivalTime": "14:25",
+          "departureTime": "14:27",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "khanpur",
+          "stationName": "Khanpur",
+          "arrivalTime": "16:05",
+          "departureTime": "16:07",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rahim yar khan",
+          "stationName": "Rahim Yar Khan",
+          "arrivalTime": "16:40",
+          "departureTime": "16:42",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "ghotki",
+          "stationName": "Ghotki",
+          "arrivalTime": "18:00",
+          "departureTime": "18:02",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rohri jn",
+          "stationName": "Rohri Junction",
+          "arrivalTime": "19:10",
+          "departureTime": "19:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "nawabshah",
+          "stationName": "Nawabshah",
+          "arrivalTime": "22:08",
+          "departureTime": "22:10",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "hyderabad jn",
+          "stationName": "Hyderabad Junction",
+          "arrivalTime": "00:05",
+          "departureTime": "00:10",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "landhi",
+          "stationName": "Landhi",
+          "arrivalTime": "02:00",
+          "departureTime": "02:02",
+          "dayOffset": 1,
+          "platform": null
+        },
+        {
+          "stationId": "karachi cantt",
+          "stationName": "Karachi Cantt",
+          "arrivalTime": "02:55",
+          "departureTime": "02:55",
+          "dayOffset": 1,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "209UP",
+      "trainId": "faiz-ahmed-faiz-passenger",
+      "number": "209UP",
+      "direction": "UP",
+      "originStationId": "lahore jn",
+      "destinationStationId": "narowal jn",
+      "departureTime": "19:30",
+      "arrivalTime": "22:10",
+      "durationMin": 160,
+      "stops": [
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "19:30",
+          "departureTime": "19:30",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "badami bagh",
+          "stationName": "Badami Bagh",
+          "arrivalTime": "19:38",
+          "departureTime": "19:39",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "shahdara bagh jn",
+          "stationName": "Shahdara Bagh Junction",
+          "arrivalTime": "19:46",
+          "departureTime": "19:48",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "srirampura",
+          "stationName": "Srirampura",
+          "arrivalTime": "20:13",
+          "departureTime": "20:15",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "kala khatai",
+          "stationName": "Kala Khatai",
+          "arrivalTime": "20:30",
+          "departureTime": "20:40",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "narang",
+          "stationName": "Narang",
+          "arrivalTime": "20:55",
+          "departureTime": "20:57",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "mehta suja",
+          "stationName": "Mehta Suja",
+          "arrivalTime": "21:14",
+          "departureTime": "21:16",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "baddomalhi",
+          "stationName": "Baddomalhi",
+          "arrivalTime": "21:24",
+          "departureTime": "21:26",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "raya khas",
+          "stationName": "Raya Khas",
+          "arrivalTime": "21:37",
+          "departureTime": "21:39",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "daud",
+          "stationName": "Daud",
+          "arrivalTime": "21:44",
+          "departureTime": "21:45",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "pejowali",
+          "stationName": "Pejowali",
+          "arrivalTime": "21:49",
+          "departureTime": "21:50",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "narowal jn",
+          "stationName": "Narowal Junction",
+          "arrivalTime": "22:10",
+          "departureTime": "22:10",
+          "dayOffset": 0,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "210DN",
+      "trainId": "faiz-ahmed-faiz-passenger",
+      "number": "210DN",
+      "direction": "DN",
+      "originStationId": "narowal jn",
+      "destinationStationId": "lahore jn",
+      "departureTime": "05:00",
+      "arrivalTime": "07:45",
+      "durationMin": 165,
+      "stops": [
+        {
+          "stationId": "narowal jn",
+          "stationName": "Narowal Junction",
+          "arrivalTime": "05:00",
+          "departureTime": "05:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "pejowali",
+          "stationName": "Pejowali",
+          "arrivalTime": "05:12",
+          "departureTime": "05:13",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "daud",
+          "stationName": "Daud",
+          "arrivalTime": "05:17",
+          "departureTime": "05:18",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "raya khas",
+          "stationName": "Raya Khas",
+          "arrivalTime": "05:23",
+          "departureTime": "05:25",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "baddomalhi",
+          "stationName": "Baddomalhi",
+          "arrivalTime": "05:36",
+          "departureTime": "05:38",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "mehta suja",
+          "stationName": "Mehta Suja",
+          "arrivalTime": "05:46",
+          "departureTime": "05:48",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "narang",
+          "stationName": "Narang",
+          "arrivalTime": "06:05",
+          "departureTime": "06:15",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "kala khatai",
+          "stationName": "Kala Khatai",
+          "arrivalTime": "06:30",
+          "departureTime": "06:32",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "srirampura",
+          "stationName": "Srirampura",
+          "arrivalTime": "06:49",
+          "departureTime": "06:51",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "shahdara bagh jn",
+          "stationName": "Shahdara Bagh Junction",
+          "arrivalTime": "07:21",
+          "departureTime": "07:23",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "badami bagh",
+          "stationName": "Badami Bagh",
+          "arrivalTime": "07:35",
+          "departureTime": "07:36",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "07:45",
+          "departureTime": "07:45",
+          "dayOffset": 0,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "203UP",
+      "trainId": "jand-passenger",
+      "number": "203UP",
+      "direction": "UP",
+      "originStationId": "jand jn",
+      "destinationStationId": "attock city jn",
+      "departureTime": "13:00",
+      "arrivalTime": "14:40",
+      "durationMin": 100,
+      "stops": [
+        {
+          "stationId": "jand jn",
+          "stationName": "Jand Junction",
+          "arrivalTime": "13:00",
+          "departureTime": "13:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "langar",
+          "stationName": "Langar",
+          "arrivalTime": "13:08",
+          "departureTime": "13:09",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chur sharif halt",
+          "stationName": "Chur Sharif Halt",
+          "arrivalTime": "13:16",
+          "departureTime": "13:17",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "nammal",
+          "stationName": "Nammal",
+          "arrivalTime": "13:23",
+          "departureTime": "13:24",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "domel",
+          "stationName": "Domel",
+          "arrivalTime": "13:37",
+          "departureTime": "13:38",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "basal jn",
+          "stationName": "Basal Junction",
+          "arrivalTime": "13:47",
+          "departureTime": "13:48",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sulaimanabad",
+          "stationName": "Sulaimanabad",
+          "arrivalTime": "13:59",
+          "departureTime": "14:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jhalar",
+          "stationName": "Jhalar",
+          "arrivalTime": "14:07",
+          "departureTime": "14:08",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "attock city jn",
+          "stationName": "Attock City Junction",
+          "arrivalTime": "14:40",
+          "departureTime": "14:40",
+          "dayOffset": 0,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "204DN",
+      "trainId": "jand-passenger",
+      "number": "204DN",
+      "direction": "DN",
+      "originStationId": "attock city jn",
+      "destinationStationId": "jand jn",
+      "departureTime": "11:00",
+      "arrivalTime": "12:40",
+      "durationMin": 100,
+      "stops": [
+        {
+          "stationId": "attock city jn",
+          "stationName": "Attock City Junction",
+          "arrivalTime": "11:00",
+          "departureTime": "11:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jhalar",
+          "stationName": "Jhalar",
+          "arrivalTime": "11:28",
+          "departureTime": "11:29",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "sulaimanabad",
+          "stationName": "Sulaimanabad",
+          "arrivalTime": "11:36",
+          "departureTime": "11:37",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "basal jn",
+          "stationName": "Basal Junction",
+          "arrivalTime": "11:50",
+          "departureTime": "11:51",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "domel",
+          "stationName": "Domel",
+          "arrivalTime": "12:00",
+          "departureTime": "12:01",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "nammal",
+          "stationName": "Nammal",
+          "arrivalTime": "12:12",
+          "departureTime": "12:13",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chur sharif halt",
+          "stationName": "Chur Sharif Halt",
+          "arrivalTime": "12:19",
+          "departureTime": "12:20",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "langar",
+          "stationName": "Langar",
+          "arrivalTime": "12:30",
+          "departureTime": "12:31",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jand jn",
+          "stationName": "Jand Junction",
+          "arrivalTime": "12:40",
+          "departureTime": "12:40",
+          "dayOffset": 0,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "103UP",
+      "trainId": "subak-khram",
+      "number": "103UP",
+      "direction": "UP",
+      "originStationId": "lahore jn",
+      "destinationStationId": "rawalpindi",
+      "departureTime": "16:30",
+      "arrivalTime": "21:40",
+      "durationMin": 310,
+      "stops": [
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "16:30",
+          "departureTime": "16:30",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujranwala",
+          "stationName": "Gujranwala",
+          "arrivalTime": "17:33",
+          "departureTime": "17:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "wazirabad jn",
+          "stationName": "Wazirabad Junction",
+          "arrivalTime": "18:05",
+          "departureTime": "18:07",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujrat",
+          "stationName": "Gujrat",
+          "arrivalTime": "18:33",
+          "departureTime": "18:35",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "18:55",
+          "departureTime": "18:57",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "19:36",
+          "departureTime": "19:38",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chaklala",
+          "stationName": "Chaklala",
+          "arrivalTime": "21:30",
+          "departureTime": "21:32",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "21:40",
+          "departureTime": "21:40",
+          "dayOffset": 0,
+          "platform": null
+        }
+      ]
+    },
+    {
+      "id": "104DN",
+      "trainId": "subak-khram",
+      "number": "104DN",
+      "direction": "DN",
+      "originStationId": "rawalpindi",
+      "destinationStationId": "lahore jn",
+      "departureTime": "16:30",
+      "arrivalTime": "21:35",
+      "durationMin": 305,
+      "stops": [
+        {
+          "stationId": "rawalpindi",
+          "stationName": "Rawalpindi",
+          "arrivalTime": "16:30",
+          "departureTime": "16:30",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "chaklala",
+          "stationName": "Chaklala",
+          "arrivalTime": "16:38",
+          "departureTime": "16:40",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujjar khan",
+          "stationName": "Gujjar Khan",
+          "arrivalTime": "17:20",
+          "departureTime": "17:22",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "jhelum",
+          "stationName": "Jhelum",
+          "arrivalTime": "18:30",
+          "departureTime": "18:32",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lala musa jn",
+          "stationName": "Lala Musa Junction",
+          "arrivalTime": "19:17",
+          "departureTime": "19:19",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujrat",
+          "stationName": "Gujrat",
+          "arrivalTime": "19:36",
+          "departureTime": "19:38",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "wazirabad jn",
+          "stationName": "Wazirabad Junction",
+          "arrivalTime": "19:58",
+          "departureTime": "20:00",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "gujranwala",
+          "stationName": "Gujranwala",
+          "arrivalTime": "20:25",
+          "departureTime": "20:27",
+          "dayOffset": 0,
+          "platform": null
+        },
+        {
+          "stationId": "lahore jn",
+          "stationName": "Lahore Junction",
+          "arrivalTime": "21:35",
+          "departureTime": "21:35",
+          "dayOffset": 0,
+          "platform": null
+        }
+      ]
+    }
+  ]
+}

@@ -36,7 +36,9 @@ class PreferenceChip extends StatelessWidget {
             color: isSelected ? colorScheme.primary : colorScheme.surface,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: isSelected ? colorScheme.primary : colorScheme.onSurface.withValues(alpha: 0.08),
+              color: isSelected
+                  ? colorScheme.primary
+                  : colorScheme.onSurface.withValues(alpha: 0.08),
               width: 1.5,
             ),
             boxShadow: isSelected
@@ -45,7 +47,7 @@ class PreferenceChip extends StatelessWidget {
                       color: colorScheme.primary.withValues(alpha: 0.2),
                       blurRadius: 8,
                       offset: const Offset(0, 4),
-                    )
+                    ),
                   ]
                 : [],
           ),
@@ -60,7 +62,9 @@ class PreferenceChip extends StatelessWidget {
               Text(
                 label,
                 style: theme.textTheme.labelLarge?.copyWith(
-                  color: isSelected ? colorScheme.onPrimary : colorScheme.onSurface,
+                  color: isSelected
+                      ? colorScheme.onPrimary
+                      : colorScheme.onSurface,
                   fontWeight: FontWeight.w700,
                 ),
               ),

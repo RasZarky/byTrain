@@ -4,11 +4,7 @@ class SearchSectionLabel extends StatelessWidget {
   final String label;
   final Widget? trailing;
 
-  const SearchSectionLabel({
-    super.key,
-    required this.label,
-    this.trailing,
-  });
+  const SearchSectionLabel({super.key, required this.label, this.trailing});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../theme/app_dimensions.dart';
 
 class QuickActionCard extends StatefulWidget {
   final String label;
@@ -18,7 +19,8 @@ class QuickActionCard extends StatefulWidget {
   State<QuickActionCard> createState() => _QuickActionCardState();
 }
 
-class _QuickActionCardState extends State<QuickActionCard> with SingleTickerProviderStateMixin {
+class _QuickActionCardState extends State<QuickActionCard>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
 
@@ -29,9 +31,10 @@ class _QuickActionCardState extends State<QuickActionCard> with SingleTickerProv
       vsync: this,
       duration: const Duration(milliseconds: 100),
     );
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.96).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.96,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
   }
 
   @override
@@ -43,7 +46,7 @@ class _QuickActionCardState extends State<QuickActionCard> with SingleTickerProv
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -54,9 +57,9 @@ class _QuickActionCardState extends State<QuickActionCard> with SingleTickerProv
         child: ScaleTransition(
           scale: _scaleAnimation,
           child: Container(
-            height: 110,
+            constraints: const BoxConstraints(minHeight: 110),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
               color: theme.colorScheme.surface,
               border: Border.all(
                 color: widget.color.withValues(alpha: 0.1),
@@ -71,7 +74,7 @@ class _QuickActionCardState extends State<QuickActionCard> with SingleTickerProv
               ],
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
               child: Stack(
                 children: [
                   // Subtle gradient accent
@@ -103,24 +106,26 @@ class _QuickActionCardState extends State<QuickActionCard> with SingleTickerProv
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.all(AppDimensions.m),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         // Icon bubble
                         Container(
                           padding: const EdgeInsets.all(12),
                           decoration: BoxDecoration(
                             color: widget.color.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(AppDimensions.radiusL),
                           ),
                           child: Icon(
                             widget.icon,
                             color: widget.color,
-                            size: 24,
+                            size: AppDimensions.iconM,
                           ),
                         ),
+                        const SizedBox(height: AppDimensions.s),
                         // Bold, modern label
                         Text(
                           widget.label,

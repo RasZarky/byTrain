@@ -8,7 +8,10 @@ class Journey extends Equatable {
   final Train train;
   final DateTime departureTime;
   final DateTime arrivalTime;
-  final double price;
+
+  /// Fare in Pakistani rupees. Null when no verified fare data is available
+  /// (Pakistan Railways does not publish fares in the public timetable).
+  final double? price;
 
   const Journey({
     required this.from,
@@ -16,9 +19,16 @@ class Journey extends Equatable {
     required this.train,
     required this.departureTime,
     required this.arrivalTime,
-    required this.price,
+    this.price,
   });
 
   @override
-  List<Object?> get props => [from, to, train, departureTime, arrivalTime, price];
+  List<Object?> get props => [
+    from,
+    to,
+    train,
+    departureTime,
+    arrivalTime,
+    price,
+  ];
 }

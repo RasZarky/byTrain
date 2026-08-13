@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import '../../../station/domain/models/station.dart';
 
 abstract class JourneyPlannerEvent extends Equatable {
   const JourneyPlannerEvent();
@@ -7,20 +8,20 @@ abstract class JourneyPlannerEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class FromStationChanged extends JourneyPlannerEvent {
-  final String fromStation;
-  const FromStationChanged(this.fromStation);
+class FromStationSelected extends JourneyPlannerEvent {
+  final Station? station;
+  const FromStationSelected(this.station);
 
   @override
-  List<Object?> get props => [fromStation];
+  List<Object?> get props => [station];
 }
 
-class ToStationChanged extends JourneyPlannerEvent {
-  final String toStation;
-  const ToStationChanged(this.toStation);
+class ToStationSelected extends JourneyPlannerEvent {
+  final Station? station;
+  const ToStationSelected(this.station);
 
   @override
-  List<Object?> get props => [toStation];
+  List<Object?> get props => [station];
 }
 
 class DateTimeChanged extends JourneyPlannerEvent {
@@ -45,21 +46,4 @@ class DirectOnlyToggled extends JourneyPlannerEvent {
 
 class FastestRouteToggled extends JourneyPlannerEvent {
   const FastestRouteToggled();
-}
-
-class CheapestFirstToggled extends JourneyPlannerEvent {
-  const CheapestFirstToggled();
-}
-
-class RecentSearchSelected extends JourneyPlannerEvent {
-  final String from;
-  final String to;
-  const RecentSearchSelected(this.from, this.to);
-
-  @override
-  List<Object?> get props => [from, to];
-}
-
-class RecentSearchesCleared extends JourneyPlannerEvent {
-  const RecentSearchesCleared();
 }

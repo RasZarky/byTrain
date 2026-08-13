@@ -6,10 +6,7 @@ import '../../domain/models/train.dart';
 class RouteDetailsAppBar extends StatelessWidget {
   final Train train;
 
-  const RouteDetailsAppBar({
-    super.key,
-    required this.train,
-  });
+  const RouteDetailsAppBar({super.key, required this.train});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +38,10 @@ class RouteDetailsAppBar extends StatelessWidget {
         ),
       ),
       flexibleSpace: FlexibleSpaceBar(
-        stretchModes: const [StretchMode.zoomBackground, StretchMode.blurBackground],
+        stretchModes: const [
+          StretchMode.zoomBackground,
+          StretchMode.blurBackground,
+        ],
         background: Stack(
           fit: StackFit.expand,
           children: [
@@ -50,11 +50,12 @@ class RouteDetailsAppBar extends StatelessWidget {
                 imageUrl: train.imageUrl!,
                 fit: BoxFit.cover,
                 placeholder: (context, url) => _buildDefaultBackground(theme),
-                errorWidget: (context, url, error) => _buildDefaultBackground(theme),
+                errorWidget: (context, url, error) =>
+                    _buildDefaultBackground(theme),
               )
             else
               _buildDefaultBackground(theme),
-            
+
             DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -81,7 +82,10 @@ class RouteDetailsAppBar extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: theme.colorScheme.primary,
                           borderRadius: BorderRadius.circular(8),
@@ -96,7 +100,7 @@ class RouteDetailsAppBar extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        'LIVE ROUTE',
+                        'SCHEDULE',
                         style: theme.textTheme.labelLarge?.copyWith(
                           color: Colors.white.withValues(alpha: 0.7),
                           fontWeight: FontWeight.w900,

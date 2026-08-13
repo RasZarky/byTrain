@@ -1,15 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../../core/theme/app_dimensions.dart';
+import 'bloc/home_bloc.dart';
 
 class MainScreen extends StatelessWidget {
   final StatefulNavigationShell navigationShell;
 
-  const MainScreen({
-    super.key,
-    required this.navigationShell,
-  });
+  const MainScreen({super.key, required this.navigationShell});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,9 @@ class _LiquidGlassBottomNav extends StatelessWidget {
     final bottomPadding = MediaQuery.of(context).padding.bottom;
 
     return Padding(
-      padding: EdgeInsets.only(bottom: bottomPadding > 0 ? bottomPadding : AppDimensions.m),
+      padding: EdgeInsets.only(
+        bottom: bottomPadding > 0 ? bottomPadding : AppDimensions.m,
+      ),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: AppDimensions.l),
         height: 64,
@@ -71,25 +72,25 @@ class _LiquidGlassBottomNav extends StatelessWidget {
                     icon: Icons.home_rounded,
                     label: 'Home',
                     isSelected: navigationShell.currentIndex == 0,
-                    onTap: () => _onTap(0),
+                    onTap: () => _onTap(context, 0),
                   ),
                   _NavItem(
                     icon: Icons.search_rounded,
                     label: 'Search',
                     isSelected: navigationShell.currentIndex == 1,
-                    onTap: () => _onTap(1),
+                    onTap: () => _onTap(context, 1),
                   ),
                   _NavItem(
                     icon: Icons.route_rounded,
                     label: 'Plan',
                     isSelected: navigationShell.currentIndex == 2,
-                    onTap: () => _onTap(2),
+                    onTap: () => _onTap(context, 2),
                   ),
                   _NavItem(
                     icon: Icons.settings_rounded,
                     label: 'Settings',
                     isSelected: navigationShell.currentIndex == 3,
-                    onTap: () => _onTap(3),
+                    onTap: () => _onTap(context, 3),
                   ),
                 ],
               ),
@@ -100,7 +101,10 @@ class _LiquidGlassBottomNav extends StatelessWidget {
     );
   }
 
-  void _onTap(int index) {
+  void _onTap(BuildContext context, int index) {
+    if (index == 0 && index != navigationShell.currentIndex) {
+      context.read<HomeBloc>().add(LoadHomeData());
+    }
     navigationShell.goBranch(
       index,
       initialLocation: index == navigationShell.currentIndex,
@@ -124,8 +128,8 @@ class _NavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final color = isSelected 
-        ? theme.colorScheme.primary 
+    final color = isSelected
+        ? theme.colorScheme.primary
         : theme.colorScheme.onSurface.withValues(alpha: 0.4);
 
     return InkResponse(
@@ -135,7 +139,10 @@ class _NavItem extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeOutCubic,
-        padding: const EdgeInsets.symmetric(horizontal: AppDimensions.m, vertical: AppDimensions.s),
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppDimensions.m,
+          vertical: AppDimensions.s,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -143,11 +150,7 @@ class _NavItem extends StatelessWidget {
               scale: isSelected ? 1.2 : 1.0,
               duration: const Duration(milliseconds: 300),
               curve: Curves.elasticOut,
-              child: Icon(
-                icon,
-                color: color,
-                size: 26,
-              ),
+              child: Icon(icon, color: color, size: 26),
             ),
             const SizedBox(height: AppDimensions.xs),
             AnimatedOpacity(
