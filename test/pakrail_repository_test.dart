@@ -44,6 +44,21 @@ void main() {
     expect(via, isNot(contains('Multan')));
   });
 
+  test('cities group stations by city name', () async {
+    final repo = PakRailRepository();
+    final cities = await repo.loadCities();
+    expect(cities, isNotEmpty);
+
+    final karachi = cities.firstWhere((c) => c.name == 'Karachi');
+    expect(karachi.province, 'Sindh');
+    expect(karachi.stations.length, greaterThanOrEqualTo(2));
+    expect(karachi.stations.any((s) => s.name.contains('Cantt')), isTrue);
+
+    final byName = await repo.cityByName('Lahore');
+    expect(byName, isNotNull);
+    expect(byName!.stations.any((s) => s.code == 'LHR'), isTrue);
+  });
+
   test('stations include official Pakistan Railways codes', () async {
     final repo = PakRailRepository();
     final stations = await repo.loadStations();
