@@ -4,6 +4,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/journey_planner/domain/models/journey.dart';
+import '../../features/station/domain/models/city.dart';
 import '../../features/station/domain/models/station.dart';
 import '../../features/train/domain/models/train.dart';
 
@@ -113,6 +114,51 @@ class PakRailRepository {
       for (final s in data['stations'] as List)
         _stationFromJson(s as Map<String, dynamic>),
     ];
+  }
+
+  /// Unique cities derived from [Station.city], each with its stations.
+  /// Stations with an empty city are grouped under "Other".
+  Future<List<City>> loadCities() async {
+    final stations = await loadStations();
+    final byCity = <String, List<Station>>{};
+    final provinceByCity = <String, String>{};
+
+    for (final station in stations) {
+      final name = station.city.trim().isEmpty ? 'Other' : station.city.trim();
+      byCity.putIfAbsent(name, () => []).add(station);
+      if ((provinceByCity[name] ?? '').isEmpty &&
+          station.province.trim().isNotEmpty) {
+        provinceByCity[name] = station.province.trim();
+      }
+    }
+
+    for (final list in byCity.values) {
+      list.sort((a, b) => a.name.compareTo(b.name));
+    }
+
+    final cities = [
+      for (final name in byCity.keys)
+        City(
+          name: name,
+          province: provinceByCity[name] ?? '',
+          stations: byCity[name]!,
+        ),
+    ]..sort((a, b) {
+      if (a.name == 'Other') return 1;
+      if (b.name == 'Other') return -1;
+      return a.name.compareTo(b.name);
+    });
+
+    return cities;
+  }
+
+  Future<City?> cityByName(String name) async {
+    final cities = await loadCities();
+    final key = name.trim().toLowerCase();
+    for (final city in cities) {
+      if (city.name.toLowerCase() == key) return city;
+    }
+    return null;
   }
 
   /// Stations whose name or code contains [query] (case-insensitive).

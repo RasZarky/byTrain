@@ -5,6 +5,8 @@ import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/home/presentation/main_screen.dart';
 import '../../features/search/presentation/search_screen.dart';
+import '../../features/routes/presentation/cities_screen.dart';
+import '../../features/routes/presentation/city_stations_screen.dart';
 import '../../features/train/presentation/train_details_screen.dart';
 import '../../features/train/presentation/route_details_screen.dart';
 import '../../features/journey_planner/presentation/journey_planner_screen.dart';
@@ -60,8 +62,18 @@ class AppRouter {
             navigatorKey: _shellNavigatorSearchKey,
             routes: [
               GoRoute(
-                path: '/search',
-                builder: (context, state) => const SearchScreen(),
+                path: '/routes',
+                builder: (context, state) => const CitiesScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'city/:cityName',
+                    builder: (context, state) => CityStationsScreen(
+                      cityName: Uri.decodeComponent(
+                        state.pathParameters['cityName']!,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -92,6 +104,11 @@ class AppRouter {
         ],
       ),
       // Detail routes that should probably be on top of the shell
+      GoRoute(
+        path: '/search',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const SearchScreen(),
+      ),
       GoRoute(
         path: '/train-details/:id',
         parentNavigatorKey: _rootNavigatorKey,
