@@ -8,6 +8,7 @@ import '../../features/search/presentation/search_screen.dart';
 import '../../features/routes/presentation/cities_screen.dart';
 import '../../features/routes/presentation/city_stations_screen.dart';
 import '../../features/train/presentation/train_details_screen.dart';
+import '../../features/train/presentation/trains_screen.dart';
 import '../../features/train/presentation/route_details_screen.dart';
 import '../../features/journey_planner/presentation/journey_planner_screen.dart';
 import '../../features/station/presentation/station_details_screen.dart';
@@ -22,8 +23,8 @@ final _shellNavigatorHomeKey = GlobalKey<NavigatorState>(
 final _shellNavigatorSearchKey = GlobalKey<NavigatorState>(
   debugLabel: 'shellSearch',
 );
-final _shellNavigatorPlanKey = GlobalKey<NavigatorState>(
-  debugLabel: 'shellPlan',
+final _shellNavigatorTrainsKey = GlobalKey<NavigatorState>(
+  debugLabel: 'shellTrains',
 );
 final _shellNavigatorSettingsKey = GlobalKey<NavigatorState>(
   debugLabel: 'shellSettings',
@@ -78,11 +79,11 @@ class AppRouter {
             ],
           ),
           StatefulShellBranch(
-            navigatorKey: _shellNavigatorPlanKey,
+            navigatorKey: _shellNavigatorTrainsKey,
             routes: [
               GoRoute(
-                path: '/journey-planner',
-                builder: (context, state) => const JourneyPlannerScreen(),
+                path: '/trains',
+                builder: (context, state) => const TrainsScreen(),
               ),
             ],
           ),
@@ -108,6 +109,11 @@ class AppRouter {
         path: '/search',
         parentNavigatorKey: _rootNavigatorKey,
         builder: (context, state) => const SearchScreen(),
+      ),
+      GoRoute(
+        path: '/journey-planner',
+        parentNavigatorKey: _rootNavigatorKey,
+        builder: (context, state) => const JourneyPlannerScreen(),
       ),
       GoRoute(
         path: '/train-details/:id',

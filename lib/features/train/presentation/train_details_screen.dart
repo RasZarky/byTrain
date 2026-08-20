@@ -115,11 +115,11 @@ class _TrainDetailsScreenState extends State<TrainDetailsScreen> {
           departureStation: train.stops.isNotEmpty
               ? train.stops.first.stationName
               : 'Origin',
-          departureTime: train.departureTime,
+          departureTime: formatClockTimeString(train.departureTime),
           arrivalStation: train.stops.isNotEmpty
               ? train.stops.last.stationName
               : 'Destination',
-          arrivalTime: train.arrivalTime,
+          arrivalTime: formatClockTimeString(train.arrivalTime),
           duration: train.durationMin != null
               ? formatDuration(train.durationMin!)
               : 'Unknown',

@@ -75,8 +75,8 @@ class _LiquidGlassBottomNav extends StatelessWidget {
                     onTap: () => _onTap(context, 0),
                   ),
                   _NavItem(
-                    icon: Icons.playlist_add_rounded,
-                    label: 'Plan',
+                    icon: Icons.train_rounded,
+                    label: 'Trains',
                     isSelected: navigationShell.currentIndex == 2,
                     onTap: () => _onTap(context, 2),
                   ),

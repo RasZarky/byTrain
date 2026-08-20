@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import '../../../core/data/pakrail_repository.dart';
 import '../../../core/data/saved_journeys_store.dart';
 import '../../../core/theme/app_dimensions.dart';
+import '../../../core/utils/format.dart';
 import '../domain/models/journey.dart';
 import '../domain/models/saved_journey.dart';
 import '../../station/domain/models/station.dart';
@@ -330,6 +331,6 @@ class _JourneyPlannerViewState extends State<JourneyPlannerView>
       dayStr = DateFormat('EEE, d MMM').format(dt);
     }
 
-    return '$dayStr, ${DateFormat('HH:mm').format(dt)}';
+    return '$dayStr, ${formatClockTime(dt)}';
   }
 }

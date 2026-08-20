@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/data/pakrail_repository.dart';
 import '../../../../core/theme/app_dimensions.dart';
+import '../../../../core/utils/format.dart';
 import '../../../station/domain/models/station.dart';
 import '../../domain/models/train.dart';
 import 'section_title.dart';
@@ -215,7 +216,7 @@ class _StationDetailsBottomSheetState extends State<StationDetailsBottomSheet> {
       ),
       trailing: stopAtStation != null
           ? Text(
-              'Arr ${stopAtStation.arrivalTime}',
+              'Arr ${formatClockTimeString(stopAtStation.arrivalTime)}',
               style: theme.textTheme.labelMedium?.copyWith(
                 fontWeight: FontWeight.w700,
                 color: colorScheme.primary,

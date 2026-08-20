@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_dimensions.dart';
+import '../../../../core/utils/format.dart';
 import '../../../../core/widgets/custom_card.dart';
 import '../../domain/models/train.dart';
 
@@ -84,7 +85,7 @@ class TrainCard extends StatelessWidget {
                               Flexible(
                                 child: _buildTimeBlock(
                                   theme,
-                                  train.departureTime,
+                                  formatClockTimeString(train.departureTime),
                                   'Dep',
                                   isNarrow,
                                 ),
@@ -106,7 +107,7 @@ class TrainCard extends StatelessWidget {
                               Flexible(
                                 child: _buildTimeBlock(
                                   theme,
-                                  train.arrivalTime,
+                                  formatClockTimeString(train.arrivalTime),
                                   'Arr',
                                   isNarrow,
                                 ),

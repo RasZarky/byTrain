@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../core/theme/app_dimensions.dart';
+import '../../../../core/utils/format.dart';
 import '../../../../core/widgets/custom_card.dart';
 import '../../../journey_planner/domain/models/saved_journey.dart';
 
@@ -21,9 +21,9 @@ class SavedJourneyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final dep = DateFormat('EEE, d MMM · HH:mm').format(journey.departureTime);
-    final depTime = DateFormat('HH:mm').format(journey.departureTime);
-    final arrTime = DateFormat('HH:mm').format(journey.arrivalTime);
+    final dep = formatDateWithClock(journey.departureTime);
+    final depTime = formatClockTime(journey.departureTime);
+    final arrTime = formatClockTime(journey.arrivalTime);
     final duration = journey.arrivalTime.difference(journey.departureTime);
 
     return CustomCard(

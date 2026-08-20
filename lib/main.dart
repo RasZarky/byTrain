@@ -45,6 +45,14 @@ class ByTrainApp extends StatelessWidget {
             darkTheme: AppTheme.darkTheme,
             themeMode: state.themeMode,
             routerConfig: routerConfig ?? AppRouter.router,
+            builder: (context, child) {
+              return MediaQuery(
+                data: MediaQuery.of(
+                  context,
+                ).copyWith(alwaysUse24HourFormat: false),
+                child: child!,
+              );
+            },
           );
         },
       ),
