@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 import '../../../core/theme/app_dimensions.dart';
+import '../../../core/utils/format.dart';
 import '../../journey_planner/domain/models/journey.dart';
 import '../../station/domain/models/station.dart';
 import '../../train/domain/models/train.dart';
@@ -415,8 +415,8 @@ class _RouteTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final dep = DateFormat('HH:mm').format(journey.departureTime);
-    final arr = DateFormat('HH:mm').format(journey.arrivalTime);
+    final dep = formatClockTime(journey.departureTime);
+    final arr = formatClockTime(journey.arrivalTime);
     return ListTile(
       contentPadding: const EdgeInsets.symmetric(horizontal: 4),
       leading: Container(

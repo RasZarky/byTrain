@@ -21,12 +21,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   final List<OnboardingModel> _pages = const [
     OnboardingModel(
-      icon: Icons.train_outlined,
-      title: 'Book train tickets in seconds',
-      subtitle: 'Search routes, compare fares, and book instantly.',
-      color: Color(0xFF378ADD),
-    ),
-    OnboardingModel(
       icon: Icons.map_outlined,
       title: 'Live routes and platforms',
       subtitle: 'Real-time updates on delays, gates, and connections.',

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
 import '../../../../core/theme/app_dimensions.dart';
+import '../../../../core/utils/format.dart';
 import '../../../../core/widgets/custom_card.dart';
 import '../../domain/models/journey.dart';
 
@@ -30,8 +30,8 @@ class JourneyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final fromTime = DateFormat('HH:mm').format(journey.departureTime);
-    final toTime = DateFormat('HH:mm').format(journey.arrivalTime);
+    final fromTime = formatClockTime(journey.departureTime);
+    final toTime = formatClockTime(journey.arrivalTime);
     final duration = _formatDuration(
       journey.departureTime,
       journey.arrivalTime,

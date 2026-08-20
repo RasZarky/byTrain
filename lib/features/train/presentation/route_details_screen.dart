@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/data/pakrail_repository.dart';
 import '../../../core/theme/app_dimensions.dart';
+import '../../../core/utils/format.dart';
 import '../domain/models/train.dart';
 import 'widgets/live_status_card.dart';
 import 'widgets/route_details_app_bar.dart';
@@ -100,7 +101,7 @@ class _RouteDetailsScreenState extends State<RouteDetailsScreen> {
                   final stop = displayTrain.stops[index];
                   return RouteStopTile(
                     stationName: stop.stationName,
-                    arrivalTime: stop.arrivalTime,
+                    arrivalTime: formatClockTimeString(stop.arrivalTime),
                     platform: stop.platform,
                     delay: stop.delay,
                     status: stop.status,

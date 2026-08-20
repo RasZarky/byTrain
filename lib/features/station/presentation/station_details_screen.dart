@@ -3,9 +3,12 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/data/pakrail_repository.dart';
 import '../../../core/theme/app_dimensions.dart';
+import '../../../core/utils/format.dart';
 import '../../../core/widgets/custom_card.dart';
 import '../../train/domain/models/train.dart';
 import '../domain/models/station.dart';
+
+enum _StationBoard { menu, arrivals, departures }
 
 class StationDetailsScreen extends StatefulWidget {
   final String stationId;
@@ -22,6 +25,7 @@ class _StationDetailsScreenState extends State<StationDetailsScreen> {
   List<Train> _trains = const [];
   bool _loading = true;
   String? _error;
+  _StationBoard _board = _StationBoard.menu;
 
   @override
   void initState() {
@@ -148,50 +152,169 @@ class _StationDetailsScreenState extends State<StationDetailsScreen> {
             ],
           ),
         ),
-
         const SizedBox(height: AppDimensions.l),
+        if (_board == _StationBoard.menu)
+          _buildMenu(theme)
+        else
+          ..._buildBoard(theme, station),
+      ],
+    );
+  }
 
+  Widget _buildMenu(ThemeData theme) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
         Text(
-          'TRAINS AT THIS STATION',
+          'CHOOSE A BOARD',
           style: theme.textTheme.labelSmall?.copyWith(
-            color: colorScheme.primary,
+            color: theme.colorScheme.primary,
             fontWeight: FontWeight.w900,
             letterSpacing: 1.5,
           ),
         ),
         const SizedBox(height: AppDimensions.m),
-
-        if (_trains.isEmpty)
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: AppDimensions.xl),
-            child: Center(
-              child: Text(
-                'No trains call at this station in the current timetable',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: colorScheme.onSurface.withValues(alpha: 0.5),
-                ),
-              ),
-            ),
-          )
-        else
-          for (final train in _trains) _buildTrainTile(theme, train, station),
+        _BoardOptionCard(
+          icon: Icons.south_west_rounded,
+          title: 'Arrival',
+          subtitle: 'Trains coming into this station',
+          onTap: () => setState(() => _board = _StationBoard.arrivals),
+        ),
+        const SizedBox(height: AppDimensions.s),
+        _BoardOptionCard(
+          icon: Icons.north_east_rounded,
+          title: 'Departure',
+          subtitle: 'Trains leaving this station',
+          onTap: () => setState(() => _board = _StationBoard.departures),
+        ),
       ],
     );
   }
 
-  Widget _buildTrainTile(ThemeData theme, Train train, Station station) {
-    TrainStop? stopAtStation;
-    for (final s in train.stops) {
-      if (s.stationName == station.name) {
-        stopAtStation = s;
-        break;
-      }
-    }
+  List<Widget> _buildBoard(ThemeData theme, Station station) {
+    final isArrivals = _board == _StationBoard.arrivals;
+    final entries = isArrivals
+        ? _arrivalsAt(station)
+        : _departuresFrom(station);
     final colorScheme = theme.colorScheme;
 
+    return [
+      Row(
+        children: [
+          IconButton(
+            tooltip: 'Back to options',
+            onPressed: () => setState(() => _board = _StationBoard.menu),
+            icon: const Icon(Icons.arrow_back_rounded),
+          ),
+          Expanded(
+            child: Text(
+              isArrivals ? 'ARRIVALS' : 'DEPARTURES',
+              style: theme.textTheme.labelSmall?.copyWith(
+                color: colorScheme.primary,
+                fontWeight: FontWeight.w900,
+                letterSpacing: 1.5,
+              ),
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: AppDimensions.s),
+      if (entries.isEmpty)
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: AppDimensions.xl),
+          child: Center(
+            child: Text(
+              isArrivals
+                  ? 'No trains arriving at this station in the current timetable'
+                  : 'No trains departing this station in the current timetable',
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurface.withValues(alpha: 0.5),
+              ),
+            ),
+          ),
+        )
+      else
+        for (final entry in entries)
+          _buildTrainTile(theme, entry, isArrivals),
+    ];
+  }
+
+  List<_StationTrain> _arrivalsAt(Station station) {
+    final result = <_StationTrain>[];
+    for (final train in _trains) {
+      final index = _stopIndex(train, station);
+      if (index <= 0) continue;
+      result.add(
+        _StationTrain(
+          train: train,
+          stop: train.stops[index],
+          fromOrTo: train.stops[index - 1].stationName,
+          originOrDestination: train.stops.first.stationName,
+        ),
+      );
+    }
+    result.sort(
+      (a, b) => _minutes(a.stop.arrivalTime).compareTo(
+        _minutes(b.stop.arrivalTime),
+      ),
+    );
+    return result;
+  }
+
+  List<_StationTrain> _departuresFrom(Station station) {
+    final result = <_StationTrain>[];
+    for (final train in _trains) {
+      final index = _stopIndex(train, station);
+      if (index < 0 || index >= train.stops.length - 1) continue;
+      result.add(
+        _StationTrain(
+          train: train,
+          stop: train.stops[index],
+          fromOrTo: train.stops[index + 1].stationName,
+          originOrDestination: train.stops.last.stationName,
+        ),
+      );
+    }
+    result.sort((a, b) {
+      final aTime = a.stop.departureTime ?? a.stop.arrivalTime;
+      final bTime = b.stop.departureTime ?? b.stop.arrivalTime;
+      return _minutes(aTime).compareTo(_minutes(bTime));
+    });
+    return result;
+  }
+
+  int _stopIndex(Train train, Station station) {
+    return train.stops.indexWhere((s) => s.stationName == station.name);
+  }
+
+  int _minutes(String hhmm) {
+    final parts = hhmm.split(':');
+    if (parts.length < 2) return 0;
+    final hour = int.tryParse(parts[0]) ?? 0;
+    final minute = int.tryParse(parts[1]) ?? 0;
+    return hour * 60 + minute;
+  }
+
+  Widget _buildTrainTile(
+    ThemeData theme,
+    _StationTrain entry,
+    bool isArrival,
+  ) {
+    final colorScheme = theme.colorScheme;
+    final time = isArrival
+        ? entry.stop.arrivalTime
+        : (entry.stop.departureTime ?? entry.stop.arrivalTime);
+    final directionLabel = isArrival
+        ? 'From ${entry.fromOrTo}'
+        : 'To ${entry.fromOrTo}';
+    final endpointLabel = isArrival
+        ? 'Origin ${entry.originOrDestination}'
+        : 'Towards ${entry.originOrDestination}';
+
     return CustomCard(
-      onTap: () => context.push('/train-details/${train.id}', extra: train),
+      onTap: () =>
+          context.push('/train-details/${entry.train.id}', extra: entry.train),
       padding: EdgeInsets.zero,
       child: ListTile(
         leading: Container(
@@ -201,47 +324,110 @@ class _StationDetailsScreenState extends State<StationDetailsScreen> {
             shape: BoxShape.circle,
           ),
           child: Icon(
-            Icons.train_rounded,
+            isArrival ? Icons.south_west_rounded : Icons.north_east_rounded,
             size: 20,
             color: colorScheme.primary,
           ),
         ),
         title: Text(
-          train.name,
+          entry.train.name,
           style: theme.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w800,
           ),
         ),
         subtitle: Text(
-          '#${train.number}',
+          '#${entry.train.number} · $directionLabel · $endpointLabel',
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
           style: theme.textTheme.labelSmall?.copyWith(
-            color: colorScheme.onSurface.withValues(alpha: 0.4),
+            color: colorScheme.onSurface.withValues(alpha: 0.5),
             fontWeight: FontWeight.bold,
-            letterSpacing: 1,
           ),
         ),
-        trailing: stopAtStation != null
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'Arr ${stopAtStation.arrivalTime}',
-                    style: theme.textTheme.labelMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: colorScheme.onSurface.withValues(alpha: 0.6),
-                    ),
+        trailing: Text(
+          formatClockTimeString(time),
+          style: theme.textTheme.titleSmall?.copyWith(
+            fontWeight: FontWeight.w900,
+            color: colorScheme.primary,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StationTrain {
+  final Train train;
+  final TrainStop stop;
+  final String fromOrTo;
+  final String originOrDestination;
+
+  const _StationTrain({
+    required this.train,
+    required this.stop,
+    required this.fromOrTo,
+    required this.originOrDestination,
+  });
+}
+
+class _BoardOptionCard extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  const _BoardOptionCard({
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
+    return CustomCard(
+      onTap: onTap,
+      padding: const EdgeInsets.all(AppDimensions.l),
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: colorScheme.primary.withValues(alpha: 0.1),
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, color: colorScheme.primary, size: 28),
+          ),
+          const SizedBox(width: AppDimensions.m),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: -0.4,
                   ),
-                  Text(
-                    'Dep ${stopAtStation.departureTime ?? stopAtStation.arrivalTime}',
-                    style: theme.textTheme.labelMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: colorScheme.primary,
-                    ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  subtitle,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: colorScheme.onSurface.withValues(alpha: 0.55),
                   ),
-                ],
-              )
-            : const Icon(Icons.chevron_right),
+                ),
+              ],
+            ),
+          ),
+          Icon(
+            Icons.chevron_right_rounded,
+            color: colorScheme.onSurface.withValues(alpha: 0.3),
+          ),
+        ],
       ),
     );
   }
