@@ -27,12 +27,6 @@ class _OnboardingScreenState extends State<OnboardingScreen>
       color: Color(0xFF2FAE8B),
     ),
     OnboardingModel(
-      icon: Icons.confirmation_number_outlined,
-      title: 'Tickets in your pocket',
-      subtitle: 'Skip the counter with mobile tickets and QR boarding.',
-      color: Color(0xFFE08A3C),
-    ),
-    OnboardingModel(
       icon: Icons.notifications_outlined,
       title: 'Never miss a departure',
       subtitle: 'Get alerts for delays, platform changes, and boarding time.',
